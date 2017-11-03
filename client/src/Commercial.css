@@ -1,0 +1,13 @@
+#search-conditions {
+  margin-top: -2rem;
+  background-color: #2196F3;
+  padding: 0.5rem;
+}
+
+#search-bar {
+  width:30rem;
+}
+
+.condition {
+  padding: 0.5rem;
+}
