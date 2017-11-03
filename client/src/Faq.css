@@ -1,0 +1,10 @@
+.Banner{
+    background-color: green;
+    height: 150px;
+}
+
+.Banner h1{
+    color:white;
+    font-size:30px;
+    text-align:center;
+}

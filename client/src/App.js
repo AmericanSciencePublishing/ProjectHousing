@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-
+import Faq from './Faq.js';
 import Footer from './Footer';
 
 import './App.css';
@@ -40,7 +40,7 @@ class App extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/">
+                  <NavLink to="/faq">
                     <p>FAQ</p>
                   </NavLink>
                 </NavItem>
@@ -59,8 +59,10 @@ class App extends Component {
           </Navbar>
 
             {
-              // <Route path="/commercial" component={} />
+		// <Route path="/commercial" component={} />
+		
             }
+               <Route path = "/faq" component={Faq} />
           </div>
         </Router>
         <Footer />

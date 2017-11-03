@@ -1,0 +1,20 @@
+import React from 'react';
+
+import './Faq.css';
+export default class Faq extends React.Component {
+  render() {
+    return (
+	    <div>
+	    <div className="Banner">
+	     <h1>FAQ?</h1>
+	    </div>
+
+	    <div>
+	    <h2>1. Can foreigners without green cards buy real estate in the United States?</h2>
+	    <p> The United States is a more mature market economy, welcomed by foreign investors. At the same time, the law transparent and open than other countries relatively simple and clear. Anyone can buy American real estate, as long as you have a Chinese passport, you c purchase transaction, even if you do not have a US visa, you can also complete the transaction by fax. Specific questions can contact of the North American purchase network.
+</p>
+	    </div>
+	    </div>
+    );
+  }
+}
