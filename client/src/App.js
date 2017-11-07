@@ -16,7 +16,9 @@ class App extends Component {
           <div>
             <Navbar>
               <Navbar.Header>
-                <Navbar.Brand>Brand</Navbar.Brand>
+                <Navbar.Brand>
+                  <a href="/">Brand</a>
+                </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
@@ -65,6 +67,7 @@ class App extends Component {
 	    <Route path="/info" component={Info} />
           </div>
         </Router>
+
         <Footer />
       </div>
     );
