@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Label } from 'react-bootstrap';
 
 import './CommercialListItem.css';
 
@@ -10,20 +10,24 @@ class CommercialListItem extends Component {
     return (
       <div className="container" id="item">
         <Row>
-          <Col xs={6}>
+          <Col xs={12} md={6}>
           <img src="http://lorempixel.com/400/200"  alt=""/>
           </Col>
 
-          <Col xs={6}>
-            <h1>{item.price}</h1>
+          <Col xs={12} md={6}>
+            <p className="price">{item.price}</p>
 
-            <p>{item.description}</p>
+            <p className="description">{item.description}</p>
 
-            <p>{item.details}</p>
+            <p className="type">{item.details}</p>
 
-            <p>{item.address}</p>
+            <p className="address">{item.address}</p>
 
-            <p>{item.tags}</p>
+            {
+              item.labels.map(
+                label => <Label key={label} bsClass="custom-label">{label}</Label>
+              )
+            }
 
           </Col>
         </Row>

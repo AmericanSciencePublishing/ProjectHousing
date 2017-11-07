@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap';
 
 import CommercialListItem from './CommercialListItem';
+import Pagination from './Pagination';
 
 import './Commercial.css';
 
@@ -20,14 +21,28 @@ class Commercial extends Component {
         'description': 'Condo/Townhouse',
         'details': '3 Beds | 2 Baths | 1,850sqft | 2cars',
         address: '2253 St, CA',
-        tags: 'Quiet, Convenient'
+        labels: ['Quie', 'Convenient']
       },
       {
         price: '210000',
         'description': 'Condo/Townhouse',
         'details': '3 Beds | 2 Baths | 1,850sqft | 2cars',
         address: '2253 St, CA',
-        tags: 'Quiet, Convenient'
+        labels: ['Quie', 'Convenient']
+      },
+      {
+        price: '210000',
+        'description': 'Condo/Townhouse',
+        'details': '3 Beds | 2 Baths | 1,850sqft | 2cars',
+        address: '2253 St, CA',
+        labels: ['Quie', 'Convenient']
+      },
+      {
+        price: '210000',
+        'description': 'Condo/Townhouse',
+        'details': '3 Beds | 2 Baths | 1,850sqft | 2cars',
+        address: '2253 St, CA',
+        labels: ['Quie', 'Convenient']
       }
     ];
 
@@ -36,7 +51,7 @@ class Commercial extends Component {
         <div id="search-conditions">
           <div className="container">
             <Navbar.Form>
-              <FormGroup className="" pullLeft>
+              <FormGroup className="">
                 <FormControl
                   type="text"
                   placeholder="City, Zip, Address, Key Words"
@@ -83,10 +98,12 @@ class Commercial extends Component {
         <div className="container">
           {commercialList.map(item => {
             return (
-              <CommercialListItem key={item.description} item={item} />
+              <CommercialListItem key={item.address} item={item} />
             );
           })}
         </div>
+
+        <Pagination />
       </div>
     );
   }

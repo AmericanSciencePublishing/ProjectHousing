@@ -2,3 +2,29 @@
   padding: 3rem;
   border-bottom: 1px solid black;
 }
+
+#item .price {
+  color: orange;
+  font-size: 4rem;
+}
+
+#item .description {
+  font-size: 2rem;
+  color: gray;
+}
+
+#item .type {
+  font-size: 2rem;
+  font-weight: bold;
+  color: gray;
+}
+
+#item .address {
+  color: #2196F3;
+}
+
+.custom-label {
+  background-color: #4CAF50;
+  margin-right: 1rem;
+  padding: 0.5rem;
+}
