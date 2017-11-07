@@ -7,10 +7,10 @@ class Info extends React.Component{
 	return(
 		<div>
 		
-		<div className="Banner">
+		<div id="infoBanner">
 		<h1>More Info</h1>
 		</div>
-
+		
 		<div className="container">
 		<Row>
 		<Col xs={4}>
@@ -76,6 +76,7 @@ ngeles or second-hand house</a></li>
 		</Col>
 		</Row>
 		</div>
+		 
 	    </div>
 
 	    

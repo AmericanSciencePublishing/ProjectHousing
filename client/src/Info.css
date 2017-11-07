@@ -1,10 +1,16 @@
-.Banner{
-    background-color: #2196F3;
-    height: 150px;
+
+#infoBanner{
+   background:url("./images/moreinfo.jpg");
+   padding-top:10rem;
+   margin:15rem;
+   padding-bottom:8rem;
+   margin-top:-20px;
+   margin-bottom:4rem;
+   background-size:100% 100%;
 }
 
-.Banner h1{
-    color:white;
-    font-size:30px;
+#infoBanner h1{
+    color:#FFFFFF;
+    font-size:5rem;
     text-align:center;
 }
