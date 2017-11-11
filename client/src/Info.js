@@ -14,7 +14,7 @@ class Info extends React.Component{
 		<div className="container">
 		<Row>
 		<Col xs={4}>
-		<div>
+		<div id="infoLeft">
 		<ul>
 		 <li><a href="/"> Real Estate News</a> </li>
 		 <li><a href="/"> Commercial Eatate</a></li>
@@ -31,7 +31,7 @@ class Info extends React.Component{
 		</div>
 		</Col>
 		<Col xs={8}>
-		<div>
+		<div >
 		<h2>Real Estate News</h2>
 		<ul>
                  <li><a href="/"> Recommendations of the most secure financial platforms</a> </li>
