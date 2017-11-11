@@ -7,6 +7,7 @@ import Faq from './Faq';
 import Footer from './Footer';
 import Info from './Info';
 import './App.css';
+import Login from './Login';
 
 class App extends Component {
   render() {
@@ -54,9 +55,7 @@ class App extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/">
-                      <p>Log In</p>
-                    </NavLink>
+	           <Login/>
                   </NavItem>
                 </Nav>
               </Navbar.Collapse>
