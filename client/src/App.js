@@ -7,9 +7,22 @@ import Faq from './Faq';
 import Footer from './Footer';
 import Info from './Info';
 import './App.css';
-import Login from './Login';
+import LoginRegisForm from './LoginRegisForm';
 
 class App extends Component {
+    constructor(){
+	super();
+	this.state={showModal:false};
+	this.handleClick=this.handleClick.bind(this);
+	this.close=this.close.bind(this);
+    }
+    
+    close(){
+	this.setState({showModal:false});
+    }
+    handleClick(){
+	this.setState({showModal:true});
+    }
   render() {
     return (
       <div>
@@ -55,7 +68,7 @@ class App extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-	           <Login/>
+	    <p onClick={this.handleClick}>Log in</p>
                   </NavItem>
                 </Nav>
               </Navbar.Collapse>
@@ -66,7 +79,7 @@ class App extends Component {
 	    <Route path="/info" component={Info} />
           </div>
         </Router>
-
+	    <LoginRegisForm show={this.state.showModal} onHide={this.close} />
         <Footer />
       </div>
     );
