@@ -10,24 +10,24 @@ import './App.css';
 import LoginRegisForm from './LoginRegisForm';
 
 class App extends Component {
-    constructor(){
-	super();
-	this.state={showModal:false};
-	this.handleClick=this.handleClick.bind(this);
-	this.close=this.close.bind(this);
-    }
-    
-    close(){
-	this.setState({showModal:false});
-    }
-    handleClick(){
-	this.setState({showModal:true});
-    }
+  constructor() {
+    super();
+    this.state = { showModal: false };
+    this.handleClick = this.handleClick.bind(this);
+    this.close = this.close.bind(this);
+  }
+
+  close() {
+    this.setState({ showModal: false });
+  }
+  handleClick() {
+    this.setState({ showModal: true });
+  }
   render() {
     return (
-      <div>
+      <div id="site">
         <Router>
-          <div>
+          <div id="site-content">
             <Navbar>
               <Navbar.Header>
                 <Navbar.Brand>
@@ -68,7 +68,7 @@ class App extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-	    <p onClick={this.handleClick}>Log in</p>
+                    <p onClick={this.handleClick}>Log in</p>
                   </NavItem>
                 </Nav>
               </Navbar.Collapse>
@@ -76,10 +76,12 @@ class App extends Component {
 
             <Route path="/faq" component={Faq} />
             <Route path="/commercial" component={Commercial} />
-	    <Route path="/info" component={Info} />
+            <Route path="/info" component={Info} />
           </div>
         </Router>
-	    <LoginRegisForm show={this.state.showModal} onHide={this.close} />
+
+        <LoginRegisForm show={this.state.showModal} onHide={this.close} />
+
         <Footer />
       </div>
     );
