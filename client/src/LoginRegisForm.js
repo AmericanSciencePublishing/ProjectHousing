@@ -1,21 +1,35 @@
 import React from 'react';
-import {Modal} from 'react-bootstrap';
+import {Modal, Tabs, Tab} from 'react-bootstrap';
+import './Login.css';
+import modalSize from './Login.css';
+import LogForm from './LogForm';
+import RegForm from './RegForm';
 
-export default ({show,onHide}) => {
-    
-    return (
-	<div>
-            <Modal show={show} onHide={onHide}>
-	    <Modal.Header closeButton>
-	    <Modal.Title> Login </Modal.Title>
-	    </Modal.Header>
-	    <Modal.Body>
-	    <h1>test</h1>
-	    <hr/>
-	    </Modal.Body>
+class LoginRegisForm extends React.Component{
+//one issue: the content in tabs will overlap with tabs without those <br/>
 
-	    </Modal>
-	</div>
-	    
-    )
-};
+    render (){
+        return(
+        <div>
+		<Modal dialogClassName={modalSize} show={this.props.show} onHide={this.props.onHide}>
+            <Modal.Header closeButton>
+              <Modal.Title> Welcome  </Modal.Title>
+            </Modal.Header>
+            <Modal.Body style={{marginTop:"2rem"}}>
+              <Tabs defaultActiveKey={1} id="loginTabs">
+                <Tab eventKey={1} title="Sign in">
+                <LogForm />
+		</Tab>
+                <Tab eventKey={2} title="New account">
+		<RegForm /> </Tab>
+              </Tabs>
+            </Modal.Body>
+            <Modal.Footer>
+            </Modal.Footer>
+            </Modal>
+        </div>
+        );
+    }
+}
+
+export default LoginRegisForm;

@@ -1,0 +1,18 @@
+#label{
+    text-align:right;
+}
+
+#loginSubButton{
+    margin-left:50px;
+    width:160%;
+}
+#loginSubButton p{
+    font-size:20px;
+}
+
+#forget{
+    margin-left:14rem;
+    width:40%;
+    font-size:18px;
+    
+}
