@@ -4,3 +4,13 @@
   color: #2196F3;
   margin: auto;
 }
+
+#site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#site-content {
+  flex: 1;
+}

@@ -1,7 +1,17 @@
 .footer {
+  margin-top: 5rem;
   padding: 1rem;
 
-  background-color: black;
-  color: white;
   text-align: center;
+  background-color: #f2f2f2;
+}
+
+.footer h1 {
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 5rem;
+}
+
+.footer p {
+  font-size: 1.5rem;
 }
