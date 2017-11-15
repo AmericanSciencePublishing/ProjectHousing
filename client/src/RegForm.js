@@ -1,6 +1,8 @@
+
 import React from 'react';
-import {ControlLabel, Checkbox, ButtonGroup, ButtonToolbar, Row, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
-import './LogForm.css'
+import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
+import './LogForm.css';
+var axios = require("axios");
 //import ButtonLoader from 'react-bootstrap-button-loader';
 
 
@@ -13,58 +15,89 @@ class RegForm extends React.Component{
 	    email:"",
 	    password:"",
 	    confirmPassword:"",
-	    isLoading:false,
+	    submitMSG:""
+//	    isLoading:false,
 	};
 	this.validateForm=this.validateForm.bind(this);
     }
 
     validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
-  }
-    handleSubmit = event => {
-    event.preventDefault();
     }
 
-    handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
+    //handle submit
+
+    
+    handleSubmit(inputEmail, inputPassword){
+	var newUserInfo={
+	    email:inputEmail.value,
+	    password:inputPassword.value
+	};
+	axios.post('/sign_up', newUserInfo).then(res=>{
+	    console.log("registration res", res);
+	    this.setState({
+		submitMSG:"Sign up successfully!"
+	    });
+	
+	})
     }
+	
+
 
     render(){
+	let inputEmail;
+	let inputPassword;
+	let inputConfirmPassword;
 	return(
 	    <div>
-		<Form onSubmit={this.handleSubmit} horizontal style={{marginTop:"2rem"}}>
+	      <Form onSubmit={event=>{event.preventDefault();this.handleSubmit(inputEmail,inputPassword);}} horizontal style={{marginTop:"2rem"}}>
+
+	    {/* input e-mail */}
+	    
 		<FormGroup controlId="email" bsSize="large">
 		<Col xsOffset={1} xs={10}>
 		<FormControl
-                  autoFocus
-                  type="email"
-            value={this.state.email}
-	    onChange={this.handleChange}
-       	    placeholder="Enter Email"/>
+		  required
+		  autoFocus
+		  type="email"
+		  inputRef={node=>inputEmail=node}
+		  placeholder="Enter Email"/>
 		</Col>
 		</FormGroup>
+
+	    {/*input password */}
 		<FormGroup controlId="password" bsSize="large">
 		<Col xsOffset={1} xs={10}>
 		<FormControl
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="password"
-	    placeholder="Creat Password"
+		  required
+		  inputRef={node=>inputPassword=node}
+		  type="password"
+		  placeholder="Creat Password"
 		/>
 		</Col>
 		</FormGroup>
+
+	    {/*confirm password*/}
+	    
 		<FormGroup controlId="confirmPassword" bsSize="large">
                 <Col xsOffset={1} xs={10}>
-                <FormControl
-            value={this.state.confirmPassword}
-            onChange={this.handleChange}
-            type="password"
-            placeholder="Re-enter your Password"
+                  <FormControl
+		    required
+		    inputRef={node=>inputConfirmPassword=node}
+		    type="password"
+		    placeholder="Re-enter your Password"
                 />
                 </Col>
                 </FormGroup>
+
+	    {/*checkbox for landlord */}
+
+		<FormGroup>
+		<Col xsOffset={1} xs={10}>
+		<Checkbox> I am a landlord or industry professional</Checkbox>
+		</Col>
+		</FormGroup>
+		
 		{/*submit button*/}
 		
 		<ButtonToolbar justified>
@@ -74,8 +107,7 @@ class RegForm extends React.Component{
             id="loginSubButton"
 	    bsSize="large"
 	    bsStyle="info"
-            bsSize="large"
-            disabled={!this.validateForm()}
+           
             type="submit"
           >	Submit
 	    </Button>
