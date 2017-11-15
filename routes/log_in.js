@@ -12,12 +12,16 @@ router.post('/', function(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
 
-  const newUser = new User({ email, password });
-
-  newUser
-    .save()
-    .then(() => res.send({ success: true }))
-    .catch(e => res.send({ success: false, error: e }));
+  match(email, password, res);
 });
+
+async function match(email, password, res) {
+  const found = await User.findOne({ email, password });
+  if (found) {
+    res.send({ success: true });
+  } else {
+    res.send({ success: false });
+  }
+}
 
 module.exports = router;
