@@ -1,18 +1,17 @@
 import React from 'react';
-
-
+import {Image} from 'react-bootstrap';
 import './Faq.css';
+import faqImg from "./images/FAQ.png";
 export default class Faq extends React.Component {
   render() {
     return (
-	    <div>
-	    <div className="faqBanner">
-	    <h1>FAQ?</h1>
-	    </div>
-
+	   
 	    <div className = "container">
-      	    
-	    <h2 style={{color:"#1A237E"}}>1. Can foreigners without green cards buy real estate in the United States?</h2>
+	    <Image responsive className="faqImg col-xs-12 col-sm-12 c\
+ol-md-12 col-lg-12 col-xl-12" src={faqImg} alt="faq"/>
+	    <hr/>
+	    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      	    <h2 style={{color:"#1A237E"}}>1. Can foreigners without green cards buy real estate in the United States?</h2>
 
 	    <p> The United States is a more mature market economy, welcomed by foreign investors. At the same time, the law transparent and open than other countries relatively simple and clear. Anyone can buy American real estate, as long as you have a Chinese passport, you c purchase transaction, even if you do not have a US visa, you can also complete the transaction by fax. Specific questions can contact of the North American purchase network.
 	    </p>
@@ -33,6 +32,7 @@ export default class Faq extends React.Component {
 	    </p>
 	    </div>
 	    </div>
+
     );
   }
 }
