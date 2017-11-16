@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row, Label } from 'react-bootstrap';
 
-import './CommercialListItem.css';
+import './HouseListItem.css';
 
 class CommercialListItem extends Component {
   render(){

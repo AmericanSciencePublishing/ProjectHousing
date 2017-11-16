@@ -8,6 +8,7 @@ import Footer from './Footer';
 import Info from './Info';
 import LoginRegisForm from './LoginRegisForm';
 import IndexPage from './indexPage';
+import NewListing from './NewListing';
 
 import './App.css';
 
@@ -30,17 +31,17 @@ class App extends Component {
       <div id="site">
         <Router>
           <div id="site-content">
-            <Navbar fluid>
+            <Navbar>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <a href="/">Brand</a>
+                  <NavLink to="/">Brand</NavLink>
                 </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
                 <Nav className="nav">
                   <NavItem>
-                    <NavLink to="/">
+                    <NavLink to="/new-listing">
                       <p>New Listing</p>
                     </NavLink>
                   </NavItem>
@@ -50,7 +51,7 @@ class App extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/">
+                    <NavLink to="/new-construction">
                       <p>New Construction</p>
                     </NavLink>
                   </NavItem>
@@ -64,9 +65,9 @@ class App extends Component {
                       <p>FAQ</p>
                     </NavLink>
                   </NavItem>
-                  </Nav>
-                  <Nav pullRight>
-                  <NavItem>
+                </Nav>
+                <Nav pullRight>
+                  <NavItem disabled>
                     <NavLink to="/">
                       <p>En/Ch</p>
                     </NavLink>
@@ -79,6 +80,7 @@ class App extends Component {
             </Navbar>
 
             <Route exact path="/" component={IndexPage} />
+            <Route path="/new-listing" component={NewListing} />
             <Route path="/faq" component={Faq} />
             <Route path="/commercial" component={Commercial} />
             <Route path="/info" component={Info} />

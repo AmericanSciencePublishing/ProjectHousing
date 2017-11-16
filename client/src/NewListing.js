@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import {} from 'react-bootstrap';
 
 import SearchConditions from './SearchConditions';
+import Label from './Label';
 import HouseListItem from './HouseListItem';
-import Pagination from './Pagination';
 
-import './Commercial.css';
+import './NewListing.css';
 
-class Commercial extends Component {
+export default class NewListing extends Component {
   render() {
     const houses = [
       {
@@ -29,22 +30,24 @@ class Commercial extends Component {
         details: '3 Beds | 2 Baths | 1,850sqft | 2cars',
         address: '2253 St, CA --',
         labels: ['Quie', 'Convenient']
-      },
+      }
     ];
 
     return (
       <div>
         <SearchConditions />
         <div className="container">
-          {houses.map(item => {
-            return <HouseListItem key={item.address} item={item} />;
-          })}
-        </div>
+          <div id="labels">
+            <Label text="Commercial" withHandle />
+          </div>
 
-        <Pagination />
+          <div>
+            {houses.map(house => (
+              <HouseListItem key={house.address} item={house} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
 }
-
-export default Commercial;
