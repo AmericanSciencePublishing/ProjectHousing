@@ -1,0 +1,11 @@
+#banner {
+  background-image: url('https://www.askideas.com/media/83/Golden-Gate-Bridge-With-Night-Lights-And-Fog-Clouds.jpg');
+
+  margin-top: -20px;
+  padding: 5rem;
+  text-align: center;
+}
+
+#banner-text {
+  color: white
+}

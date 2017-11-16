@@ -3,11 +3,11 @@ import { Label as Lab, Button } from 'react-bootstrap';
 
 import './Label.css';
 
-const Label = ({ text, withHandle }) => {
+const Label = ({ text, withHandle, bsStyle="default"}) => {
   if (withHandle) {
     return (
       <div>
-        <Lab bsStyle="default" id="custom-label">
+        <Lab bsStyle={bsStyle} id="custom-label">
           {text}
           <Button bsStyle="link" bsClass="custom-button">
             X
@@ -18,7 +18,7 @@ const Label = ({ text, withHandle }) => {
   } else {
     return (
       <div>
-        <Lab bsStyle="default" id="custom-label">
+        <Lab bsStyle={bsStyle} id="custom-label">
           {text}
         </Lab>
       </div>

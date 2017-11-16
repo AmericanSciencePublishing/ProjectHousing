@@ -3,13 +3,11 @@ import {
   Navbar,
   Nav,
   NavItem,
-  FormGroup,
   FormControl,
   InputGroup,
   Button,
   DropdownButton,
-  MenuItem,
-  Col
+  MenuItem
 } from 'react-bootstrap';
 
 import './SearchConditions.css';

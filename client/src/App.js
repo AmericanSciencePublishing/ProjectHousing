@@ -9,6 +9,8 @@ import Info from './Info';
 import LoginRegisForm from './LoginRegisForm';
 import IndexPage from './indexPage';
 import NewListing from './NewListing';
+import NewConstructionList from './NewConstructionList';
+import Details from './Details';
 
 import './App.css';
 
@@ -83,7 +85,9 @@ class App extends Component {
             <Route path="/new-listing" component={NewListing} />
             <Route path="/faq" component={Faq} />
             <Route path="/commercial" component={Commercial} />
+            <Route path="/new-construction" component={NewConstructionList} />
             <Route path="/info" component={Info} />
+            <Route path="/details" component={Details} />
           </div>
         </Router>
 

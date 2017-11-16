@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {} from 'react-bootstrap';
 
-import SearchConditions from './SearchConditions';
-import Label from './Label';
 import HouseListItem from './HouseListItem';
 
-import './NewListing.css';
+import './NewConstructionList.css';
 
-export default class NewListing extends Component {
+export default class NewConstructionList extends Component {
   render() {
     const houses = [
       {
@@ -35,19 +33,19 @@ export default class NewListing extends Component {
 
     return (
       <div>
-        <SearchConditions />
-        <div className="container">
-          <div className="labels">
-            <Label text="iHola" />
-            <Label text="Commercial" withHandle />
-          </div>
-
-          <div>
-            {houses.map(house => (
-              <HouseListItem key={house.address} item={house} />
-            ))}
+        <div id="banner">
+          <div id="banner-text">
+            <h1>New Construction</h1>
+            <h2>San Francisco</h2>
           </div>
         </div>
+
+        {houses.map(house => (
+          <HouseListItem
+            key={house.address}
+            item={house}
+          />
+        ))}
       </div>
     );
   }
