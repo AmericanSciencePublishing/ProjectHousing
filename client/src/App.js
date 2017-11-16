@@ -6,8 +6,10 @@ import Commercial from './Commercial';
 import Faq from './Faq';
 import Footer from './Footer';
 import Info from './Info';
-import './App.css';
 import LoginRegisForm from './LoginRegisForm';
+import IndexPage from './indexPage';
+
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -28,7 +30,7 @@ class App extends Component {
       <div id="site">
         <Router>
           <div id="site-content">
-            <Navbar>
+            <Navbar fluid>
               <Navbar.Header>
                 <Navbar.Brand>
                   <a href="/">Brand</a>
@@ -36,7 +38,7 @@ class App extends Component {
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
-                <Nav pullRight className="nav">
+                <Nav className="nav">
                   <NavItem>
                     <NavLink to="/">
                       <p>New Listing</p>
@@ -62,6 +64,8 @@ class App extends Component {
                       <p>FAQ</p>
                     </NavLink>
                   </NavItem>
+                  </Nav>
+                  <Nav pullRight>
                   <NavItem>
                     <NavLink to="/">
                       <p>En/Ch</p>
@@ -74,6 +78,7 @@ class App extends Component {
               </Navbar.Collapse>
             </Navbar>
 
+            <Route exact path="/" component={IndexPage} />
             <Route path="/faq" component={Faq} />
             <Route path="/commercial" component={Commercial} />
             <Route path="/info" component={Info} />
