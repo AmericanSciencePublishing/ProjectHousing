@@ -6,8 +6,11 @@ import Commercial from './Commercial';
 import Faq from './Faq';
 import Footer from './Footer';
 import Info from './Info';
-import './App.css';
 import LoginRegisForm from './LoginRegisForm';
+import IndexPage from './indexPage';
+import NewListing from './NewListing';
+
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -31,14 +34,14 @@ class App extends Component {
             <Navbar>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <a href="/">Brand</a>
+                  <NavLink to="/">Brand</NavLink>
                 </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
-                <Nav pullRight className="nav">
+                <Nav className="nav">
                   <NavItem>
-                    <NavLink to="/">
+                    <NavLink to="/new-listing">
                       <p>New Listing</p>
                     </NavLink>
                   </NavItem>
@@ -48,7 +51,7 @@ class App extends Component {
                     </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/">
+                    <NavLink to="/new-construction">
                       <p>New Construction</p>
                     </NavLink>
                   </NavItem>
@@ -62,7 +65,9 @@ class App extends Component {
                       <p>FAQ</p>
                     </NavLink>
                   </NavItem>
-                  <NavItem>
+                </Nav>
+                <Nav pullRight>
+                  <NavItem disabled>
                     <NavLink to="/">
                       <p>En/Ch</p>
                     </NavLink>
@@ -74,6 +79,8 @@ class App extends Component {
               </Navbar.Collapse>
             </Navbar>
 
+            <Route exact path="/" component={IndexPage} />
+            <Route path="/new-listing" component={NewListing} />
             <Route path="/faq" component={Faq} />
             <Route path="/commercial" component={Commercial} />
             <Route path="/info" component={Info} />

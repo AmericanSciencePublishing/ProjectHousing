@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+#searchArea {
+  font-family: 'rubik', sans-serif;
+  margin: 20rem auto;
+}
+
+#searchArea h1 {
+  font-family: 'rubik', sans-serif;
+  font-weight: bold;
+  font-size: 5rem;
+  color: #EC6665;
+}

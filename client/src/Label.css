@@ -1,0 +1,13 @@
+#custom-label {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+
+  margin-right: 1rem;
+}
+
+.custom-button {
+  background-color: inherit;
+  border: none;
+
+  margin-left: 1rem;
+}

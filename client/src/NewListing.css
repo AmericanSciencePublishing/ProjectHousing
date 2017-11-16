@@ -1,0 +1,7 @@
+#labels {
+  margin: 1rem auto;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: row;
+}
