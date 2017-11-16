@@ -97,11 +97,20 @@ class RegForm extends React.Component{
             });
 	}
     }
-	    
+    //using regExp to verify an email address
+//    const emailRegex = /^\S+@\S+\.\S+$/;
     changeEmailValState(){
-	this.setState({
-	    inputValEmail: this.state.email===""? null:"success"
-	});
+	var emailRegex = /^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i;
+	if(emailRegex.test(this.state.email)){
+	    this.setState({
+		inputValEmail:"success"
+//		inputValEmail: this.state.email===""? null:"success"
+	    });
+	}else{
+	    this.setState({
+		inputValEmail: this.state.email===""? null:"warning"
+	    });
+	}
     }
 
     
