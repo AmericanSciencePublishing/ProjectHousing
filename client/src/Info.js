@@ -1,17 +1,20 @@
 import React from 'react';
 import './Info.css';
-import {Col,Row} from 'react-bootstrap';
+import {Col,Row, Image} from 'react-bootstrap';
+import infoImg from "./images/moreinfo.png";
 
 class Info extends React.Component{
     render(){
 	return(
-		<div>
-		
-		<div id="infoBanner">
-		<h1>More Info</h1>
-		</div>
-		
 		<div className="container">
+		
+	    {/*	    	<div id="infoBanner" className="container col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		<h1>More Info</h1>
+		</div>*/}
+		<Image responsive className="infoImg col-xs-12 col-sm-12 c\
+ol-md-12 col-lg-12 col-xl-12" src={infoImg} alt="more info"/>
+		<hr/>
+		<div id="text" className="container">
 		<Row>
 		<Col xs={4}>
 		<div id="infoLeft">

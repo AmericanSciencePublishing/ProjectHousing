@@ -1,24 +1,15 @@
 
-#infoBanner{
-   background:url("./images/moreinfo.jpg");
-   padding-top:10rem;
-   margin:15rem;
-   padding-bottom:8rem;
+.infoImg{
    margin-top:-20px;
-   margin-bottom:4rem;
-   background-size:100% 100%;
+   margin-bottom:2rem;
+
 }
 
-#infoBanner h1{
-    color:#FFFFFF;
-    font-size:5rem;
-    text-align:center;
-}
 
 #infoLeft{
     margin-top:2rem;
-    margin-right:3rem;
-    border-right:0.2rem solid  black;
+    margin-left:4rem;
+//    border-right:0.2rem solid  black;
 }
 
 #infoLeft li{
