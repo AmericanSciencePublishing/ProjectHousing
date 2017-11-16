@@ -57,7 +57,6 @@ class LogForm extends React.Component{
             id="loginSubButton"
 	    bsSize="large"
 	    bsStyle="info"
-            disabled={!this.validateForm()}
             type="submit">
 		Sign in
 	    </Button>

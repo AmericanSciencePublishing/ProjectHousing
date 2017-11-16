@@ -1,7 +1,6 @@
 import React from 'react';
 import {Modal, Tabs, Tab} from 'react-bootstrap';
 import './Login.css';
-import modalSize from './Login.css';
 import LogForm from './LogForm';
 import RegForm from './RegForm';
 
@@ -11,7 +10,7 @@ class LoginRegisForm extends React.Component{
     render (){
         return(
         <div>
-		<Modal dialogClassName={modalSize} show={this.props.show} onHide={this.props.onHide}>
+		<Modal show={this.props.show} onHide={this.props.onHide}>
             <Modal.Header closeButton>
               <Modal.Title> Welcome  </Modal.Title>
             </Modal.Header>
