@@ -2,6 +2,7 @@
 import React from 'react';
 import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
 import './LogForm.css';
+
 var axios = require("axios");
 //import ButtonLoader from 'react-bootstrap-button-loader';
 
@@ -127,7 +128,9 @@ class RegForm extends React.Component{
     handleSubmit(){
 	var passwordComparison = this.comparePasswords(this.state.password1, this.state.password2);
 	var everythingFilledOut = this.checkState();
-
+	this.setState({
+	    isLoading:true
+	});
 	if( passwordComparison && everythingFilledOut ){
 	    console.log("1");
 	    var newUserInfo={
@@ -135,23 +138,24 @@ class RegForm extends React.Component{
 		password:this.state.password
 	    };
 	    axios.post('/sign_up', newUserInfo).then(res=>{
-		console.log("registration res", res);
-	    this.setState({
-		submitMSG:"Sign up successfully!",
-		isLoading:true
-	    });
-		setTimeout(() => {
-		    // Completed of async action, set loading state back
-		    this.setState({ isLoading: false });
-		}, 2000);
+		//console.log("registration res", res);
+		this.setState({
+		    submitMSG:"Sign up successfully!",
+		    isLoading: false
+		});
+		//here we will do page jump;
+//		browserHistory.push('/abc');
+	
 	    }).catch(err=>{
 		this.setState({
-		    submitMSG:"Invalid Information"
+		    submitMSG:"Invalid Information",
+		    isLoading: false
 		});
 	    });
 	}else{
 	    this.setState({
-		submitMSG:"Check User Info"
+		submitMSG:"Check User Info",
+		isLoading: false
 	    });
 	}
     }
