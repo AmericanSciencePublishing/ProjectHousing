@@ -3,8 +3,8 @@
 }
 
 #loginSubButton{
-    margin-left:50px;
-    width:160%;
+//    margin-left:50px;
+    width:250%;
 }
 #loginSubButton p{
     font-size:20px;
@@ -15,4 +15,13 @@
     width:40%;
     font-size:18px;
     
+}
+
+#passwordTip{
+    margin-bottom:-5px;
+    margin-top:-5px;
+}
+
+#submitTip{
+    margin-top:10px;
 }

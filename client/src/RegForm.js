@@ -231,7 +231,8 @@ class RegForm extends React.Component{
 		</FormGroup>
 		
 		{/*submit button*/}
-		
+		<FormGroup>
+		<Col xsOffset={1} xs={10}>
 		<ButtonToolbar justified>
 		<ButtonGroup >
 		<Button
@@ -245,7 +246,10 @@ class RegForm extends React.Component{
 		  {this.state.isLoading ? "Uploading..." : "Submit" }
 		</Button>
 		</ButtonGroup>
+		<p align="center" style={{color: this.state.submitMSG === "Sign up successfully!" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
 		</ButtonToolbar>
+		</Col>
+		</FormGroup>
 		</Form>
 		</div>
 
