@@ -7,34 +7,45 @@ import './HouseListItem.css';
 
 class CommercialListItem extends Component {
   render() {
-    const item = this.props.item;
+    const {
+      image,
+      name,
+      url,
+      price,
+      description,
+      type,
+      city,
+      address,
+      features
+    } = this.props.item;
 
     return (
       <div className="container" id="item">
         <Row>
           <Col xs={12} md={6}>
             <img
-              src="http://lorempixel.com/400/200"
+              src={image}
               alt="house"
               id="house-image"
             />
           </Col>
 
           <Col xs={12} md={6}>
-            <a href="/details" target="_blank">
-              <h2>[Chicago] Lorem ipsum</h2>
+            <a href={url} target="_blank">
+              <h2>[{city}] {name}</h2>
             </a>
-            <p className="price">{item.price}</p>
+            <p className="price">{price}</p>
 
-            <p className="description">{item.description}</p>
+            <p className="description">{description}</p>
 
-            <p className="type">{item.details}</p>
+            <p className="type">{type}</p>
 
-            <p className="address">{item.address}</p>
-
+            <p className="address">{address}</p>
 
             <div className="labels">
-              {item.labels.map(label => <Label key={label} text={label} bsStyle="success"/>)}
+              {features.map(label => (
+                <Label key={label} text={label} bsStyle="success" />
+              ))}
             </div>
           </Col>
         </Row>

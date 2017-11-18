@@ -1,36 +1,28 @@
 import React, { Component } from 'react';
 import {} from 'react-bootstrap';
+import axios from 'axios';
 
 import HouseListItem from './HouseListItem';
 
 import './NewConstructionList.css';
 
 export default class NewConstructionList extends Component {
-  render() {
-    const houses = [
-      {
-        price: '210000',
-        description: 'Condo/Townhouse',
-        details: '3 Beds | 2 Baths | 1,850sqft | 2cars',
-        address: '2253 St, CA',
-        labels: ['Quie', 'Convenient']
-      },
-      {
-        price: '210000',
-        description: 'Condo/Townhouse',
-        details: '3 Beds | 2 Baths | 1,850sqft | 2cars',
-        address: '2253 St, CA -',
-        labels: ['Quie', 'Convenient']
-      },
-      {
-        price: '210000',
-        description: 'Condo/Townhouse',
-        details: '3 Beds | 2 Baths | 1,850sqft | 2cars',
-        address: '2253 St, CA --',
-        labels: ['Quie', 'Convenient']
-      }
-    ];
+  constructor() {
+    super();
+    this.state = { houses: [] };
+  }
 
+  componentDidMount() {
+    axios
+      .get('/new_listing')
+      .then(res => res.data)
+      .then(houses => {
+        this.setState({ houses: houses });
+        console.log(houses);
+      });
+  }
+
+  render() {
     return (
       <div>
         <div id="banner">
@@ -40,11 +32,8 @@ export default class NewConstructionList extends Component {
           </div>
         </div>
 
-        {houses.map(house => (
-          <HouseListItem
-            key={house.address}
-            item={house}
-          />
+        {this.state.houses.map(house => (
+          <HouseListItem key={house.address} item={house} />
         ))}
       </div>
     );
