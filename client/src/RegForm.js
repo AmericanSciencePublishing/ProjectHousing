@@ -85,7 +85,8 @@ class RegForm extends React.Component{
     changePass2ValState(){
 	if(this.state.password1===this.state.password2){
 	    this.setState({
-		inputValPass2:"success"
+		inputValPass2:"success",
+		passwordMSG:"Passwords Match"
 	    });
 	}else if(this.state.password2===""){
 	    this.setState({
@@ -93,7 +94,8 @@ class RegForm extends React.Component{
             });
         }else{
 	    this.setState({
-                inputValPass2:"warning"
+                inputValPass2:"warning",
+		passwordMSG:"Password Must Match"
             });
 	}
     }
@@ -143,14 +145,14 @@ class RegForm extends React.Component{
 			submitMSG:"Sign up successfully!",
 			isLoading: false
 		    });
-		    console.log("sign up seccessfully!");
+		    console.log("sign up seccessfully!",res);
 		}
-		if(res.data.code==="11000"){
+		if(res.data.code===11000){
 		    this.setState({
                         submitMSG:"Email Address Already in Use",
                         isLoading: false
                     });
-                    console.log("Email Address Already in Use");
+                    console.log("Email Address Already in Use",res);
                 }
 		//here we will do page jump;
 //		browserHistory.push('/abc');
@@ -164,7 +166,7 @@ class RegForm extends React.Component{
 	    });
 	}else{
 	    this.setState({
-		submitMSG:"Check User Info",
+		submitMSG:"Can't submit, Check User Info",
 		isLoading: false
 	    });
 	}

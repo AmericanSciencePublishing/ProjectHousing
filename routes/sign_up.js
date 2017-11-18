@@ -14,11 +14,16 @@ router.post('/', function(req, res, next) {
 	    email : req.body.email,
 	    password : req.body.password
 	}
-	
+/*
+  user.save(function(err) {
+    if (err) {
+      if (err.name === 'MongoError' && err.code === 11000) {
+        // Duplicate username
+        return res.status(500).send({ succes: false, message: 'User already exi
+*/
 	User.create(userData, function (error, user){
 	    if (error){
 		res.send(error);
-
 	    } else {
 		res.send(user);
 //		req.session.userId = user._id;
