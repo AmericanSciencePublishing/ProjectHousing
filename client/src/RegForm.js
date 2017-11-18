@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
 import './LogForm.css';
@@ -132,21 +131,32 @@ class RegForm extends React.Component{
 	    isLoading:true
 	});
 	if( passwordComparison && everythingFilledOut ){
-	    console.log("1");
+	    console.log("POSTING USER DATA");
 	    var newUserInfo={
 		email:this.state.email,
 		password:this.state.password
 	    };
 	    axios.post('/sign_up', newUserInfo).then(res=>{
-		//console.log("registration res", res);
-		this.setState({
-		    submitMSG:"Sign up successfully!",
-		    isLoading: false
-		});
+		//		console.log("registration res", res);
+		if(!res.data.code){
+		    this.setState({
+			submitMSG:"Sign up successfully!",
+			isLoading: false
+		    });
+		    console.log("sign up seccessfully!");
+		}
+		if(res.data.code==="11000"){
+		    this.setState({
+                        submitMSG:"Email Address Already in Use",
+                        isLoading: false
+                    });
+                    console.log("Email Address Already in Use");
+                }
 		//here we will do page jump;
 //		browserHistory.push('/abc');
 	
 	    }).catch(err=>{
+		console.log(err);
 		this.setState({
 		    submitMSG:"Invalid Information",
 		    isLoading: false

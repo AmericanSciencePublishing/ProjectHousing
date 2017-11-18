@@ -8,8 +8,8 @@ mongoose.connect(mLab);
 var User = require('../models/User');
 
 router.post('/', function(req, res, next) {
-    if(req.body.email&&req.body.password){
-	
+    //here is a bug, when using if(email&&password),the if will return 0 when you sign up as a new user with a new email. delete$$password 'sovle this', I think its about User.create, in which there is a hash for password.
+    if(req.body.email){
 	var userData = {
 	    email : req.body.email,
 	    password : req.body.password
@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
 	});
     }else{
 	var err = new Error('All fields required.');
-	err.status = 400;
+	err.status = 408;
 	return next(err);
     }
 });
