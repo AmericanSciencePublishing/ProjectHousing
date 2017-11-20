@@ -23,6 +23,7 @@ class RegForm extends React.Component{
 	    inputValPass1:null,
 	    inputValPass2:null,
 	    isLoading:false
+	    //In the future, can use this feature to control loading feedback icon.
 	};
 
 	this.changeEmailValState=this.changeEmailValState.bind(this);
@@ -160,7 +161,7 @@ class RegForm extends React.Component{
 	    }).catch(err=>{
 		console.log(err);
 		this.setState({
-		    submitMSG:"Invalid Information",
+		    submitMSG:"Network Error",
 		    isLoading: false
 		});
 	    });
@@ -237,13 +238,14 @@ class RegForm extends React.Component{
 		<ButtonGroup >
 		<Button
 		  block
+		  active
 		  id="loginSubButton"
 		  bsSize="large"
 		  bsStyle="info"
            	  type="submit"
 		  disabled={this.state.isLoading}
 		  >
-		  {this.state.isLoading ? "Uploading..." : "Submit" }
+		  Submit
 		</Button>
 		</ButtonGroup>
 		<p align="center" style={{color: this.state.submitMSG === "Sign up successfully!" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
