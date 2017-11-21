@@ -119,7 +119,18 @@ class RegForm extends React.Component{
     
     //checkState
     checkState(){
-	return true;
+	if(this.state.password1&&
+	   this.state.password2&&
+	   this.state.email){
+
+	    return true;
+	}
+	else{
+	    this.setState({
+		submitMSG:" All fields must be filled out"
+	    });
+	    return false;
+	}
     }
 
     //handle submit
@@ -130,6 +141,7 @@ class RegForm extends React.Component{
     handleSubmit(){
 	var passwordComparison = this.comparePasswords(this.state.password1, this.state.password2);
 	var everythingFilledOut = this.checkState();
+	//checkState() may not useful right now, but maybe useful in the future, to check everything has been filled out.
 	this.setState({
 	    isLoading:true
 	});
@@ -146,14 +158,14 @@ class RegForm extends React.Component{
 			submitMSG:"Sign up successfully!",
 			isLoading: false
 		    });
-		    console.log("sign up seccessfully!",res);
+		    //		    console.log("sign up seccessfully!",res);
 		}
 		if(res.data.code===11000){
 		    this.setState({
                         submitMSG:"Email Address Already in Use",
                         isLoading: false
                     });
-                    console.log("Email Address Already in Use",res);
+//                    console.log("Email Address Already in Use",res);
                 }
 		//here we will do page jump;
 //		browserHistory.push('/abc');
