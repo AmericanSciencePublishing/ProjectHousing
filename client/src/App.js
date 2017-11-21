@@ -12,6 +12,8 @@ import NewListing from './NewListing';
 import NewConstructionList from './NewConstructionList';
 import Details from './Details';
 
+import logo from './images/logo.png';
+
 import './App.css';
 
 class App extends Component {
@@ -33,15 +35,17 @@ class App extends Component {
       <div id="site">
         <Router>
           <div id="site-content">
-            <Navbar>
+            <Navbar fluid>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <NavLink to="/">Brand</NavLink>
+                  <NavLink to="/">
+                    <img src={logo} alt="brand" id="brand-image" />
+                  </NavLink>
                 </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
-                <Nav className="nav">
+                <Nav pullRight>
                   <NavItem>
                     <NavLink to="/new-listing">
                       <p>New Listing</p>
@@ -67,8 +71,6 @@ class App extends Component {
                       <p>FAQ</p>
                     </NavLink>
                   </NavItem>
-                </Nav>
-                <Nav pullRight>
                   <NavItem disabled>
                     <NavLink to="/">
                       <p>En/Ch</p>

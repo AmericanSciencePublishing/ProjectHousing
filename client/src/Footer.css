@@ -1,9 +1,10 @@
 .footer {
-  margin-top: 2rem;
-  padding: 1rem;
+  padding: 5rem;
+  margin-top: 5rem;
 
   text-align: center;
-  background-color: #f2f2f2;
+  background-color: rgb(51, 51, 51);
+  color: white;
 }
 
 .footer h1 {
@@ -14,4 +15,12 @@
 
 .footer p {
   font-size: 1.5rem;
+}
+
+.footer a {
+  margin: auto 5px;
+}
+
+.footer a:hover {
+  opacity: .8;
 }
