@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap';
 
 import Commercial from './Commercial';
 import Faq from './Faq';
@@ -47,34 +48,34 @@ class App extends Component {
               <Navbar.Collapse>
                 <Nav pullRight>
                   <NavItem>
-                    <NavLink to="/new-listing">
+                    <LinkContainer to="/new-listing">
                       <p>New Listing</p>
-                    </NavLink>
+                    </LinkContainer>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/commercial">
+                    <LinkContainer to="/commercial">
                       <p>Commercial</p>
-                    </NavLink>
+                    </LinkContainer>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/new-construction">
+                    <LinkContainer to="/new-construction">
                       <p>New Construction</p>
-                    </NavLink>
+                    </LinkContainer>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/info">
+                    <LinkContainer to="/info">
                       <p>More Info</p>
-                    </NavLink>
+                    </LinkContainer>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/faq">
+                    <LinkContainer to="/faq">
                       <p>FAQ</p>
-                    </NavLink>
+                    </LinkContainer>
                   </NavItem>
                   <NavItem disabled>
-                    <NavLink to="/">
+                    <LinkContainer to="/">
                       <p>En/Ch</p>
-                    </NavLink>
+                    </LinkContainer>
                   </NavItem>
                   <NavItem>
                     <p onClick={this.handleClick}>Log in</p>
