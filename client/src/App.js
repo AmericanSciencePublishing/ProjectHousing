@@ -18,21 +18,28 @@ import logo from './images/logo.png';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { showModal: false };
-    this.handleClick = this.handleClick.bind(this);
-    this.close = this.close.bind(this);
-  }
+    constructor() {
+	super();
+	this.state = { showModal: false };
+	this.handleClick = this.handleClick.bind(this);
+	this.close = this.close.bind(this);
+	this.test = this.test.bind(this);
+    }
 
-  close() {
-    this.setState({ showModal: false });
-  }
-  handleClick() {
-    this.setState({ showModal: true });
-  }
-  render() {
-    return (
+    test(){
+	console.log("test");
+    }
+    
+    close() {
+	this.setState({ showModal: false });
+    }
+    
+    handleClick() {
+	this.setState({ showModal: true });
+    }
+    
+    render() {
+	return (
       <div id="site">
         <Router>
           <div id="site-content">
@@ -94,7 +101,7 @@ class App extends Component {
           </div>
         </Router>
 
-        <LoginRegisForm show={this.state.showModal} onHide={this.close} />
+		<LoginRegisForm test={this.test} show={this.state.showModal} onHide={this.close} />
 
         <Footer />
       </div>

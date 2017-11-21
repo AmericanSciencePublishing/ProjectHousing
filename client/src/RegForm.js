@@ -13,7 +13,7 @@ class RegForm extends React.Component{
 	super(props);
 	this.state={
 	    email:"",
-	    password:"",
+//	    password:"",
 	    password1:"",
 	    password2:"",
 	    passwordMSG:"",
@@ -62,9 +62,11 @@ class RegForm extends React.Component{
 	}
 	else if(pass1 === pass2){
 	    this.setState({
-		passwordMSG:"Passwords Match",
-		password:pass1
+//		password:pass1,
+		passwordMSG:"Passwords Match"
+	
 	    });
+//	    console.log(this.state.password);
 	    return true;
 	}
     }
@@ -149,8 +151,10 @@ class RegForm extends React.Component{
 	    console.log("POSTING USER DATA");
 	    var newUserInfo={
 		email:this.state.email,
-		password:this.state.password
+		password1:this.state.password1,
+		password2:this.state.password2
 	    };
+	    console.log(newUserInfo);
 	    axios.post('/sign_up', newUserInfo).then(res=>{
 		//		console.log("registration res", res);
 		if(!res.data.code){

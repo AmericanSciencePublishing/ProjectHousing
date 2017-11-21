@@ -55,13 +55,29 @@ class LogForm extends React.Component{
     
 
     handleSubmit(){
+	var e = this.state.email;
+	var p = this.state.password;
+	
+	let loginInfo ={
+	    email:e,
+	    password:p
+	};
+	this.props.test();
 	this.setState({
 	    isLoading:true
 	});
-	setTimeout(() => {
-      // Completed of async action, set loading state back
-	    this.setState({ isLoading: false });
-	}, 2000);
+	axios.post('/log_in', loginInfo).then(res=>{
+	    console.log(res);
+	    this.setState({
+            isLoading:false
+        });
+	}).catch(err=>{
+	    console.log(err);
+	    this.setState({
+            isLoading:false
+        });
+	});
+	
     }
 
     
@@ -111,10 +127,10 @@ class LogForm extends React.Component{
            		  type="submit"
 			  disabled={this.state.isLoading}
 			  >
-			  Submit
+			  Sign in
 			</Button>
 		      </ButtonGroup>
-		      <p align="center" style={{color: this.state.submitMSG === "Sign up successfully!" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
+		      <p align="center" style={{color: this.state.submitMSG === "Login successfully!" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
 		    </ButtonToolbar>
 		  </Col>
 		</FormGroup>
