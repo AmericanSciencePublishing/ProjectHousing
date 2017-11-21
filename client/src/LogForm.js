@@ -67,10 +67,28 @@ class LogForm extends React.Component{
 	    isLoading:true
 	});
 	axios.post('/log_in', loginInfo).then(res=>{
-	    console.log(res);
-	    this.setState({
-            isLoading:false
-        });
+	    if(res.data.status === 401){
+		console.log('401');
+		this.setState({
+		    isLoading:false,
+		    loginMSG:"wrong password"
+		});
+	    }
+	    else if(res.data.status === 402){
+		console.log('402');
+		this.setState({
+                    isLoading:false,
+                    loginMSG:"wrong email address"
+                });
+            }
+	    else if(!res.data.status){
+		console.log(res);
+		this.setState({
+		    isLoading:false,
+		    loginMSG:"sign in successfully"
+		});
+//		res.redirect('/');
+	    }
 	}).catch(err=>{
 	    console.log(err);
 	    this.setState({
@@ -130,7 +148,7 @@ class LogForm extends React.Component{
 			  Sign in
 			</Button>
 		      </ButtonGroup>
-		      <p align="center" style={{color: this.state.submitMSG === "Login successfully!" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
+		      <p align="center" style={{color: this.state.loginMSG === "sign in successfully" ? "#4caf50": "#f44336"}} id="submitTip">{this.state.loginMSG}</p>
 		    </ButtonToolbar>
 		  </Col>
 		</FormGroup>
