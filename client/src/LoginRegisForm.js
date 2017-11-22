@@ -8,6 +8,9 @@ class LoginRegisForm extends React.Component{
 //one issue: the content in tabs will overlap with tabs without those <br/>
     constructor(){
 	super();
+	this.state={
+	    test1:""
+	}
     }
     
     render (){
