@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap';
 
 import Commercial from './Commercial';
 import Faq from './Faq';
@@ -11,6 +12,8 @@ import IndexPage from './indexPage';
 import NewListing from './NewListing';
 import NewConstructionList from './NewConstructionList';
 import Details from './Details';
+
+import logo from './images/logo.png';
 
 import './App.css';
 
@@ -33,46 +36,46 @@ class App extends Component {
       <div id="site">
         <Router>
           <div id="site-content">
-            <Navbar>
+            <Navbar fluid>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <NavLink to="/">Brand</NavLink>
+                  <NavLink to="/">
+                    <img src={logo} alt="brand" id="brand-image" />
+                  </NavLink>
                 </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
-                <Nav className="nav">
-                  <NavItem>
-                    <NavLink to="/new-listing">
-                      <p>New Listing</p>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink to="/commercial">
-                      <p>Commercial</p>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink to="/new-construction">
-                      <p>New Construction</p>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink to="/info">
-                      <p>More Info</p>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink to="/faq">
-                      <p>FAQ</p>
-                    </NavLink>
-                  </NavItem>
-                </Nav>
                 <Nav pullRight>
+                  <NavItem>
+                    <LinkContainer to="/new-listing">
+                      <p>New Listing</p>
+                    </LinkContainer>
+                  </NavItem>
+                  <NavItem>
+                    <LinkContainer to="/commercial">
+                      <p>Commercial</p>
+                    </LinkContainer>
+                  </NavItem>
+                  <NavItem>
+                    <LinkContainer to="/new-construction">
+                      <p>New Construction</p>
+                    </LinkContainer>
+                  </NavItem>
+                  <NavItem>
+                    <LinkContainer to="/info">
+                      <p>More Info</p>
+                    </LinkContainer>
+                  </NavItem>
+                  <NavItem>
+                    <LinkContainer to="/faq">
+                      <p>FAQ</p>
+                    </LinkContainer>
+                  </NavItem>
                   <NavItem disabled>
-                    <NavLink to="/">
+                    <LinkContainer to="/">
                       <p>En/Ch</p>
-                    </NavLink>
+                    </LinkContainer>
                   </NavItem>
                   <NavItem>
                     <p onClick={this.handleClick}>Log in</p>

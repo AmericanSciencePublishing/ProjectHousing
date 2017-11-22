@@ -1,13 +1,65 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik');
+#search-area {
+  background-image: url('./images/index_page/home_background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
 
-#searchArea {
-  font-family: 'rubik', sans-serif;
-  margin: 20rem auto;
+  min-height: 90vh;
+  padding: 20rem 0;
+
+  margin-top: -20px;
 }
 
-#searchArea h1 {
-  font-family: 'rubik', sans-serif;
+#search-area h1 {
+  text-align: center;
+
+  font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+  font-size: 3rem;
+  color: white;
+}
+
+#search-area #bar {
+  margin-top: 5rem;
+}
+
+#cities {
+  margin: 10rem auto;
+}
+
+.construction_group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.container > h1 {
+  text-align: center;
+
+  font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+  font-size: 4rem;
   font-weight: bold;
-  font-size: 5rem;
-  color: #EC6665;
+  color: #0c2f5c;
+}
+
+.group {
+  margin: 5rem auto;
+}
+
+.group > .custom-button {
+  font-weight: bold;
+
+  border: 2px solid #0c2f5c;
+  border-radius: 5px;
+  padding: 10px 30px;
+
+  display: block;
+  margin: 2rem auto;
+
+  color: #0c2f5c;
+}
+
+.group > .custom-button:hover {
+  background-color: #0c2f5c;
+  color: white;
 }

@@ -1,28 +1,29 @@
-#item {
+.item:not(:first-of-type) {
   padding: 2rem;
   border-top: 1px solid;
 }
 
-.price {
+
+.item .price {
   color: orange;
   font-size: 4rem;
 }
 
-.description {
+.item .description {
   font-size: 2rem;
   color: gray;
 }
 
-.type {
+.item .type {
   font-size: 2rem;
   font-weight: bold;
   color: gray;
 }
 
-.address {
-  color: #2196F3;
+.item .address {
+  color: #2196f3;
 }
 
-#house-image {
+.item .house-image {
   margin: 5rem auto;
 }
