@@ -20,13 +20,13 @@ class CommercialListItem extends Component {
     } = this.props.item;
 
     return (
-      <div className="container" id="item">
+      <div className="container item">
         <Row>
           <Col xs={12} md={6}>
             <img
               src={image}
               alt="house"
-              id="house-image"
+              className="house-image"
             />
           </Col>
 
