@@ -154,9 +154,9 @@ class RegForm extends React.Component{
 		password1:this.state.password1,
 		password2:this.state.password2
 	    };
-	    console.log(newUserInfo);
+//	    console.log(newUserInfo);
 	    axios.post('/sign_up', newUserInfo).then(res=>{
-		//		console.log("registration res", res);
+		console.log("registration res", res);
 		if(!res.data.code){
 		    this.setState({
 			submitMSG:"Sign up successfully!",
