@@ -34,9 +34,9 @@ router.post('/', function(req, res, next) {
 	    if (error){
 		res.send(error);
 	    } else {
+		req.session.userId = user._id;
 		res.send(user);
-//		req.session.userId = user._id;
-//		return res.redirect('/');
+	//	return res.redirect('../client/src/index.js');
 	    }
 	});
     }else{
