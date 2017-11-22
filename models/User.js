@@ -1,13 +1,62 @@
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+//mongoose.Promise = global.Promise;
 const { Schema } = mongoose;
 
 var userSchema = new Schema({
-  email: {type: String, index: {unique: true}},
-  password: String
+    email: {
+	type: String,
+	unique: true,
+	trim: true
+    },
+    password: {
+	type: String
+    }
 });
+
+//authenticate input against database
+//for the console log, 1:system err, 2:no such email, 3:login successfully, 4:wrong password with right email
+userSchema.statics.authenticate = function (email, password, callback) {
+  User.findOne({ email: email })
+    .exec(function (err, user) {
+	if (err) {
+	    console.log('1');
+            return callback(err);
+	} else if (!user) {
+	    console.log('2');
+            var err = new Error('User not found.');
+            err.status = 401;
+	    console.log(err)
+            return callback(err);
+	}
+	bcrypt.compare(password, user.password, function (err, result) {
+            if (result === true) {
+		console.log('3');
+		return callback(null, user);
+            } else {
+		console.log('4');
+		return callback();
+		
+            }
+	})
+    });
+}
+
+
+//hashing a password before saving it to the database
+
+userSchema.pre('save', function (next) {
+  var user = this;
+  bcrypt.hash(user.password, 10, function (err, hash) {
+    if (err) {
+      return next(err);
+    }
+    user.password = hash;
+    next();
+  })
+});
+
 
 const User = mongoose.model('users', userSchema);
 
-module.exports = {
-  User: User
-}
+module.exports = User;

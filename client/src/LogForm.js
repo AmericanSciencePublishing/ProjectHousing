@@ -1,74 +1,161 @@
 import React from 'react';
-import {ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
-import './LogForm.css'
+import { ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
+import './LogForm.css';
+var axios = require("axios");
 
 class LogForm extends React.Component{
     constructor(props){
 	super(props);
 	this.state={
 	    email:'',
-	    password:''
+	    password:'',
+	    inputValEmail:null,
+	    inputValPass:null,
+	    isLoading:false,
+	    loginMSG:''
 	};
-	this.validateForm=this.validateForm.bind(this);
+	//	this.validateForm=this.validateForm.bind(this);
+	this.getPassword = this.getPassword.bind(this);
+	this.getEmail = this.getEmail.bind(this);
+	this.changeEmailValState = this.changeEmailValState.bind(this);
+	this.changePassValState = this.changePassValState.bind(this);
     }
 
-    validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    getPassword(event){
+	let pass = event.target.value.trim();
+	this.setState({
+	    password:pass
+	},this.changePassValState);
     }
 
-    handleSubmit = event => {
-    event.preventDefault();
+    getEmail(event){
+	this.setState({
+	    email:event.target.value.toLowerCase()
+	},this.changeEmailValState);
     }
 
-    handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
+    changeEmailValState(){
+	var emailRegex = /^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i;
+	if(emailRegex.test(this.state.email)){
+	    this.setState({
+		inputValEmail:"success"
+	    });
+	}else{
+	    this.setState({
+		inputValEmail: this.state.email===""? null:"warning"
+	    });
+	}
     }
+
+    changePassValState(){
+	this.setState({
+            inputValPass: this.state.password===""? null:"success"
+        });
+    }
+    
+
+    handleSubmit(){
+	var e = this.state.email;
+	var p = this.state.password;
+	
+	let loginInfo ={
+	    email:e,
+	    password:p
+	};
+	this.props.test();
+	this.setState({
+	    isLoading:true
+	});
+	axios.post('/log_in', loginInfo).then(res=>{
+	    if(res.data.status === 401){
+		console.log('401');
+		this.setState({
+		    isLoading:false,
+		    loginMSG:"wrong password"
+		});
+	    }
+	    else if(res.data.status === 402){
+		console.log('402');
+		this.setState({
+                    isLoading:false,
+                    loginMSG:"wrong email address"
+                });
+            }
+	    else if(!res.data.status){
+		console.log(res);
+		this.setState({
+		    isLoading:false,
+		    loginMSG:"sign in successfully"
+		});
+//		res.redirect('/');
+	    }
+	}).catch(err=>{
+	    console.log(err);
+	    this.setState({
+            isLoading:false
+        });
+	});
+	
+    }
+
     
     render(){
 	return(
 	    <div>
-		<Form onSubmit={this.handleSubmit} horizontal style={{marginTop:"2rem"}}>
-		<FormGroup controlId="email" bsSize="large">
-		<Col xsOffset={1} xs={10}>
-		<FormControl
-                  autoFocus
-                  type="email"
-            value={this.state.email}
-	    onChange={this.handleChange}
-       	    placeholder="Enter Email"/>
-		</Col>
+	      <Form onSubmit={event=>{event.preventDefault();this.handleSubmit();}} horizontal style={{marginTop:"2rem"}}>
+
+	    {/* input e-mail */}
+
+		<FormGroup validationState={this.state.inputValEmail} controlId="email" bsSize="large">
+		  <Col xsOffset={1} xs={10}>
+		    <FormControl
+		      required
+		      autoFocus
+		      type="email"
+		      onChange={this.getEmail}
+		      placeholder="Enter Email"/>
+		    <FormControl.Feedback />
+		  </Col>
 		</FormGroup>
-		<FormGroup controlId="password" bsSize="large">
-		<Col xsOffset={1} xs={10}>
-		<FormControl
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="password"
-	    placeholder="Enter Password"
-		/>
-		</Col>
+
+	    {/*input password */}
+		<FormGroup validationState={this.state.inputValPass} controlId="password" bsSize="large">
+		  <Col xsOffset={1} xs={10}>
+		    <FormControl
+		      required
+		      onChange={this.getPassword}
+		      type="password"
+		      placeholder="Input Password"
+		      />
+		    <FormControl.Feedback />
+		  </Col>
 		</FormGroup>
-		<ButtonToolbar justified>
-		<ButtonGroup >
-		<Button
-	    block
-            id="loginSubButton"
-	    bsSize="large"
-	    bsStyle="info"
-            type="submit">
-		Sign in
-	    </Button>
-		</ButtonGroup>
-		<ButtonGroup>
-		<Button id="forget" bsStyle="link" href="/"> Forgot your password? </Button>
-		</ButtonGroup>
-		</ButtonToolbar>
-		</Form>
-		</div>
-	
-	)
+
+	    {/*submit button*/}
+		<FormGroup>
+		  <Col xsOffset={1} xs={10}>
+		    <ButtonToolbar justified='true'>
+		      <ButtonGroup >
+			<Button
+			  block
+			  active
+			  id="loginSubButton"
+			  bsSize="large"
+			  bsStyle="info"
+           		  type="submit"
+			  disabled={this.state.isLoading}
+			  >
+			  Sign in
+			</Button>
+		      </ButtonGroup>
+		      <p align="center" style={{color: this.state.loginMSG === "sign in successfully" ? "#4caf50": "#f44336"}} id="submitTip">{this.state.loginMSG}</p>
+		    </ButtonToolbar>
+		  </Col>
+		</FormGroup>
+	      </Form>
+	    </div>
+	    
+	);
     }
 }
 export default LogForm;

@@ -1,7 +1,7 @@
-
 import React from 'react';
 import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
 import './LogForm.css';
+
 var axios = require("axios");
 //import ButtonLoader from 'react-bootstrap-button-loader';
 
@@ -13,7 +13,7 @@ class RegForm extends React.Component{
 	super(props);
 	this.state={
 	    email:"",
-	    password:"",
+//	    password:"",
 	    password1:"",
 	    password2:"",
 	    passwordMSG:"",
@@ -23,6 +23,7 @@ class RegForm extends React.Component{
 	    inputValPass1:null,
 	    inputValPass2:null,
 	    isLoading:false
+	    //In the future, can use this feature to control loading feedback icon.
 	};
 
 	this.changeEmailValState=this.changeEmailValState.bind(this);
@@ -61,9 +62,11 @@ class RegForm extends React.Component{
 	}
 	else if(pass1 === pass2){
 	    this.setState({
-		passwordMSG:"Passwords Match",
-		password:pass1
+//		password:pass1,
+		passwordMSG:"Passwords Match"
+	
 	    });
+//	    console.log(this.state.password);
 	    return true;
 	}
     }
@@ -85,7 +88,8 @@ class RegForm extends React.Component{
     changePass2ValState(){
 	if(this.state.password1===this.state.password2){
 	    this.setState({
-		inputValPass2:"success"
+		inputValPass2:"success",
+		passwordMSG:"Passwords Match"
 	    });
 	}else if(this.state.password2===""){
 	    this.setState({
@@ -93,7 +97,8 @@ class RegForm extends React.Component{
             });
         }else{
 	    this.setState({
-                inputValPass2:"warning"
+                inputValPass2:"warning",
+		passwordMSG:"Password Must Match"
             });
 	}
     }
@@ -116,7 +121,18 @@ class RegForm extends React.Component{
     
     //checkState
     checkState(){
-	return true;
+	if(this.state.password1&&
+	   this.state.password2&&
+	   this.state.email){
+
+	    return true;
+	}
+	else{
+	    this.setState({
+		submitMSG:" All fields must be filled out"
+	    });
+	    return false;
+	}
     }
 
     //handle submit
@@ -127,31 +143,48 @@ class RegForm extends React.Component{
     handleSubmit(){
 	var passwordComparison = this.comparePasswords(this.state.password1, this.state.password2);
 	var everythingFilledOut = this.checkState();
-
+	//checkState() may not useful right now, but maybe useful in the future, to check everything has been filled out.
+	this.setState({
+	    isLoading:true
+	});
 	if( passwordComparison && everythingFilledOut ){
-	    console.log("1");
+	    console.log("POSTING USER DATA");
 	    var newUserInfo={
 		email:this.state.email,
-		password:this.state.password
+		password1:this.state.password1,
+		password2:this.state.password2
 	    };
+//	    console.log(newUserInfo);
 	    axios.post('/sign_up', newUserInfo).then(res=>{
 		console.log("registration res", res);
-	    this.setState({
-		submitMSG:"Sign up successfully!",
-		isLoading:true
-	    });
-		setTimeout(() => {
-		    // Completed of async action, set loading state back
-		    this.setState({ isLoading: false });
-		}, 2000);
+		if(!res.data.code){
+		    this.setState({
+			submitMSG:"Sign up successfully!",
+			isLoading: false
+		    });
+		    //		    console.log("sign up seccessfully!",res);
+		}
+		if(res.data.code===11000){
+		    this.setState({
+                        submitMSG:"Email Address Already in Use",
+                        isLoading: false
+                    });
+//                    console.log("Email Address Already in Use",res);
+                }
+		//here we will do page jump;
+//		browserHistory.push('/abc');
+	
 	    }).catch(err=>{
+		console.log(err);
 		this.setState({
-		    submitMSG:"Invalid Information"
+		    submitMSG:"Network Error",
+		    isLoading: false
 		});
 	    });
 	}else{
 	    this.setState({
-		submitMSG:"Check User Info"
+		submitMSG:"Can't submit, Check User Info",
+		isLoading: false
 	    });
 	}
     }
@@ -215,21 +248,26 @@ class RegForm extends React.Component{
 		</FormGroup>
 		
 		{/*submit button*/}
-		
-		<ButtonToolbar justified>
+		<FormGroup>
+		<Col xsOffset={1} xs={10}>
+		<ButtonToolbar justified='true'>
 		<ButtonGroup >
 		<Button
 		  block
+		  active
 		  id="loginSubButton"
 		  bsSize="large"
 		  bsStyle="info"
            	  type="submit"
 		  disabled={this.state.isLoading}
 		  >
-		  {this.state.isLoading ? "Uploading..." : "Submit" }
+		  Submit
 		</Button>
 		</ButtonGroup>
+		<p align="center" style={{color: this.state.submitMSG === "Sign up successfully!" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
 		</ButtonToolbar>
+		</Col>
+		</FormGroup>
 		</Form>
 		</div>
 
