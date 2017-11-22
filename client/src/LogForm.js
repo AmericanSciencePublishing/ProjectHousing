@@ -134,7 +134,7 @@ class LogForm extends React.Component{
 	    {/*submit button*/}
 		<FormGroup>
 		  <Col xsOffset={1} xs={10}>
-		    <ButtonToolbar justified>
+		    <ButtonToolbar justified='true'>
 		      <ButtonGroup >
 			<Button
 			  block
