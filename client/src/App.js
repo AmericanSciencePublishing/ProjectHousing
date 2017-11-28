@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+//import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { Router, Route, NavLink } from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
-
+import history from './history';
 import Commercial from './Commercial';
 import Faq from './Faq';
 import Footer from './Footer';
@@ -41,7 +42,7 @@ class App extends Component {
     render() {
 	return (
       <div id="site">
-        <Router>
+		<Router history={history}>
           <div id="site-content">
             <Navbar fluid>
               <Navbar.Header>

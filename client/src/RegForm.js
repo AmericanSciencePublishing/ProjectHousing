@@ -1,6 +1,7 @@
 import React from 'react';
 import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
 import './LogForm.css';
+import history from './history';
 
 var axios = require("axios");
 //import ButtonLoader from 'react-bootstrap-button-loader';
@@ -140,7 +141,8 @@ class RegForm extends React.Component{
     //use a para(let in render()) to control if check as a landlord
 
     
-    handleSubmit(){
+    handleSubmit(event){
+	event.preventDefault();
 	var passwordComparison = this.comparePasswords(this.state.password1, this.state.password2);
 	var everythingFilledOut = this.checkState();
 	//checkState() may not useful right now, but maybe useful in the future, to check everything has been filled out.
@@ -162,6 +164,8 @@ class RegForm extends React.Component{
 			submitMSG:"Sign up successfully!",
 			isLoading: false
 		    });
+		    history.push('/');
+	//	    this.context.router.history.push("/faq")
 		    //		    console.log("sign up seccessfully!",res);
 		}
 		if(res.data.code===11000){
@@ -171,8 +175,7 @@ class RegForm extends React.Component{
                     });
 //                    console.log("Email Address Already in Use",res);
                 }
-		//here we will do page jump;
-//		browserHistory.push('/abc');
+
 	
 	    }).catch(err=>{
 		console.log(err);
@@ -196,7 +199,7 @@ class RegForm extends React.Component{
 	
 	return(
 	    <div>
-	      <Form onSubmit={event=>{event.preventDefault();this.handleSubmit();}} horizontal style={{marginTop:"2rem"}}>
+	      <Form onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 
 	    {/* input e-mail */}
 	    
