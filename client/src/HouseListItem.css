@@ -1,15 +1,18 @@
 .item {
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   border-top: 1px solid;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
 .item:last-of-type {
-  padding: 2rem;
   border-bottom: 1px solid;
 }
 
 .item .price {
-  color: orange;
+  color: #FF6D00;
   font-size: 4rem;
 }
 
@@ -25,16 +28,27 @@
 }
 
 .item .address {
+  font-size: 2rem;
   color: #2196f3;
 }
 
 .item .house-image {
-  margin: 5rem auto;
+  flex: 1;
+  height: 20rem;
+  width: 35rem;
 }
 
-.labels {
-    display: flex;
-    flex-flow: row wrap;
+.item #info {
+  flex: 2;
+  margin: auto 5rem;
+}
 
-    margin: 2rem auto;
+.item button {
+  flex: 1;
+}
+
+.item .labels {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 2rem auto;
 }

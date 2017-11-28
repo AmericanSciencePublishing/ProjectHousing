@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'react-bootstrap';
-
+import { Button } from 'react-bootstrap';
 import Label from './Label';
 
 import './HouseListItem.css';
@@ -21,34 +20,29 @@ class CommercialListItem extends Component {
 
     return (
       <div className="container item">
-        <Row>
-          <Col xs={12} md={6}>
-            <img
-              src={image}
-              alt="house"
-              className="house-image"
-            />
-          </Col>
+        <a href={url}>
+          <img src={image} alt="house" className="house-image" />
+        </a>
 
-          <Col xs={12} md={6}>
-            <a href={url} target="_blank">
-              <h2>[{city}] {name}</h2>
-            </a>
-            <p className="price">{price}</p>
+        <div id="info">
+          <p className="price">$ {price}</p>
 
-            <p className="description">{description}</p>
+          <p className="description">{description}</p>
 
-            <p className="type">{type}</p>
+          <p className="type">{type}</p>
 
-            <p className="address">{address}</p>
+          <p className="address">{address}</p>
 
-            <div className="labels">
-              {features.map(label => (
-                <Label key={label} text={label} bsStyle="success" />
-              ))}
-            </div>
-          </Col>
-        </Row>
+          <div className="labels">
+            {features.map(label => (
+              <Label key={label} title={label} bsStyle="success" />
+            ))}
+          </div>
+        </div>
+
+        <div>
+        <Button>Like</Button>
+        </div>
       </div>
     );
   }
