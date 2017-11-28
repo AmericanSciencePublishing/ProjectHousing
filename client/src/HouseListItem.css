@@ -1,8 +1,12 @@
-.item:not(:first-of-type) {
+.item {
   padding: 2rem;
   border-top: 1px solid;
 }
 
+.item:last-of-type {
+  padding: 2rem;
+  border-bottom: 1px solid;
+}
 
 .item .price {
   color: orange;
@@ -26,4 +30,11 @@
 
 .item .house-image {
   margin: 5rem auto;
+}
+
+.labels {
+    display: flex;
+    flex-flow: row wrap;
+
+    margin: 2rem auto;
 }
