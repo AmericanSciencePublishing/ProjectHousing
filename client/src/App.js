@@ -28,7 +28,7 @@ class App extends Component {
     }
 
     test(){
-	console.log("test");
+	this.close();
     }
     
     close() {

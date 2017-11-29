@@ -64,7 +64,7 @@ class LogForm extends React.Component{
 	    email:e,
 	    password:p
 	};
-	this.props.test();
+//	this.props.test();
 	this.setState({
 	    isLoading:true
 	});
@@ -89,6 +89,7 @@ class LogForm extends React.Component{
 		    isLoading:false,
 		    loginMSG:"sign in successfully"
 		});
+		this.props.test();
 		history.push({
 		    pathname: '/',
 //		    state: {showModal :false}
