@@ -6,8 +6,8 @@ import RegForm from './RegForm';
 
 class LoginRegisForm extends React.Component{
 //one issue: the content in tabs will overlap with tabs without those <br/>
-    constructor(){
-	super();
+    constructor(props){
+	super(props);
 	this.state={
 	    test1:""
 	}
@@ -23,10 +23,10 @@ class LoginRegisForm extends React.Component{
 		<Modal.Body style={{marginTop:"2rem"}}>
 		  <Tabs defaultActiveKey={1} id="loginTabs">
                     <Tab eventKey={1} title="Sign in">
-                <LogForm test={this.props.test}/>
+                <LogForm sendUserToHome={this.props.sendUserToHome}/>
 		    </Tab>
                     <Tab eventKey={2} title="New account">
-		      <RegForm /> </Tab>
+		<RegForm sendUserToHome={this.props.sendUserToHome} /> </Tab>
 		  </Tabs>
 		</Modal.Body>
 		<Modal.Footer>

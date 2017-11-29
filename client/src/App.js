@@ -21,14 +21,21 @@ import './App.css';
 class App extends Component {
     constructor() {
 	super();
-	this.state = { showModal: false };
+	this.state = { showModal: false,
+		       user:{},
+		       action:''
+		     };
 	this.handleClick = this.handleClick.bind(this);
 	this.close = this.close.bind(this);
-	this.test = this.test.bind(this);
+	this.sendUserToHome = this.sendUserToHome.bind(this);
     }
 
-    test(){
-	this.close();
+    sendUserToHome(newuser){
+	this.close();//close modal component
+	this.setState({
+	    user: newuser
+	});
+	console.log(this.state);
     }
     
     close() {
@@ -102,7 +109,7 @@ class App extends Component {
           </div>
         </Router>
 
-		<LoginRegisForm test={this.test} show={this.state.showModal} onHide={this.close} />
+		<LoginRegisForm sendUserToHome={this.sendUserToHome} show={this.state.showModal} onHide={this.close} />
 
         <Footer />
       </div>

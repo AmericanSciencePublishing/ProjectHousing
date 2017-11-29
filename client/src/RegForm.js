@@ -164,6 +164,7 @@ class RegForm extends React.Component{
 			submitMSG:"Sign up successfully!",
 			isLoading: false
 		    });
+		    this.props.sendUserToHome(res.data);
 		    history.push('/');
 	//	    this.context.router.history.push("/faq")
 		    //		    console.log("sign up seccessfully!",res);

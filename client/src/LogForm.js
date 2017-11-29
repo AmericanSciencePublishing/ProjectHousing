@@ -89,7 +89,7 @@ class LogForm extends React.Component{
 		    isLoading:false,
 		    loginMSG:"sign in successfully"
 		});
-		this.props.test();
+		this.props.sendUserToHome(res.data);
 		history.push({
 		    pathname: '/',
 //		    state: {showModal :false}
