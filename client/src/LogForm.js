@@ -1,5 +1,6 @@
 import React from 'react';
 import { ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
+import history from './history';
 import './LogForm.css';
 var axios = require("axios");
 
@@ -54,7 +55,8 @@ class LogForm extends React.Component{
     }
     
 
-    handleSubmit(){
+    handleSubmit(event){
+	event.preventDefault();
 	var e = this.state.email;
 	var p = this.state.password;
 	
@@ -62,7 +64,7 @@ class LogForm extends React.Component{
 	    email:e,
 	    password:p
 	};
-	this.props.test();
+//	this.props.test();
 	this.setState({
 	    isLoading:true
 	});
@@ -87,8 +89,16 @@ class LogForm extends React.Component{
 		    isLoading:false,
 		    loginMSG:"sign in successfully"
 		});
+		this.props.sendUserToHome(res.data);
+		axios.put('/online/'+res.data._id);
+		history.push({
+		    pathname: '/',
+//		    state: {showModal :false}
+		});
+//		this.context.router.history.push("/faq")
 //		res.redirect('/');
 	    }
+	    
 	}).catch(err=>{
 	    console.log(err);
 	    this.setState({
@@ -102,7 +112,7 @@ class LogForm extends React.Component{
     render(){
 	return(
 	    <div>
-	      <Form onSubmit={event=>{event.preventDefault();this.handleSubmit();}} horizontal style={{marginTop:"2rem"}}>
+		<Form onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 
 	    {/* input e-mail */}
 

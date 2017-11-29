@@ -11,6 +11,9 @@ var userSchema = new Schema({
     },
     password: {
 	type: String
+    },
+    status:{
+	type: String
     }
 });
 

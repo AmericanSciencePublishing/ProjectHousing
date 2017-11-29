@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+//import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { Router, Route, NavLink } from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
-
+import history from './history';
 import Commercial from './Commercial';
 import Faq from './Faq';
 import Footer from './Footer';
@@ -20,14 +21,21 @@ import './App.css';
 class App extends Component {
     constructor() {
 	super();
-	this.state = { showModal: false };
+	this.state = { showModal: false,
+		       user:{},
+		       action:''
+		     };
 	this.handleClick = this.handleClick.bind(this);
 	this.close = this.close.bind(this);
-	this.test = this.test.bind(this);
+	this.sendUserToHome = this.sendUserToHome.bind(this);
     }
 
-    test(){
-	console.log("test");
+    sendUserToHome(newuser){
+	this.close();//close modal component
+	this.setState({
+	    user: newuser
+	});
+	console.log(this.state);
     }
     
     close() {
@@ -41,7 +49,7 @@ class App extends Component {
     render() {
 	return (
       <div id="site">
-        <Router>
+		<Router history={history}>
           <div id="site-content">
             <Navbar fluid>
               <Navbar.Header>
@@ -101,7 +109,7 @@ class App extends Component {
           </div>
         </Router>
 
-		<LoginRegisForm test={this.test} show={this.state.showModal} onHide={this.close} />
+		<LoginRegisForm sendUserToHome={this.sendUserToHome} show={this.state.showModal} onHide={this.close} />
 
         <Footer />
       </div>

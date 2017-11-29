@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var sign_up = require('./routes/sign_up');
 var log_in = require('./routes/log_in');
+var online = require('./routes/online');
 var new_listing = require('./routes/new_listing');
 var mongoose = require('mongoose');
 var Promise = require("bluebird");
@@ -54,6 +55,7 @@ app.use('/', index);
 app.use('/sign_up', sign_up);
 app.use('/log_in', log_in);
 app.use('/new_listing', new_listing);
+app.use('/online',online);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
