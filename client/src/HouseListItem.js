@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 import Label from './Label';
 
 import './HouseListItem.css';
@@ -8,21 +10,21 @@ class CommercialListItem extends Component {
   render() {
     const {
       image,
-      name,
-      url,
       price,
       description,
       type,
-      city,
       address,
-      features
+      features,
+      _id
     } = this.props.item;
 
+    const path = `/details/${_id}`;
+
     return (
-      <div className="container item">
-        <a href={url}>
+      <div className="container house-item">
+        <Link to={path}>
           <img src={image} alt="house" className="house-image" />
-        </a>
+        </Link>
 
         <div id="info">
           <p className="price">$ {price}</p>
@@ -41,7 +43,7 @@ class CommercialListItem extends Component {
         </div>
 
         <div>
-        <Button>Like</Button>
+          <Button>Like</Button>
         </div>
       </div>
     );

@@ -1,4 +1,4 @@
-.item {
+.house-item {
   padding-top: 2rem;
   padding-bottom: 2rem;
   border-top: 1px solid;
@@ -7,47 +7,47 @@
   justify-content: space-between;
 }
 
-.item:last-of-type {
+.house-item:last-of-type {
   border-bottom: 1px solid;
 }
 
-.item .price {
+#info .price {
   color: #FF6D00;
   font-size: 4rem;
 }
 
-.item .description {
+#info .description {
   font-size: 2rem;
   color: gray;
 }
 
-.item .type {
+#info .type {
   font-size: 2rem;
   font-weight: bold;
   color: gray;
 }
 
-.item .address {
+#info .address {
   font-size: 2rem;
   color: #2196f3;
 }
 
-.item .house-image {
+.house-item .house-image {
   flex: 1;
   height: 20rem;
   width: 35rem;
 }
 
-.item #info {
+.house-item #info {
   flex: 2;
   margin: auto 5rem;
 }
 
-.item button {
+.house-item button {
   flex: 1;
 }
 
-.item .labels {
+.house-item .labels {
   display: flex;
   flex-flow: row nowrap;
   margin: 2rem auto;

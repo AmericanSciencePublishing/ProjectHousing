@@ -1,0 +1,87 @@
+#carousel {
+  margin-top: 2rem;
+}
+
+#carousel img {
+  width: 50%;
+  height: 30rem;
+  margin: 0 auto;
+}
+
+#house-info {
+  padding: 1rem;
+  position: relative;
+  margin: 2rem auto;
+}
+
+#house-info button {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+}
+
+#house-info #links {
+  position: absolute;
+  right: 15px;
+  top: 50px;
+}
+
+#house-info .price {
+  color: #ff6d00;
+  font-size: 4rem;
+  margin-right: 2rem;
+}
+
+#house-info .description {
+  font-size: 2rem;
+  color: gray;
+}
+
+#house-info .address {
+  font-size: 2rem;
+  color: #163059;
+  margin-right: 2rem;
+}
+
+#custom-navbar {
+  display: flex;
+  flex-flow: row nowrap;
+
+  background-color: #163059;
+  color: white;
+
+  margin: 2rem auto;
+}
+
+#custom-navbar div {
+  flex: 1;
+
+  text-align: center;
+  font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+  font-size: 16px;
+  font-weight: bold;
+
+  padding: 1rem;
+  border: 5px solid #163059;
+}
+
+#custom-navbar div:hover {
+  border-bottom: 5px solid white;
+}
+
+#property-details {
+  padding: 1rem;
+  margin: 2rem auto;
+}
+
+#property-details .attribute {
+  font-size: 2rem;
+  color: gray;
+  margin-right: 2rem;
+  font-weight: bold;
+}
+
+#property-details .value {
+  font-size: 2rem;
+  color: gray;
+}
