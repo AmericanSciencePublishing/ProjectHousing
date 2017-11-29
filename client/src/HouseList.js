@@ -16,7 +16,7 @@ export default class HouseList extends Component {
 
   componentDidMount() {
     axios
-      .get('/new_listing')
+      .get('/houses')
       .then(res => res.data)
       .then(houses => {
         this.setState({ houses: houses });
