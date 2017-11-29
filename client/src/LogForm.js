@@ -90,6 +90,7 @@ class LogForm extends React.Component{
 		    loginMSG:"sign in successfully"
 		});
 		this.props.sendUserToHome(res.data);
+		axios.put('/online/'+res.data._id);
 		history.push({
 		    pathname: '/',
 //		    state: {showModal :false}

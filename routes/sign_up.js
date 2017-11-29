@@ -20,7 +20,7 @@ router.post('/', function(req, res, next) {
     else if(req.body.email&&(req.body.password1 === req.body.password2)){
 	var userData = {
 	    email : req.body.email,
-	    password : req.body.password1
+	    password : req.body.password1,
 	}
 	
 /*
