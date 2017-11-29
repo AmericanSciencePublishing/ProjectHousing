@@ -1,6 +1,5 @@
 .footer {
   padding: 5rem;
-  /*margin-top: 5rem;*/
 
   text-align: center;
   background-color: rgb(51, 51, 51);
@@ -22,5 +21,11 @@
 }
 
 .footer a:hover {
-  opacity: .8;
+  opacity: 0.8;
+}
+
+.footer #social-network-links {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
 }
