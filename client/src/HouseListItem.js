@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import Label from './Label';
 
@@ -9,46 +10,41 @@ class CommercialListItem extends Component {
   render() {
     const {
       image,
-      name,
-      url,
       price,
       description,
       type,
-      city,
       address,
-      features
+      features,
+      _id
     } = this.props.item;
 
+    const path = `/details/${_id}`;
+
     return (
-      <div className="container item">
-        <Row>
-          <Col xs={12} md={6}>
-            <img
-              src={image}
-              alt="house"
-              className="house-image"
-            />
-          </Col>
+      <div className="container house-item">
+        <Link to={path}>
+          <img src={image} alt="house" className="house-image" />
+        </Link>
 
-          <Col xs={12} md={6}>
-            <a href={url} target="_blank">
-              <h2>[{city}] {name}</h2>
-            </a>
-            <p className="price">{price}</p>
+        <div id="info">
+          <p className="price">$ {price}</p>
 
-            <p className="description">{description}</p>
+          <p className="description">{description}</p>
 
-            <p className="type">{type}</p>
+          <p className="type">{type}</p>
 
-            <p className="address">{address}</p>
+          <p className="address">{address}</p>
 
-            <div className="labels">
-              {features.map(label => (
-                <Label key={label} text={label} bsStyle="success" />
-              ))}
-            </div>
-          </Col>
-        </Row>
+          <div className="labels">
+            {features.map(label => (
+              <Label key={label} title={label} bsStyle="success" />
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <Button>Like</Button>
+        </div>
       </div>
     );
   }

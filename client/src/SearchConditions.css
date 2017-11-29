@@ -1,20 +1,19 @@
 #search-conditions {
   margin-top: -20px;
-  /*padding-left: 8rem;
-  padding-right: 8rem;*/
-
-  background-color: #0c2f5c;
+  padding-left: 5rem;
 
   display: flex;
   flex-flow: row wrap;
-  justify-content:space-around;
+  justify-content: flex-start;
+
+  background-color: #0c2f5c;
 }
 
 #search-bar {
-  margin: 1rem 2rem;
+  margin: 1rem 1rem 1rem 0;
   width: 30rem;
 }
 
 .search-item {
-  margin: 1rem 2rem;
+  margin: 1rem 1rem;
 }

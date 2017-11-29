@@ -105,7 +105,7 @@ class App extends Component {
             <Route path="/commercial" component={Commercial} />
             <Route path="/new-construction" component={NewConstructionList} />
             <Route path="/info" component={Info} />
-            <Route path="/details" component={Details} />
+            <Route path="/details/:id" component={Details} />
           </div>
         </Router>
 

@@ -1,29 +1,54 @@
-.item:not(:first-of-type) {
-  padding: 2rem;
+.house-item {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   border-top: 1px solid;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
+.house-item:last-of-type {
+  border-bottom: 1px solid;
+}
 
-.item .price {
-  color: orange;
+#info .price {
+  color: #FF6D00;
   font-size: 4rem;
 }
 
-.item .description {
+#info .description {
   font-size: 2rem;
   color: gray;
 }
 
-.item .type {
+#info .type {
   font-size: 2rem;
   font-weight: bold;
   color: gray;
 }
 
-.item .address {
+#info .address {
+  font-size: 2rem;
   color: #2196f3;
 }
 
-.item .house-image {
-  margin: 5rem auto;
+.house-item .house-image {
+  flex: 1;
+  height: 20rem;
+  width: 35rem;
+}
+
+.house-item #info {
+  flex: 2;
+  margin: auto 5rem;
+}
+
+.house-item button {
+  flex: 1;
+}
+
+.house-item .labels {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 2rem auto;
 }

@@ -1,0 +1,16 @@
+#labels_and_order {
+  margin: 10px auto;
+  /*border: 1px solid red;*/
+  position: relative;
+}
+
+#labels {
+  margin-top: 7px;
+}
+
+#sort_by_area {
+}
+
+#house_list {
+  margin: 10px auto;
+}
