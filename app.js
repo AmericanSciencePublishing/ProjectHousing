@@ -54,11 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/sign_up', sign_up);
 app.use('/log_in', log_in);
-<<<<<<< HEAD
-app.use('/new_listing', new_listing);
 app.use('/online',online);
-=======
->>>>>>> Can get all house entries via /houses
 app.use('/houses', houses);
 
 // catch 404 and forward to error handler
