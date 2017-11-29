@@ -15,6 +15,13 @@
   color: #0c2f5c
 }
 
+#dropdown-custom-1{
+    font-weight: bold;
+  font-size: 14px;
+  margin: auto;
+  color: #0c2f5c
+}
+
 .navbar-brand {
   display: flex;
   align-items: center;

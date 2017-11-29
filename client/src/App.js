@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem,  } from 'react-bootstrap';
 //import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Router, Route, NavLink } from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
@@ -13,6 +13,7 @@ import IndexPage from './indexPage';
 import NewListing from './NewListing';
 import NewConstructionList from './NewConstructionList';
 import Details from './Details';
+import AccountButton from './AccountButtonHomePage';
 
 import logo from './images/logo.png';
 
@@ -22,7 +23,7 @@ class App extends Component {
     constructor() {
 	super();
 	this.state = { showModal: false,
-		       user:{},
+		       user:null,
 		       action:''
 		     };
 	this.handleClick = this.handleClick.bind(this);
@@ -92,9 +93,9 @@ class App extends Component {
                       <p>En/Ch</p>
                     </LinkContainer>
                   </NavItem>
-                  <NavItem>
-                    <p onClick={this.handleClick}>Log in</p>
-                  </NavItem>
+                
+                {this.state.user === null?<NavItem><p onClick={this.handleClick}>Log in</p></NavItem> : <AccountButton/>}
+            
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
@@ -111,8 +112,8 @@ class App extends Component {
 
 		<LoginRegisForm sendUserToHome={this.sendUserToHome} show={this.state.showModal} onHide={this.close} />
 
-        <Footer />
-      </div>
+		<Footer />
+		</div>
     );
   }
 }
