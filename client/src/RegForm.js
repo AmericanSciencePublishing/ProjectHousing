@@ -165,6 +165,7 @@ class RegForm extends React.Component{
 			isLoading: false
 		    });
 		    this.props.sendUserToHome(res.data);
+		    axios.put('/online/'+res.data._id);
 		    history.push('/');
 	//	    this.context.router.history.push("/faq")
 		    //		    console.log("sign up seccessfully!",res);

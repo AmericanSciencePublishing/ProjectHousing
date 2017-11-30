@@ -84,6 +84,8 @@ class LogForm extends React.Component{
                     loginMSG:"wrong email address"
                 });
             }
+	    //So dont creat field name "status" in data base's Schema,
+	    //to save online status, I used "userStatus"
 	    else if(!res.data.status){
 		console.log(res);
 		this.setState({
@@ -93,7 +95,7 @@ class LogForm extends React.Component{
 		this.props.sendUserToHome(res.data);
 		axios.put('/online/'+res.data._id);
 		history.push({
-		    pathname: '/',
+		    pathname: '/'
 //		    state: {showModal :false}
 		});
 //		this.context.router.history.push("/faq")

@@ -23,12 +23,13 @@ class App extends Component {
     constructor() {
 	super();
 	this.state = { showModal: false,
-		       user:null,
+		       user:{},
 		       action:''
 		     };
 	this.handleClick = this.handleClick.bind(this);
 	this.close = this.close.bind(this);
 	this.sendUserToHome = this.sendUserToHome.bind(this);
+	this.isEmpty = this.isEmpty.bind(this);
     }
 
     sendUserToHome(newuser){
@@ -37,6 +38,10 @@ class App extends Component {
 	    user: newuser
 	});
 	console.log(this.state);
+    }
+
+    isEmpty(obj){
+	return Object.keys(obj).length === 0 && obj.constructor === Object;
     }
     
     close() {
@@ -94,7 +99,7 @@ class App extends Component {
                     </LinkContainer>
                   </NavItem>
                 
-                {this.state.user === null?<NavItem><p onClick={this.handleClick}>Log in</p></NavItem> : <AccountButton/>}
+            {this.isEmpty(this.state.user) ? <NavItem><p onClick={this.handleClick}>Log in</p></NavItem> : <AccountButton sendUserToHome={this.sendUserToHome} user={this.state.user}/>}
             
                 </Nav>
               </Navbar.Collapse>
