@@ -38,7 +38,7 @@ class CommercialListItem extends Component {
 
           <div className="labels">
             {features.map(label => (
-              <Label key={label} title={label} bsStyle="success" />
+              <Label key={label} title={label} style="green" />
             ))}
           </div>
         </div>

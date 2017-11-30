@@ -1,20 +1,13 @@
 import React from 'react';
-import { Label as Lab, Button } from 'react-bootstrap';
 
 import './Label.css';
 
-const Label = ({ title, withHandle, bsStyle = 'default' }) => {
+const Label = ({ title, withHandle, style = 'default' }) => {
   return (
-    <div>
-      <Lab bsStyle={bsStyle} id="custom-label">
-        {title}
-        {withHandle ? (
-          <Button bsStyle="link" bsClass="custom-button">
-            X
-          </Button>
-        ) : null}
-      </Lab>
-    </div>
+    <span className={'custom-label ' + style}>
+      <span>{title}</span>
+      <button className="custom-button">X</button>
+    </span>
   );
 };
 

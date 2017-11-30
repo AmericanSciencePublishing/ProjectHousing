@@ -33,7 +33,7 @@ export default class HouseList extends Component {
         <div className="container list-header">
           <div className="labels">
             {this.state.labels.map(label => (
-              <Label key={label} title={label} />
+              <Label key={label} title={label} withHandle/>
             ))}
           </div>
 
