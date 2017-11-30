@@ -1,18 +1,41 @@
 .house-item {
   padding-top: 2rem;
   padding-bottom: 2rem;
+
   border-top: 1px solid;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .house-item:last-of-type {
   border-bottom: 1px solid;
 }
 
+.house-item > div {
+  flex: 4;
+  /*border: 1px solid red;*/
+}
+
+.house-item > div:last-of-type {
+  flex: 1;
+}
+
+.house-item img {
+  width: 100%;
+}
+
+.house-item > div:last-of-type > button {
+  display: block;
+  margin: 0 auto;
+}
+
+.house-item #info {
+  padding-left: 5rem;
+}
+
 #info .price {
-  color: #FF6D00;
+  color: #ff6d00;
   font-size: 4rem;
 }
 
@@ -32,23 +55,24 @@
   color: #2196f3;
 }
 
-.house-item .house-image {
-  flex: 1;
-  height: 20rem;
-  width: 35rem;
-}
-
-.house-item #info {
-  flex: 2;
-  margin: auto 5rem;
-}
-
-.house-item button {
-  flex: 1;
-}
-
 .house-item .labels {
   display: flex;
   flex-flow: row nowrap;
   margin: 2rem auto;
+}
+
+.house-item .like {
+  background-color: white;
+  background-image: url('./images/likeBefore.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  border: none;
+
+  height: 30px;
+  width: 35px;
+}
+
+.house-item .like:hover{
+  background-image: url('./images/likeAfter.png');
 }

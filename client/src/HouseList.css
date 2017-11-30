@@ -4,6 +4,7 @@
 
 .list-header .sort-by {
   float: right;
+  margin-top: 5px;
 }
 
 .list-header .labels {

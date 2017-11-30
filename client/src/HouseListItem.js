@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import Label from './Label';
@@ -22,9 +21,11 @@ class CommercialListItem extends Component {
 
     return (
       <div className="container house-item">
-        <Link to={path}>
-          <img src={image} alt="house" className="house-image" />
-        </Link>
+        <div>
+          <Link to={path}>
+            <img src={image} alt="house" />
+          </Link>
+        </div>
 
         <div id="info">
           <p className="price">$ {price}</p>
@@ -43,7 +44,7 @@ class CommercialListItem extends Component {
         </div>
 
         <div>
-          <Button>Like</Button>
+          <button className="like" />
         </div>
       </div>
     );
