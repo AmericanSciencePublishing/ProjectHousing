@@ -9,8 +9,14 @@ const { mLab } = require('../config/keys');
 mongoose.connect(mLab);
 
 router.put('/:id', function (req,res) {
-//    console.log(req.session.userId);
-    User.update({_id: req.params.id},{$set:{status:'online'}},function(err,updatedUser){
+    //    console.log(req.session.userId);
+  //  User.findOne({ _id : req.params.id}, function(err, doc){
+//	console.log(doc);
+//	if(doc.status === 'online'){
+//	    res.send();
+//	}
+//    });
+    User.update({_id: req.params.id},{$set:{userStatus:'online'}},function(err,updatedUser){
 	if(err){
 	    console.log('aaa');
 	    throw err;

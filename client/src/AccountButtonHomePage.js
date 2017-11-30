@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap';
+import { NavDropdown, MenuItem } from 'react-bootstrap';
 import './App.css';
 
 class AccountButtonHomePage extends React.Component{

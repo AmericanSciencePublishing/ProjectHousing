@@ -12,7 +12,7 @@ var userSchema = new Schema({
     password: {
 	type: String
     },
-    status:{
+    userStatus:{
 	type: String
     }
 });

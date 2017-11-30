@@ -69,6 +69,7 @@ class LogForm extends React.Component{
 	    isLoading:true
 	});
 	axios.post('/log_in', loginInfo).then(res=>{
+//	    console.log(res);
 	    if(res.data.status === 401){
 		console.log('401');
 		this.setState({
