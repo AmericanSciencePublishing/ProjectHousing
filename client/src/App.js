@@ -14,10 +14,9 @@ import NewListing from './NewListing';
 import NewConstructionList from './NewConstructionList';
 import Details from './Details';
 import AccountButton from './AccountButtonHomePage';
-
 import logo from './images/logo.png';
-
 import './App.css';
+var axios = require("axios");
 
 class App extends Component {
     constructor() {
@@ -31,6 +30,32 @@ class App extends Component {
 	this.sendUserToHome = this.sendUserToHome.bind(this);
 	this.isEmpty = this.isEmpty.bind(this);
     }
+
+    componentWillMount(){
+	console.log('heiheihei');
+	console.log(this.state.user);
+	
+	//another higher level check is to write a function of isAuth()
+	//when user click 'My Profile', use onEnter{isAuth()} to check if is authed
+	//only login and logout could call isAuth()
+	
+	//Right now, only sign out could set userState to 'offline', so user could
+	//aotumatically login if he never sign out.
+	
+	axios.get('/checkUser/').then (res=>{
+	    console.log(res);
+	    if(res.data === ""){
+		console.log('no such session logged in');
+	    }
+	    else{
+		this.setState({
+		    user: res.data
+		});
+	    }
+	});
+	console.log(this.state.user);
+    }
+    
 
     sendUserToHome(newuser){
 	this.close();//close modal component

@@ -4,6 +4,18 @@
   flex-direction: column;
 }
 
+#username{
+    font-weight:bold;
+    box-sizing: content-box;
+    width: 15rem;
+}
+
+#username h4{
+//    width: 15rem;
+    overflow: hidden;
+    text-overflow:  ellipsis;
+}
+
 #site-content {
   flex: 1;
 }
