@@ -1,16 +1,17 @@
-#labels_and_order {
-  margin: 10px auto;
-  /*border: 1px solid red;*/
-  position: relative;
+.list-header {
+  padding-top: 10px;
 }
 
-#labels {
-  margin-top: 7px;
+.list-header .sort-by {
+  float: right;
 }
 
-#sort_by_area {
+.list-header .labels {
+  float: left;
+  display: flex;
+  padding: 10px;
 }
 
-#house_list {
+.house-list {
   margin: 10px auto;
 }
