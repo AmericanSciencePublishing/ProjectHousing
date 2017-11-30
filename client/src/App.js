@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavItem,  } from 'react-bootstrap';
 //import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Router, Route, NavLink } from 'react-router-dom';
-import {LinkContainer} from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import history from './history';
 import Commercial from './Commercial';
 import Faq from './Faq';
@@ -20,6 +20,7 @@ import './App.css';
 var axios = require("axios");
 
 class App extends Component {
+<<<<<<< HEAD
     constructor() {
 	super();
 	this.state = { showModal: false,
@@ -35,14 +36,14 @@ class App extends Component {
     componentWillMount(){
 	console.log('heiheihei');
 	console.log(this.state.user);
-	
+
 	//another higher level check is to write a function of isAuth()
 	//when user click 'My Profile', use onEnter{isAuth()} to check if is authed
 	//only login and logout could call isAuth()
-	
+
 	//Right now, only sign out could set userState to 'offline', so user could
 	//aotumatically login if he never sign out.
-	
+
 	axios.get('/checkUser/').then (res=>{
 	    console.log(res);
 	    if(res.data === ""){
@@ -56,7 +57,7 @@ class App extends Component {
 	});
 	console.log(this.state.user);
     }
-    
+
 
     sendUserToHome(newuser){
 	this.close();//close modal component
@@ -69,19 +70,19 @@ class App extends Component {
     isEmpty(obj){
 	return Object.keys(obj).length === 0 && obj.constructor === Object;
     }
-    
+
     close() {
 	this.setState({ showModal: false });
     }
-    
+
     handleClick() {
 	this.setState({ showModal: true });
     }
-    
+
     render() {
 	return (
       <div id="site">
-		<Router history={history}>
+        <Router history={history}>
           <div id="site-content">
             <Navbar fluid>
               <Navbar.Header>
@@ -94,39 +95,44 @@ class App extends Component {
               </Navbar.Header>
               <Navbar.Collapse>
                 <Nav pullRight>
-                  <NavItem>
-                    <LinkContainer to="/new-listing">
+                  <LinkContainer to="/new-listing">
+                    <NavItem>
                       <p>New Listing</p>
-                    </LinkContainer>
-                  </NavItem>
-                  <NavItem>
-                    <LinkContainer to="/commercial">
+                    </NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/commercial">
+                    <NavItem>
                       <p>Commercial</p>
-                    </LinkContainer>
-                  </NavItem>
-                  <NavItem>
-                    <LinkContainer to="/new-construction">
+                    </NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/new-construction">
+                    <NavItem>
                       <p>New Construction</p>
-                    </LinkContainer>
-                  </NavItem>
-                  <NavItem>
-                    <LinkContainer to="/info">
+                    </NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/info">
+                    <NavItem>
                       <p>More Info</p>
-                    </LinkContainer>
-                  </NavItem>
-                  <NavItem>
-                    <LinkContainer to="/faq">
+                    </NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/faq">
+                    <NavItem>
                       <p>FAQ</p>
-                    </LinkContainer>
-                  </NavItem>
+                    </NavItem>
+                  </LinkContainer>
+
                   <NavItem disabled>
-                    <LinkContainer to="/">
-                      <p>En/Ch</p>
-                    </LinkContainer>
+                    <p>En/Ch</p>
                   </NavItem>
-                
+<<<<<<< HEAD
+
             {this.isEmpty(this.state.user) ? <NavItem><p onClick={this.handleClick}>Log in</p></NavItem> : <AccountButton sendUserToHome={this.sendUserToHome} user={this.state.user}/>}
-            
+
+=======
+                  <NavItem onClick={this.handleClick}>
+                    <p>Log in</p>
+                  </NavItem>
+>>>>>>> In navigation bar, wrap NavItem inside LinkContainer
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
@@ -141,7 +147,11 @@ class App extends Component {
 		</div>
         </Router>
 
-		<LoginRegisForm sendUserToHome={this.sendUserToHome} show={this.state.showModal} onHide={this.close} />
+        <LoginRegisForm
+          sendUserToHome={this.sendUserToHome}
+          show={this.state.showModal}
+          onHide={this.close}
+        />
 
 		<Footer />
 		</div>
