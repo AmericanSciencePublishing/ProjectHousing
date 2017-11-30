@@ -1,11 +1,27 @@
-#banner {
-  background-image: url('https://www.askideas.com/media/83/Golden-Gate-Bridge-With-Night-Lights-And-Fog-Clouds.jpg');
-
+#banner-area {
   margin-top: -20px;
-  padding: 5rem;
-  text-align: center;
+
+  background-image: url('./images/new_construction.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  height: 15rem;
 }
 
-#banner-text {
-  color: white
+.strike {
+  display: block;
+  text-align: center;
+  height: 30px;
+  border-bottom: 5px solid #0c2f5c;
+
+  margin: 5rem auto;
+}
+
+.strike > span {
+  font-size: 40px;
+  padding: 0 10px;
+  background-color: white;
+  color: #0c2f5c;
+  font-weight: bold;
 }

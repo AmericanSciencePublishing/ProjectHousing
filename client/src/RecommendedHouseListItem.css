@@ -1,0 +1,35 @@
+.recommended-house-item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  padding: 2rem;
+  border-bottom: 1px solid #0c2f5c;
+}
+
+.recommended-house-item > div {
+  flex: 1;
+  padding: 1rem;
+}
+
+.recommended-house-item p {
+  font-size: 2rem;
+  color: gray;
+}
+
+.recommended-house-item a {
+  font-size: 4rem;
+  color: #0c2f5c;
+  font-weight: bold;
+  margin: 2rem auto;
+}
+
+.recommended-house-item .price {
+  color: #ff6d00;
+  font-size: 4rem;
+  margin: 2rem;
+}
+
+.recommended-house-item .labels {
+  display: flex;
+}
