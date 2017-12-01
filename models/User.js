@@ -62,6 +62,13 @@ userSchema.pre('save', function (next) {
   })
 });
 
+userSchema.set('toJSON', {
+    transform: function(doc, ret, options) {
+	delete ret.password;
+        return ret;
+    }
+});
+
 
 const User = mongoose.model('users', userSchema);
 

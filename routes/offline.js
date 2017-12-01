@@ -18,10 +18,10 @@ router.put('/:id', function (req,res) {
 //    });
     User.update({_id: req.params.id},{$set:{userStatus:'offline'}},function(err,updatedUser){
 	if(err){
-	    console.log('aaa');
+	    console.log('error when put offline');
 	    throw err;
 	}
-	console.log(updatedUser);
+//	console.log(updatedUser);
 	res.send(updatedUser);
     });
 });

@@ -20,7 +20,7 @@ router.get('/', function (req,res) {
 	    res.send();
 	}
 	else if (doc !== null && doc.userStatus === 'online' ){
-	    res.send(doc);
+	    res.send(doc.toJSON());
 	}
 	else{
 	    res.send();

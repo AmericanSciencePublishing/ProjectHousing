@@ -13,7 +13,9 @@ class AccountButtonHomePage extends React.Component{
 	this.handleClose = this.handleClose.bind(this);
 	this.handleSignOut=this.handleSignOut.bind(this);
     }
-
+    //As there will be some problem in mobile device if I use hover open,
+    //I decided to cancel the function, but remain the function code here
+    //use onMouseEnter and onMouseLeave to handleopen&close
     handleOpen(){
 	this.setState({ isOpen : true });
     }
@@ -37,9 +39,6 @@ class AccountButtonHomePage extends React.Component{
         return(
 
 		<NavDropdown
-		  onMouseEnter = { this.handleOpen }
-		  onMouseLeave = { this.handleClose }
-		  open={ this.state.isOpen }
 		  title="My Account"
 		  id="dropdown-custom-1">
 		  <MenuItem header>Signed in as</MenuItem>

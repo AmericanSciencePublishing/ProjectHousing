@@ -16,12 +16,13 @@ router.post('/', function(req, res, next) {
 	err.status = 400;
 	res.send("passwords do not match.",err);
     }
-    //here is a bug, when using if(email&&password),the if will return 0 when you sign up as a new user with a new email. delete$$password 'sovle this', I think its about User.create, in which there is a hash for password.
+    //here is a bug, when using if(email&&password),the if will return 0 when you sign up as a new user with a new email. delete&&password 'sovle this', I think its about User.create, in which there is a hash for password.
     else if(req.body.email&&(req.body.password1 === req.body.password2)){
 	
 	var userData = {
 	    email : req.body.email,
 	    password : req.body.password1,
+	    //automatically create a username by parsing email address
 	    userName : req.body.email.substring(0, req.body.email.indexOf("@"))
 	}
 	
@@ -37,8 +38,10 @@ router.post('/', function(req, res, next) {
 		res.send(error);
 	    } else {
 		req.session.userId = user._id;
-		res.send(user);
-	//	return res.redirect('../client/src/index.js');
+//		var toSendUser = user;
+//		console.log(user.toObject());
+//		console.log(user.toJSON());
+		res.send(user.toJSON());
 	    }
 	});
     }else{
