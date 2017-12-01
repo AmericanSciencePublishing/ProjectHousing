@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import Label from './Label';
@@ -11,9 +10,18 @@ class CommercialListItem extends Component {
     const {
       image,
       price,
-      description,
       type,
+      forSale,
+      forRent,
+      beds,
+      baths,
+      size,
+      cars,
+      city,
+      state,
+      zipcode,
       address,
+      neighborhood,
       features,
       _id
     } = this.props.item;
@@ -22,28 +30,41 @@ class CommercialListItem extends Component {
 
     return (
       <div className="container house-item">
-        <Link to={path}>
-          <img src={image} alt="house" className="house-image" />
-        </Link>
+        <div>
+          <Link to={path}>
+            <img src={image} alt="house" />
+          </Link>
+        </div>
 
         <div id="info">
-          <p className="price">$ {price}</p>
+          <span className="price">$ {price}
 
-          <p className="description">{description}</p>
+          </span>
+          {forRent?<span> / Month</span>: null}
 
-          <p className="type">{type}</p>
+          <div>
+            {type.map(t => (
+              <span className="type" key={t}>
+                {t + ' / '}
+              </span>
+            ))}
+            <span className="type">{forSale ? 'For Sale' : 'For Rent'}</span>
+          </div>
 
-          <p className="address">{address}</p>
+          <div className="type">{`${beds} beds | ${baths} baths | ${size} sqft | ${cars} cars`}</div>
 
+          <div className="address">{`${address} , ${city}, ${state} ${zipcode}`}</div>
+
+          <div className="type">{neighborhood}</div>
           <div className="labels">
             {features.map(label => (
-              <Label key={label} title={label} bsStyle="success" />
+              <Label key={label} title={label} color="green" />
             ))}
           </div>
         </div>
 
         <div>
-          <Button>Like</Button>
+          <button className="like" />
         </div>
       </div>
     );

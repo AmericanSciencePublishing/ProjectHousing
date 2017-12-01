@@ -1,24 +1,46 @@
 .house-item {
   padding-top: 2rem;
   padding-bottom: 2rem;
+
   border-top: 1px solid;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .house-item:last-of-type {
   border-bottom: 1px solid;
 }
 
-#info .price {
-  color: #FF6D00;
-  font-size: 4rem;
+.house-item > div {
+  flex: 4;
 }
 
-#info .description {
-  font-size: 2rem;
-  color: gray;
+.house-item > div:last-of-type {
+  flex: 1;
+}
+
+.house-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.house-item > div:last-of-type > button {
+  display: block;
+  margin: 0 auto;
+}
+
+.house-item #info {
+  padding-left: 5rem;
+}
+
+#info div {
+  margin: 1rem auto;
+}
+
+#info .price {
+  color: #ff6d00;
+  font-size: 4rem;
 }
 
 #info .type {
@@ -32,23 +54,24 @@
   color: #2196f3;
 }
 
-.house-item .house-image {
-  flex: 1;
-  height: 20rem;
-  width: 35rem;
-}
-
-.house-item #info {
-  flex: 2;
-  margin: auto 5rem;
-}
-
-.house-item button {
-  flex: 1;
-}
-
 .house-item .labels {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   margin: 2rem auto;
+}
+
+.house-item .like {
+  background-color: white;
+  background-image: url('./images/likeBefore.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  border: none;
+
+  height: 30px;
+  width: 35px;
+}
+
+.house-item .like:hover{
+  background-image: url('./images/likeAfter.png');
 }

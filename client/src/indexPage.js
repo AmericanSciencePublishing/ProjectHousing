@@ -6,32 +6,14 @@ import {
   Button,
   Col
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
+import CityList from './CityList';
 import ConstructionThumbnail from './ConstructionThumbnail';
 import './indexPage.css';
 
-import hot_cities from './images/index_page/hot_cities.png';
-import new_york from './images/index_page/new_york.png';
-import chicago from './images/index_page/chicago.png';
-import boston from './images/index_page/boston.png';
-import san_francisco from './images/index_page/san_francisco.png';
-import los_angeles from './images/index_page/los_angeles.png';
-import new_jersey from './images/index_page/new_jersey.png';
-import seattle from './images/index_page/seattle.png';
-
 export default class IndexPage extends Component {
   render() {
-    const cityImages = [
-      hot_cities,
-      new_york,
-      chicago,
-      boston,
-      san_francisco,
-      los_angeles,
-      new_jersey,
-      seattle
-    ];
-
     const new_constructions = [
       {
         id: 1,
@@ -100,19 +82,13 @@ export default class IndexPage extends Component {
           </div>
         </div>
 
-        <div className="container" id="cities">
-          {cityImages.map(image => {
-            return (
-              <Col sm={6} md={3} key={image}>
-                <img src={image} alt="" />
-              </Col>
-            );
-          })}
+        <div className="container">
+          <CityList />
         </div>
 
         <hr />
 
-        <div className="container group" >
+        <div className="container group">
           <h1>New Constructions</h1>
           <div className="construction_group">
             {new_constructions.map(construction => {
@@ -124,9 +100,11 @@ export default class IndexPage extends Component {
               );
             })}
           </div>
-          <button className="custom-button">See More Listing</button>
-        </div>
 
+          <Link to="/new-construction">
+            <button className="custom-button">See More Listing</button>
+          </Link>
+        </div>
 
         <div className="container group">
           <h1>Great School</h1>

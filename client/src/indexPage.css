@@ -46,7 +46,7 @@
   margin: 5rem auto;
 }
 
-.group > .custom-button {
+.group .custom-button {
   font-weight: bold;
 
   border: 2px solid #0c2f5c;
@@ -57,9 +57,11 @@
   margin: 2rem auto;
 
   color: #0c2f5c;
+
+  background-color: white;
 }
 
-.group > .custom-button:hover {
+.group .custom-button:hover {
   background-color: #0c2f5c;
   color: white;
 }
