@@ -37,7 +37,10 @@ class CommercialListItem extends Component {
         </div>
 
         <div id="info">
-          <div className="price">$ {price}</div>
+          <span className="price">$ {price}
+
+          </span>
+          {forRent?<span> / Month</span>: null}
 
           <div>
             {type.map(t => (

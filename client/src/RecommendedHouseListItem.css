@@ -12,22 +12,26 @@
   padding: 1rem;
 }
 
-.recommended-house-item p {
+.recommended-house-item > div:last-of-type {
   font-size: 2rem;
   color: gray;
 }
 
-.recommended-house-item a {
-  font-size: 4rem;
+.recommended-house-item .title {
+  font-size: 2rem;
   color: #0c2f5c;
   font-weight: bold;
-  margin: 2rem auto;
+  margin-bottom: 2rem;
+}
+
+.recommended-house-item .price-line {
+  margin-top: 5rem;
 }
 
 .recommended-house-item .price {
   color: #ff6d00;
-  font-size: 4rem;
-  margin: 2rem;
+  font-size: 3rem;
+  margin-left: 2rem;
 }
 
 .recommended-house-item .labels {
