@@ -12,7 +12,6 @@ var offline = require('./routes/offline');
 var online = require('./routes/online');
 var houses = require('./routes/houses');
 var checkUser = require('./routes/checkUser');
-var new_listing = require('./routes/new_listing');
 var mongoose = require('mongoose');
 var Promise = require("bluebird");
 //mongoose.Promise = Promise;
