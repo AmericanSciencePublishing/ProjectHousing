@@ -27,7 +27,7 @@ class AccountButtonHomePage extends React.Component{
 
 		<NavDropdown title="My Account" id="dropdown-custom-1">
 		<MenuItem header>Signed in as</MenuItem>
-		<MenuItem id="username" header><h4>{this.props.user.email}</h4></MenuItem>
+		<MenuItem id="username" header><h4>{this.props.user.userName}</h4></MenuItem>
 		<MenuItem divider />
 		<MenuItem eventKey="1">My Profile</MenuItem>
 		<MenuItem eventKey="2">Saved Home</MenuItem>
