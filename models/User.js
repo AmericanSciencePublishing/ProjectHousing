@@ -12,6 +12,9 @@ var userSchema = new Schema({
     password: {
 	type: String
     },
+    userName:{
+	type:String
+    },
     userStatus:{
 	type: String
     }
