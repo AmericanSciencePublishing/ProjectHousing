@@ -12,7 +12,10 @@ var userSchema = new Schema({
     password: {
 	type: String
     },
-    status:{
+    userName:{
+	type:String
+    },
+    userStatus:{
 	type: String
     }
 });
@@ -57,6 +60,15 @@ userSchema.pre('save', function (next) {
     user.password = hash;
     next();
   })
+});
+
+//please always use this toJSON() method to avoid sending hashpassword
+//or any other values that dont need to be send back to client.
+userSchema.set('toJSON', {
+    transform: function(doc, ret, options) {
+	delete ret.password;
+        return ret;
+    }
 });
 
 

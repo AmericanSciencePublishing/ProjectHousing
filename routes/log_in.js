@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
 	} else {
             req.session.userId = user._id;
 //	    console.log('yes!');
-	    res.send(user);
+	    res.send(user.toJSON());
 	}
     });
 })

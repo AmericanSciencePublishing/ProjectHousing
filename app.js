@@ -8,9 +8,10 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var sign_up = require('./routes/sign_up');
 var log_in = require('./routes/log_in');
+var offline = require('./routes/offline');
 var online = require('./routes/online');
 var houses = require('./routes/houses');
-
+var checkUser = require('./routes/checkUser');
 var mongoose = require('mongoose');
 var Promise = require("bluebird");
 //mongoose.Promise = Promise;
@@ -56,6 +57,9 @@ app.use('/sign_up', sign_up);
 app.use('/log_in', log_in);
 app.use('/online',online);
 app.use('/houses', houses);
+app.use('/offline',offline);
+app.use('/checkUser',checkUser);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
