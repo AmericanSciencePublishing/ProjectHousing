@@ -14,7 +14,6 @@
 
 .house-item > div {
   flex: 4;
-  /*border: 1px solid red;*/
 }
 
 .house-item > div:last-of-type {
@@ -23,6 +22,7 @@
 
 .house-item img {
   width: 100%;
+  height: 100%;
 }
 
 .house-item > div:last-of-type > button {
@@ -34,14 +34,13 @@
   padding-left: 5rem;
 }
 
+#info div {
+  margin: 1rem auto;
+}
+
 #info .price {
   color: #ff6d00;
   font-size: 4rem;
-}
-
-#info .description {
-  font-size: 2rem;
-  color: gray;
 }
 
 #info .type {
@@ -57,7 +56,7 @@
 
 .house-item .labels {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   margin: 2rem auto;
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DropdownButton, MenuItem, Row, Col } from 'react-bootstrap';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 import axios from 'axios';
 
 import HouseListItem from './HouseListItem';
@@ -33,7 +33,7 @@ export default class HouseList extends Component {
         <div className="container list-header">
           <div className="labels">
             {this.state.labels.map(label => (
-              <Label key={label} title={label} withHandle/>
+              <Label key={label} title={label} withHandle />
             ))}
           </div>
 
@@ -61,25 +61,3 @@ export default class HouseList extends Component {
     );
   }
 }
-
-// <div className="container" id="labels_and_order">
-//   <Row>
-//     <Col xs={6} id="labels">
-//       {this.state.labels.map(label => (
-//         <Label key={label} title={label} />
-//       ))}
-//     </Col>
-//
-//     <Col xs={3} xsOffset={3}>
-//       Sort By &nbsp;
-//       <DropdownButton title="Relevant" id="sort_by_button">
-//         <MenuItem eventKey="Relevant">Relevant</MenuItem>
-//         <MenuItem eventKey="Newest">Newest</MenuItem>
-//         <MenuItem eventKey="Lowest_Price">Lowest Price</MenuItem>
-//         <MenuItem eventKey="Highest_Price">Highest Price</MenuItem>
-//         <MenuItem eventKey="Largest">Largest</MenuItem>
-//         <MenuItem eventKey="Price_Reduced">Price Reduced</MenuItem>
-//       </DropdownButton>
-//     </Col>
-//   </Row>
-// </div>

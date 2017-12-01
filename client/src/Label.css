@@ -1,10 +1,9 @@
 .custom-label {
-  /*border: 1px solid red;*/
-
   background-color: lightgrey;
   padding: 5px 15px;
 
   margin-right: 10px;
+  margin-top: 10px;
 }
 
 .custom-label span {

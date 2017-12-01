@@ -10,9 +10,18 @@ class CommercialListItem extends Component {
     const {
       image,
       price,
-      description,
       type,
+      forSale,
+      forRent,
+      beds,
+      baths,
+      size,
+      cars,
+      city,
+      state,
+      zipcode,
       address,
+      neighborhood,
       features,
       _id
     } = this.props.item;
@@ -28,17 +37,25 @@ class CommercialListItem extends Component {
         </div>
 
         <div id="info">
-          <p className="price">$ {price}</p>
+          <div className="price">$ {price}</div>
 
-          <p className="description">{description}</p>
+          <div>
+            {type.map(t => (
+              <span className="type" key={t}>
+                {t + ' / '}
+              </span>
+            ))}
+            <span className="type">{forSale ? 'For Sale' : 'For Rent'}</span>
+          </div>
 
-          <p className="type">{type}</p>
+          <div className="type">{`${beds} beds | ${baths} baths | ${size} sqft | ${cars} cars`}</div>
 
-          <p className="address">{address}</p>
+          <div className="address">{`${address} , ${city}, ${state} ${zipcode}`}</div>
 
+          <div className="type">{neighborhood}</div>
           <div className="labels">
             {features.map(label => (
-              <Label key={label} title={label} style="green" />
+              <Label key={label} title={label} color="green" />
             ))}
           </div>
         </div>

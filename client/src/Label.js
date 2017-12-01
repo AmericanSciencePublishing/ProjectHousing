@@ -2,11 +2,11 @@ import React from 'react';
 
 import './Label.css';
 
-const Label = ({ title, withHandle, style = 'default' }) => {
+const Label = ({ title, withHandle, color = 'default' }) => {
   return (
-    <span className={'custom-label ' + style}>
+    <span className={'custom-label ' + color}>
       <span>{title}</span>
-      <button className="custom-button">X</button>
+      {withHandle ? <button className="custom-button">X</button> : null}
     </span>
   );
 };
