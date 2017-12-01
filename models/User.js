@@ -62,6 +62,8 @@ userSchema.pre('save', function (next) {
   })
 });
 
+//please always use this toJSON() method to avoid sending hashpassword
+//or any other values that dont need to be send back to client.
 userSchema.set('toJSON', {
     transform: function(doc, ret, options) {
 	delete ret.password;

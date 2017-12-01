@@ -12,6 +12,7 @@ import LoginRegisForm from './LoginRegisForm';
 import IndexPage from './indexPage';
 import NewListing from './NewListing';
 import NewConstructionList from './NewConstructionList';
+import MyProfile from './MyProfile';
 import Details from './Details';
 import AccountButton from './AccountButtonHomePage';
 import logo from './images/logo.png';
@@ -129,15 +130,15 @@ class App extends Component {
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
-
-            <Route exact path="/" component={IndexPage} />
-            <Route path="/new-listing" component={NewListing} />
-            <Route path="/faq" component={Faq} />
-            <Route path="/commercial" component={Commercial} />
-            <Route path="/new-construction" component={NewConstructionList} />
-            <Route path="/info" component={Info} />
-            <Route path="/details/:id" component={Details} />
-          </div>
+		<Route exact path="/" component={IndexPage} />
+		<Route path="/new-listing" component={NewListing} />
+		<Route path="/faq" component={Faq} />
+		<Route path="/commercial" component={Commercial} />
+		<Route path="/new-construction" component={NewConstructionList} />
+		<Route path="/info" component={Info} />
+		<Route path="/details/:id" component={Details} />
+		<Route path="/profile/:username" component={MyProfile} />
+		</div>
         </Router>
 
 		<LoginRegisForm sendUserToHome={this.sendUserToHome} show={this.state.showModal} onHide={this.close} />
