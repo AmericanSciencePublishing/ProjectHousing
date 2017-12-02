@@ -51,7 +51,7 @@ export default class RecommendedHouseListItem extends Component {
           <p>{`Region: ${city} | ${neighborhood}`}</p>
           <p>{`Completion Time: ${season} ${year}`}</p>
           <p>Recommended Reason: </p>
-          <div className="labels">
+          <div>
             {features.map(feature => (
               <Label title={feature} color="green" key={feature} />
             ))}

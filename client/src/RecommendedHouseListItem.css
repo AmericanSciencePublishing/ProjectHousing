@@ -10,10 +10,19 @@
 .recommended-house-item > div {
   flex: 1;
   padding: 1rem;
+  /*border: 1px solid red;*/
+}
+
+.recommended-house-item img {
+  height: 28rem;
+  width: 42rem;
+  display: block;
+  margin: 0 auto;
+
 }
 
 .recommended-house-item > div:last-of-type {
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: gray;
 }
 
@@ -25,15 +34,11 @@
 }
 
 .recommended-house-item .price-line {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .recommended-house-item .price {
   color: #ff6d00;
-  font-size: 3rem;
+  font-size: 2rem;
   margin-left: 2rem;
-}
-
-.recommended-house-item .labels {
-  display: flex;
 }
