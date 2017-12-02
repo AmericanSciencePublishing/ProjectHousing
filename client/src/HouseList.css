@@ -1,16 +1,14 @@
 .list-header {
-  padding-top: 10px;
-}
-
-.list-header .sort-by {
-  float: right;
-  margin-top: 5px;
-}
-
-.list-header .labels {
-  float: left;
   display: flex;
-  padding: 10px;
+  justify-content: space-between;
+
+  margin-top: 1rem;
+}
+
+.list-header > span:first-of-type {
+  margin-top: 8px;
+}
+.list-header {
 }
 
 .house-list {

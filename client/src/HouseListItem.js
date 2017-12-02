@@ -29,7 +29,7 @@ class CommercialListItem extends Component {
     const path = `/details/${_id}`;
 
     return (
-      <div className="container house-item">
+      <div className="house-item">
         <div>
           <Link to={path}>
             <img src={image} alt="house" />
@@ -37,10 +37,8 @@ class CommercialListItem extends Component {
         </div>
 
         <div id="info">
-          <span className="price">$ {price}
-
-          </span>
-          {forRent?<span> / Month</span>: null}
+          <span className="price">$ {price}</span>
+          {forRent ? <span> / Month</span> : null}
 
           <div>
             {type.map(t => (

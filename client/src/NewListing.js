@@ -8,7 +8,7 @@ export default class NewListing extends Component {
     return (
       <div>
         <SearchConditions />
-        <HouseList />
+        <HouseList labels={['New Listing', 'new construction']}/>
       </div>
     );
   }

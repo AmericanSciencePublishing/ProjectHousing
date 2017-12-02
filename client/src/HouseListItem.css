@@ -5,7 +5,7 @@
   border-top: 1px solid;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: flex-end;;
 }
 
 .house-item:last-of-type {
@@ -13,7 +13,17 @@
 }
 
 .house-item > div {
-  flex: 4;
+  /*border: 1px solid red;*/
+}
+
+
+.house-item > div:nth-of-type(1) {
+  flex: 3;
+  padding: 1rem;
+}
+
+.house-item > div:nth-of-type(2) {
+  flex: 3;
 }
 
 .house-item > div:last-of-type {
@@ -21,17 +31,17 @@
 }
 
 .house-item img {
-  width: 100%;
-  height: 100%;
+  width: 30rem;
+  height: 20rem;
 }
 
 .house-item > div:last-of-type > button {
   display: block;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 
 .house-item #info {
-  padding-left: 5rem;
+  padding: 1rem;
 }
 
 #info div {
@@ -40,17 +50,17 @@
 
 #info .price {
   color: #ff6d00;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 #info .type {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: gray;
 }
 
 #info .address {
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: #2196f3;
 }
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import './MyProfile.css';
-import {Col,Row} from 'react-bootstrap';
+// import {Col,Row} from 'react-bootstrap';
 
 class MyProfile extends React.Component{
-    
+
     constructor(props){
 	super(props);
 	this.state = { isOpen : false };

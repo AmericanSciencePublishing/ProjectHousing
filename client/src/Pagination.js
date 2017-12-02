@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { Pagination as Page } from 'react-bootstrap';
 
 class Pagination extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={activePage: 1};
-    this.handleSelect=this.handleSelect.bind(this);
+    this.state = { activePage: 1 };
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleSelect(eventKey){
-    this.setState({activePage: eventKey});
+  handleSelect(eventKey) {
+    this.setState({ activePage: eventKey });
   }
 
   render() {
     return (
-      <div className="container text-center">
+      <div className="text-center">
         <Page
           bsSize="large"
           items={10}
