@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 //import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import { Router, Route, NavLink } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Router, Route, NavLink,Switch } from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap';
 import history from './history';
 import Commercial from './Commercial';
 import Faq from './Faq';
@@ -17,7 +17,11 @@ import Details from './Details';
 import AccountButton from './AccountButtonHomePage';
 import logo from './images/logo.png';
 import './App.css';
-var axios = require('axios');
+import profileSetting from './profileSetting';
+
+
+var axios = require("axios");
+
 
 class App extends Component {
   constructor() {
@@ -56,6 +60,7 @@ class App extends Component {
     });
     console.log(this.state.user);
   }
+
 
   sendUserToHome(newuser) {
     this.close(); //close modal component
@@ -135,17 +140,27 @@ class App extends Component {
                   )}
                 </Nav>
               </Navbar.Collapse>
-            </Navbar>
-            <Route exact path="/" component={IndexPage} />
-            <Route path="/new-listing" component={NewListing} />
-            <Route path="/faq" component={Faq} />
-            <Route path="/commercial" component={Commercial} />
-            <Route path="/new-construction" component={NewConstructionList} />
-            <Route path="/info" component={Info} />
-            <Route path="/details/:id" component={Details} />
-            <Route path="/profile/:username" component={MyProfile} />
-          </div>
-        </Router>
+
+		</Navbar>
+		<Switch>
+		<Route exact path="/" component={IndexPage} />
+		<Route path="/new-listing" component={NewListing} />
+		<Route path="/faq" component={Faq} />
+		<Route path="/commercial" component={Commercial} />
+		<Route path="/new-construction" component={NewConstructionList} />
+		<Route path="/info" component={Info} />
+		<Route path="/details/:id" component={Details} />
+		<Route path="/profile/:username" component={MyProfile}>
+		<Route path="/profile/:username/setting" component = {profileSetting} />
+		</Route>
+		<Route component={NoMatch}/>
+		</Switch>
+
+		{/*to pass props in <Route>, check here:https://github.com/ReactTraining/react-router/issues/4627, I chose to use a checkuser() again in myprofile's componentWillMount */}
+		</div>
+		</Router>
+
+
 
         <LoginRegisForm
           sendUserToHome={this.sendUserToHome}
@@ -158,5 +173,11 @@ class App extends Component {
     );
   }
 }
+
+const NoMatch = ({ location }) => (
+        <div>
+        <h3>No match for <code>{location.pathname}</code></h3>
+        </div>
+)
 
 export default App;

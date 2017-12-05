@@ -46,11 +46,13 @@ class AccountButtonHomePage extends React.Component{
 		  <MenuItem header>Signed in as</MenuItem>
 		  <MenuItem id="username" header><h4>{this.props.user.userName}</h4></MenuItem>
 		  <MenuItem divider />
-		  <LinkContainer to={`/profile/${this.props.user.userName}`}>
-		    <MenuItem eventKey="1">My Profile</MenuItem>
-		  </LinkContainer>
+
+		  <MenuItem href={`/profile/${this.props.user.userName}`} eventKey="1">My Profile</MenuItem>
+
 		  <MenuItem eventKey="2">Saved Home</MenuItem>
-		  <MenuItem eventKey="3" href="#">Setting</MenuItem>
+		  <LinkContainer to={`/profile/${this.props.user.userName}/setting`} >
+		  <MenuItem eventKey="3">Setting</MenuItem>
+		  </LinkContainer>
 		  <MenuItem divider />
 		  <MenuItem eventKey="4" onSelect={this.handleSignOut}>Sign Out</MenuItem>
 		</NavDropdown>

@@ -87,7 +87,7 @@ class RegForm extends React.Component{
     }
 
     changePass2ValState(){
-	if(this.state.password1===this.state.password2){
+	if(this.state.password1===this.state.password2 && this.state.password2 !==""){
 	    this.setState({
 		inputValPass2:"success",
 		passwordMSG:"Passwords Match"
