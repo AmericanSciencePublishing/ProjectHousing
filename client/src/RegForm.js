@@ -1,5 +1,5 @@
 import React from 'react';
-import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
+import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
 import './LogForm.css';
 import history from './history';
 
@@ -201,12 +201,11 @@ class RegForm extends React.Component{
 	
 	return(
 	    <div>
-	      <Form onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
+	      <Form id="formInput" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 
 	    {/* input e-mail */}
 	    
 		<FormGroup validationState={this.state.inputValEmail} controlId="email" bsSize="large">
-		<Col xsOffset={1} xs={10}>
 		<FormControl
 		  required
 		  autoFocus
@@ -214,12 +213,10 @@ class RegForm extends React.Component{
 		  onChange={this.getEmail}
 		  placeholder="Enter Email"/>
 		<FormControl.Feedback />
-		</Col>
 		</FormGroup>
 
 	    {/*input password */}
 		<FormGroup validationState={this.state.inputValPass1} controlId="password" bsSize="large">
-		<Col xsOffset={1} xs={10}>
 		<FormControl
 		  required
 		  onChange={this.getPassword1}
@@ -227,13 +224,11 @@ class RegForm extends React.Component{
 		  placeholder="Creat Password"
 		  />
 		<FormControl.Feedback />
-		</Col>
 		</FormGroup>
 
 	    {/*confirm password*/}
 	    
 		<FormGroup validationState={this.state.inputValPass2} controlId="confirmPassword" bsSize="large">
-                <Col xsOffset={1} xs={10}>
                   <FormControl
 		    required
 		    onChange={this.getPassword2}
@@ -241,20 +236,16 @@ class RegForm extends React.Component{
 		    placeholder="Re-enter your Password"
                     />
 		  <FormControl.Feedback />
-                </Col>
                 </FormGroup>
 
 	    {/*checkbox for landlord */}
 
 		<FormGroup>
-		<Col xsOffset={1} xs={10}>
 		<Checkbox> I am a landlord or industry professional</Checkbox>
-		</Col>
 		</FormGroup>
 		
 		{/*submit button*/}
 		<FormGroup>
-		<Col xsOffset={1} xs={10}>
 		<ButtonToolbar justified='true'>
 		<ButtonGroup >
 		<Button
@@ -271,7 +262,6 @@ class RegForm extends React.Component{
 		</ButtonGroup>
 		<p align="center" style={{color: this.state.submitMSG === "Sign up successfully!" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
 		</ButtonToolbar>
-		</Col>
 		</FormGroup>
 		</Form>
 		</div>

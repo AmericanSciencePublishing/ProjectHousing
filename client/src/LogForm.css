@@ -2,13 +2,15 @@
     text-align:right;
 }
 
+#formInput{
+    padding-left:10px;
+    padding-right:10px;
+}
 #loginSubButton{
 //    margin-left:50px;
 //    width:200%;
 }
-#loginSubButton p{
-    font-size:20px;
-}
+
 
 #forget{
     margin-left:14rem;
@@ -16,6 +18,14 @@
     font-size:18px;
     
 }
+
+#forgetpwdTip{
+    position:absolute;
+    right:0rem;
+    top:20.5rem;
+//    margin-top:20px;
+//    text-align: center;
+};
 
 #passwordTip{
     margin-bottom:-5px;
