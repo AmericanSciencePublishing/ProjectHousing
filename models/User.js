@@ -17,6 +17,9 @@ var userSchema = new Schema({
     },
     userStatus:{
 	type: String
+    },
+    resetPassLink:{
+	type: String
     }
 });
 

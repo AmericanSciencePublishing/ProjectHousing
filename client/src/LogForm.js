@@ -141,29 +141,26 @@ class LogForm extends React.Component{
 		</FormGroup>
 
 		<p style={{color: this.state.loginMSG === "sign in successfully" ? "#4caf50": "#f44336"}} id="submitTip">{this.state.loginMSG}</p>
-
-	    {/*submit button*/}
+		
+		{/*submit button*/}
 		<FormGroup style={{postion:'relative'}}>
 		  <ButtonToolbar justified='true'>
-		      <ButtonGroup >
+		    <ButtonGroup >
 			<Button
 			  block
 			  active
 			  id="loginSubButton"
 			  bsSize="large"
 			  bsStyle="info"
-           		  type="submit"
+			  type="submit"
 			  disabled={this.state.isLoading}
 			  >
 			  Sign in
 			</Button>
-		      </ButtonGroup>
-		      <Button id="forgetpwdTip" href="/forgetpwd" bsStyle="link">Forgot your password?</Button>
-		    </ButtonToolbar>
+		    </ButtonGroup>
+		    <Button id="forgetpwdTip" href="/forgotpwd" bsStyle="link">Forgot your password?</Button>
+		  </ButtonToolbar>
 		</FormGroup>
-
-
-
 	      </Form>
 	    </div>
 	    

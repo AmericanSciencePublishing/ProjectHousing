@@ -16,74 +16,78 @@ import MyProfile from './MyProfile';
 import Details from './Details';
 import AccountButton from './AccountButtonHomePage';
 import logo from './images/logo.png';
+import Forgotpwd from './Forgotpwd';
+import Resetpwd from './Resetpwd';
 import './App.css';
-import profileSetting from './profileSetting';
+
 
 
 var axios = require("axios");
 
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showModal: false,
-      user: {},
-      action: ''
-    };
-    this.handleClick = this.handleClick.bind(this);
-    this.close = this.close.bind(this);
-    this.sendUserToHome = this.sendUserToHome.bind(this);
-    this.isEmpty = this.isEmpty.bind(this);
-  }
 
-  componentWillMount() {
-    console.log('heiheihei');
-    console.log(this.state.user);
+    constructor() {
+	super();
+	this.state = { showModal: false,
+		       user:{},
+		       action:''
+		     };
+	this.handleClick = this.handleClick.bind(this);
+	this.close = this.close.bind(this);
+	this.sendUserToHome = this.sendUserToHome.bind(this);
+	this.isEmpty = this.isEmpty.bind(this);
+    }
 
-    //another higher level check is to write a function of isAuth()
-    //when user click 'My Profile', use onEnter{isAuth()} to check if is authed
-    //only login and logout could call isAuth()
+    componentWillMount(){
+	console.log('app.js cWillMount');
+	console.log(this.state.user);
+	
+	//another higher level check is to write a function of isAuth()
+	//when user click 'My Profile', use onEnter{isAuth()} to check if is authed
+	//only login and logout could call isAuth()
+	
+	//Right now, only sign out could set userState to 'offline', so user could
+	//aotumatically login if he never sign out.
+	
+	axios.get('/checkUser/').then (res=>{
+	    console.log("checking for automatically sign in:",res);
+	    if(res.data === ""){
+		console.log('no such session logged in');
+	    }
+	    else{
+		this.setState({
+		    user: res.data
+		});
+	    }
+	});
 
-    //Right now, only sign out could set userState to 'offline', so user could
-    //aotumatically login if he never sign out.
+    }
+    
 
-    axios.get('/checkUser/').then(res => {
-      console.log(res);
-      if (res.data === '') {
-        console.log('no such session logged in');
-      } else {
-        this.setState({
-          user: res.data
-        });
-      }
-    });
-    console.log(this.state.user);
-  }
+    sendUserToHome(newuser){
+	this.close();//close modal component
+	this.setState({
+	    user: newuser
+	});
+	console.log(this.state);
+    }
 
+    isEmpty(obj){
+	return Object.keys(obj).length === 0 && obj.constructor === Object;
+    }
+    
+    close() {
+	this.setState({ showModal: false });
+    }
+    
+    handleClick() {
+	this.setState({ showModal: true });
+    }
+    
+    render() {
+	return (
 
-  sendUserToHome(newuser) {
-    this.close(); //close modal component
-    this.setState({
-      user: newuser
-    });
-    console.log(this.state);
-  }
-
-  isEmpty(obj) {
-    return Object.keys(obj).length === 0 && obj.constructor === Object;
-  }
-
-  close() {
-    this.setState({ showModal: false });
-  }
-
-  handleClick() {
-    this.setState({ showModal: true });
-  }
-
-  render() {
-    return (
       <div id="site">
         <Router history={history}>
           <div id="site-content">
@@ -150,9 +154,9 @@ class App extends Component {
 		<Route path="/new-construction" component={NewConstructionList} />
 		<Route path="/info" component={Info} />
 		<Route path="/details/:id" component={Details} />
-		<Route path="/profile/:username" component={MyProfile}>
-		<Route path="/profile/:username/setting" component = {profileSetting} />
-		</Route>
+		<Route path="/user/:username/:aim" component={MyProfile}/>
+		<Route path="/forgotpwd" component={Forgotpwd}/>
+		<Route path="/resetpwd/:linktoken" component={Resetpwd}/>
 		<Route component={NoMatch}/>
 		</Switch>
 

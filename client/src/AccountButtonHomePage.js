@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+//import { LinkContainer } from 'react-router-bootstrap';
 import history from './history';
 import './App.css';
 var axios = require("axios");
@@ -46,13 +46,9 @@ class AccountButtonHomePage extends React.Component{
 		  <MenuItem header>Signed in as</MenuItem>
 		  <MenuItem id="username" header><h4>{this.props.user.userName}</h4></MenuItem>
 		  <MenuItem divider />
-
-		  <MenuItem href={`/profile/${this.props.user.userName}`} eventKey="1">My Profile</MenuItem>
-
-		  <MenuItem eventKey="2">Saved Home</MenuItem>
-		  <LinkContainer to={`/profile/${this.props.user.userName}/setting`} >
-		  <MenuItem eventKey="3">Setting</MenuItem>
-		  </LinkContainer>
+		  <MenuItem href={`/user/${this.props.user.userName}/profile`} eventKey="1">My Profile</MenuItem>
+		  <MenuItem href={`/user/${this.props.user.userName}/save`} eventKey="2">Saved Home</MenuItem>
+		  <MenuItem href={`/user/${this.props.user.userName}/setting`} eventKey="3">Setting</MenuItem>
 		  <MenuItem divider />
 		  <MenuItem eventKey="4" onSelect={this.handleSignOut}>Sign Out</MenuItem>
 		</NavDropdown>
