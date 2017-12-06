@@ -1,49 +1,47 @@
-#carousel {
-  margin-top: 2rem;
+.details #carousel {
 }
 
-#carousel img {
-  width: 50%;
+.details #carousel img {
   height: 30rem;
-  margin: 0 auto;
+  width: 100%;
 }
 
-#house-info {
+.details .info {
   padding: 1rem;
-  position: relative;
   margin: 2rem auto;
+
+  display: flex;
+
+  color: grey;
 }
 
-#house-info button {
-  position: absolute;
-  right: 15px;
-  top: 10px;
+.details .info > div {
+  flex: 1;
+  line-height: 40px;
 }
 
-#house-info #links {
-  position: absolute;
-  right: 15px;
-  top: 50px;
+.details .info button {
+  display: block;
+  margin: 0 0 0 auto;
 }
 
-#house-info .price {
+.details .info #links {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.details .price {
   color: #ff6d00;
-  font-size: 4rem;
+  font-size: 2rem;
   margin-right: 2rem;
 }
 
-#house-info .description {
-  font-size: 2rem;
-  color: gray;
-}
-
-#house-info .address {
-  font-size: 2rem;
+.details .address {
   color: #163059;
   margin-right: 2rem;
 }
 
-#custom-navbar {
+.details #custom-navbar {
   display: flex;
   flex-flow: row nowrap;
 
@@ -53,35 +51,55 @@
   margin: 2rem auto;
 }
 
-#custom-navbar div {
+.details #custom-navbar div {
   flex: 1;
 
   text-align: center;
-  font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
-  font-size: 16px;
+  font-size: 1.5rem;
   font-weight: bold;
 
   padding: 1rem;
   border: 5px solid #163059;
 }
 
-#custom-navbar div:hover {
+.details #custom-navbar div:hover {
   border-bottom: 5px solid white;
 }
 
-#property-details {
-  padding: 1rem;
+.details .attributes {
   margin: 2rem auto;
 }
 
-#property-details .attribute {
-  font-size: 2rem;
+.details .attributes .attribute {
+  font-size: 1.5rem;
   color: gray;
   margin-right: 2rem;
   font-weight: bold;
 }
 
-#property-details .value {
-  font-size: 2rem;
+.details .attributes .value {
+  font-size: 1.5rem;
   color: gray;
+}
+
+.details .description {
+  color: grey;
+  font-size: 1.5rem;
+  margin-top: 10rem;
+}
+
+.details .box {
+  border-top: 1px solid black;
+  margin: 2rem auto;
+
+  padding: 2rem;
+}
+
+.details h2 {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+
+  color: black;
+  font-size: 24px;
+  font-weight: normal;
 }

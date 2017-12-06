@@ -1,0 +1,13 @@
+.city {
+  display: flex;
+  flex-grow: row nowrap;
+  justify-content: space-between;
+}
+
+.city > div {
+  flex: 1;
+}
+
+.city > div:last-of-type {
+  padding-left: 2rem;
+}

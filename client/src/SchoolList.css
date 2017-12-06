@@ -1,0 +1,20 @@
+.school-list th:first-of-type {
+  text-align: center;
+}
+
+.school-list td div {
+  height: 4rem;
+  line-height: 4rem;
+}
+
+.school-list .score {
+  height: 4rem;
+  width: 4rem;
+  line-height: 4rem;
+  border-radius: 50%;
+
+  background-color: lightgrey;
+
+  text-align: center;
+  margin: 0 auto;
+}

@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 var index = require('./routes/index');
 var sign_up = require('./routes/sign_up');
 var log_in = require('./routes/log_in');
@@ -12,6 +13,8 @@ var offline = require('./routes/offline');
 var online = require('./routes/online');
 var houses = require('./routes/houses');
 var checkUser = require('./routes/checkUser');
+var cities = require('./routes/cities');
+
 var mongoose = require('mongoose');
 var Promise = require("bluebird");
 //mongoose.Promise = Promise;
@@ -59,6 +62,7 @@ app.use('/online',online);
 app.use('/houses', houses);
 app.use('/offline',offline);
 app.use('/checkUser',checkUser);
+app.use('/cities', cities);
 
 
 // catch 404 and forward to error handler

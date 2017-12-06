@@ -15,7 +15,7 @@ router
   })
   .get('/:id', function(req, res) {
     const id = req.params.id;
-    House.find({ _id: id })
+    House.findOne({ _id: id })
       .then(doc => res.send(doc))
       .catch(err => res.send(err));
   });
