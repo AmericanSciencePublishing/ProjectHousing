@@ -5,7 +5,20 @@ import Label from './Label';
 
 import './HouseListItem.css';
 
+import { connect } from 'react-redux';
+import { save_house } from './actions';
+
 class CommercialListItem extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    this.props.dispatch(save_house(this.props.item._id));
+  }
+
   render() {
     const {
       image,
@@ -62,11 +75,11 @@ class CommercialListItem extends Component {
         </div>
 
         <div>
-          <button className="like" />
+          <button className="like" onClick={this.handleClick} />
         </div>
       </div>
     );
   }
 }
 
-export default CommercialListItem;
+export default connect()(CommercialListItem);

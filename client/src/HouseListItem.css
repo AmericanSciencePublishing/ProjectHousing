@@ -5,7 +5,7 @@
   border-top: 1px solid;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-end;;
+  justify-content: flex-end;
 }
 
 .house-item:last-of-type {
@@ -14,7 +14,6 @@
 
 .house-item > div {
 }
-
 
 .house-item > div:nth-of-type(1) {
   flex: 3;
@@ -63,13 +62,13 @@
   color: #2196f3;
 }
 
-.house-item .house-item .labels {
+.house-item .labels {
   display: flex;
   flex-flow: row wrap;
   margin: 2rem auto;
 }
 
-.house-item .house-item .like {
+.house-item .like {
   background-color: white;
   background-image: url('./images/likeBefore.png');
   background-repeat: no-repeat;
@@ -81,6 +80,6 @@
   width: 35px;
 }
 
-.house-item .house-item .like:hover{
+.house-item .like:hover {
   background-image: url('./images/likeAfter.png');
 }
