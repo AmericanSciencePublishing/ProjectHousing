@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonGroup, ButtonToolbar, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
+import { ButtonGroup, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
 import history from './history';
 import './LogForm.css';
 var axios = require("axios");
@@ -115,55 +115,51 @@ class LogForm extends React.Component{
     render(){
 	return(
 	    <div>
-		<Form onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
+		<Form id="formInput" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 
 	    {/* input e-mail */}
 
-		<FormGroup validationState={this.state.inputValEmail} controlId="email" bsSize="large">
-		  <Col xsOffset={1} xs={10}>
-		    <FormControl
-		      required
-		      autoFocus
-		      type="email"
-		      onChange={this.getEmail}
-		      placeholder="Enter Email"/>
-		    <FormControl.Feedback />
-		  </Col>
+		  <FormGroup validationState={this.state.inputValEmail} controlId="email" bsSize="large">
+		  <FormControl
+		    required
+		    autoFocus
+		    type="email"
+		    onChange={this.getEmail}
+		    placeholder="Enter Email"/>
+		  <FormControl.Feedback />
 		</FormGroup>
-
+		
 	    {/*input password */}
 		<FormGroup validationState={this.state.inputValPass} controlId="password" bsSize="large">
-		  <Col xsOffset={1} xs={10}>
-		    <FormControl
-		      required
-		      onChange={this.getPassword}
-		      type="password"
-		      placeholder="Input Password"
-		      />
-		    <FormControl.Feedback />
-		  </Col>
+		  <FormControl
+		    required
+		    onChange={this.getPassword}
+		    type="password"
+		    placeholder="Input Password"
+		    />
+		  <FormControl.Feedback />
 		</FormGroup>
 
-	    {/*submit button*/}
-		<FormGroup>
-		  <Col xsOffset={1} xs={10}>
-		    <ButtonToolbar justified='true'>
-		      <ButtonGroup >
+		<p style={{color: this.state.loginMSG === "sign in successfully" ? "#4caf50": "#f44336"}} id="submitTip">{this.state.loginMSG}</p>
+		
+		{/*submit button*/}
+		<FormGroup style={{postion:'relative'}}>
+		  <ButtonToolbar justified='true'>
+		    <ButtonGroup >
 			<Button
 			  block
 			  active
 			  id="loginSubButton"
 			  bsSize="large"
 			  bsStyle="info"
-           		  type="submit"
+			  type="submit"
 			  disabled={this.state.isLoading}
 			  >
 			  Sign in
 			</Button>
-		      </ButtonGroup>
-		      <p align="center" style={{color: this.state.loginMSG === "sign in successfully" ? "#4caf50": "#f44336"}} id="submitTip">{this.state.loginMSG}</p>
-		    </ButtonToolbar>
-		  </Col>
+		    </ButtonGroup>
+		    <Button id="forgetpwdTip" href="/forgotpwd" bsStyle="link">Forgot your password?</Button>
+		  </ButtonToolbar>
 		</FormGroup>
 	      </Form>
 	    </div>

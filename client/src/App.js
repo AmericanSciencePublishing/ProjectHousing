@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 //import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import { Router, Route, NavLink } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Router, Route, NavLink,Switch } from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap';
 import history from './history';
 import Commercial from './Commercial';
 import Faq from './Faq';
@@ -16,69 +16,80 @@ import MyProfile from './MyProfile';
 import Details from './Details';
 import AccountButton from './AccountButtonHomePage';
 import logo from './images/logo.png';
+import Forgotpwd from './Forgotpwd';
+import Resetpwd from './Resetpwd';
 import './App.css';
-var axios = require('axios');
+
+
+
+var axios = require("axios");
+
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showModal: false,
-      user: {},
-      action: ''
-    };
-    this.handleClick = this.handleClick.bind(this);
-    this.close = this.close.bind(this);
-    this.sendUserToHome = this.sendUserToHome.bind(this);
-    this.isEmpty = this.isEmpty.bind(this);
-  }
 
-  componentWillMount() {
-    console.log('heiheihei');
-    console.log(this.state.user);
+    constructor(props) {
+	super(props);
+	this.state = { showModal: false,
+		       user:{},
+		       action:''
+		     };
+	this.handleClick = this.handleClick.bind(this);
+	this.close = this.close.bind(this);
+	this.sendUserToHome = this.sendUserToHome.bind(this);
+	this.isEmpty = this.isEmpty.bind(this);
+    }
 
-    //another higher level check is to write a function of isAuth()
-    //when user click 'My Profile', use onEnter{isAuth()} to check if is authed
-    //only login and logout could call isAuth()
+    componentWillMount(){
+	//	console.log('app.js cWillMount');
+	//right now, we are using a very 'stupid' way for authentication,
+	//that is use browser session to check a user's status in backend.
+	
+	//If you want to use localstorage for advanced authentication sysytem:
+	//Auth0-js is a library for advenced authentication system
+	//check a sample: https://github.com/auth0-samples/auth0-react-samples/tree/master/01-Login
+	//official tutorial: https://auth0.com/docs/libraries/auth0js/v8
+	
+	//Right now, only sign out could set userState to 'offline', so user could
+	//aotumatically login if he never sign out.
+	axios.get('/checkUser/').then (res=>{
+	    console.log("checking for automatically sign in:",res);
+	    if(res.data === ""){
+		console.log('no such session logged in');
+	    }
+	    else{
+		this.setState({
+		    user: res.data
+		});
+	    }
+	});
+//	console.log("app.js state", this.state);
 
-    //Right now, only sign out could set userState to 'offline', so user could
-    //aotumatically login if he never sign out.
+    }
+    
 
-    axios.get('/checkUser/').then(res => {
-      console.log(res);
-      if (res.data === '') {
-        console.log('no such session logged in');
-      } else {
-        this.setState({
-          user: res.data
-        });
-      }
-    });
-    console.log(this.state.user);
-  }
+    sendUserToHome(newuser){
+	this.close();//close modal component
+	this.setState({
+	    user: newuser
+	});
+	console.log(this.state);
+    }
 
-  sendUserToHome(newuser) {
-    this.close(); //close modal component
-    this.setState({
-      user: newuser
-    });
-    console.log(this.state);
-  }
+    isEmpty(obj){
+	return Object.keys(obj).length === 0 && obj.constructor === Object;
+    }
+    
+    close() {
+	this.setState({ showModal: false });
+    }
+    
+    handleClick() {
+	this.setState({ showModal: true });
+    }
+    
+    render() {
+	return (
 
-  isEmpty(obj) {
-    return Object.keys(obj).length === 0 && obj.constructor === Object;
-  }
-
-  close() {
-    this.setState({ showModal: false });
-  }
-
-  handleClick() {
-    this.setState({ showModal: true });
-  }
-
-  render() {
-    return (
       <div id="site">
         <Router history={history}>
           <div id="site-content">
@@ -120,32 +131,35 @@ class App extends Component {
                   </LinkContainer>
 
                   <NavItem disabled>
-                    <p>En/Ch</p>
-                  </NavItem>
-
-                  {this.isEmpty(this.state.user) ? (
-                    <NavItem>
-                      <p onClick={this.handleClick}>Log in</p>
-                    </NavItem>
-                  ) : (
-                    <AccountButton
-                      sendUserToHome={this.sendUserToHome}
-                      user={this.state.user}
-                    />
-                  )}
+                    <LinkContainer to="/">
+                      <p>En/Ch</p>
+                    </LinkContainer>
+                </NavItem>
+            {this.isEmpty(this.state.user) ? <NavItem><p onClick={this.handleClick}>Log in</p></NavItem> : <AccountButton sendUserToHome={this.sendUserToHome} user={this.state.user}/>}
+            
                 </Nav>
               </Navbar.Collapse>
-            </Navbar>
-            <Route exact path="/" component={IndexPage} />
-            <Route path="/new-listing" component={NewListing} />
-            <Route path="/faq" component={Faq} />
-            <Route path="/commercial" component={Commercial} />
-            <Route path="/new-construction" component={NewConstructionList} />
-            <Route path="/info" component={Info} />
-            <Route path="/details/:id" component={Details} />
-            <Route path="/profile/:username" component={MyProfile} />
-          </div>
-        </Router>
+
+		</Navbar>
+		<Switch>
+		<Route exact path="/" component={IndexPage} />
+		<Route path="/new-listing" component={NewListing} />
+		<Route path="/faq" component={Faq} />
+		<Route path="/commercial" component={Commercial} />
+		<Route path="/new-construction" component={NewConstructionList} />
+		<Route path="/info" component={Info} />
+		<Route path="/details/:id" component={Details} />
+		<Route path="/user/:username" component={MyProfile}/>
+		<Route path="/forgotpwd" component={Forgotpwd}/>
+		<Route path="/resetpwd/:linktoken" component={Resetpwd}/>
+		<Route component={NoMatch}/>
+		</Switch>
+
+		{/*to pass props in <Route>, check here:https://github.com/ReactTraining/react-router/issues/4627, I chose to use a checkuser() again in myprofile's componentWillMount */}
+		</div>
+		</Router>
+
+
 
         <LoginRegisForm
           sendUserToHome={this.sendUserToHome}
@@ -158,5 +172,11 @@ class App extends Component {
     );
   }
 }
+
+const NoMatch = ({ location }) => (
+        <div>
+        <h3>No match for <code>{location.pathname}</code></h3>
+        </div>
+)
 
 export default App;

@@ -20,6 +20,8 @@ var Promise = require("bluebird");
 //mongoose.Promise = Promise;
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var resetpwdemail = require('./routes/resetpwdemail');
+var forgotpwd = require('./routes/forgotpwd');
 const { mLab } = require('./config/keys');
 mongoose.connect(mLab);
 
@@ -63,6 +65,9 @@ app.use('/houses', houses);
 app.use('/offline',offline);
 app.use('/checkUser',checkUser);
 app.use('/cities', cities);
+app.use('/forgotpwd',forgotpwd);
+app.use('/resetpwdemail',resetpwdemail);
+
 
 
 // catch 404 and forward to error handler

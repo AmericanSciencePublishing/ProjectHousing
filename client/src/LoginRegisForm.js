@@ -16,7 +16,7 @@ class LoginRegisForm extends React.Component{
     render (){
         return(
 	    <div>
-	      <Modal show={this.props.show} onHide={this.props.onHide}>
+		<Modal bsSize="sm" show={this.props.show} onHide={this.props.onHide}>
 		<Modal.Header closeButton>
 		  <Modal.Title> Welcome  </Modal.Title>
 		</Modal.Header>
@@ -27,7 +27,7 @@ class LoginRegisForm extends React.Component{
 		    </Tab>
                     <Tab eventKey={2} title="New account">
 		<RegForm sendUserToHome={this.props.sendUserToHome} /> </Tab>
-		  </Tabs>
+		</Tabs>
 		</Modal.Body>
 		<Modal.Footer>
 		</Modal.Footer>
