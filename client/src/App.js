@@ -154,7 +154,7 @@ class App extends Component {
 		<Route path="/new-construction" component={NewConstructionList} />
 		<Route path="/info" component={Info} />
 		<Route path="/details/:id" component={Details} />
-		<Route path="/user/:username/:aim" component={MyProfile}/>
+		<Route path="/user/:username" component={MyProfile}/>
 		<Route path="/forgotpwd" component={Forgotpwd}/>
 		<Route path="/resetpwd/:linktoken" component={Resetpwd}/>
 		<Route component={NoMatch}/>

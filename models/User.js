@@ -70,6 +70,10 @@ userSchema.pre('save', function (next) {
 userSchema.set('toJSON', {
     transform: function(doc, ret, options) {
 	delete ret.password;
+	delete ret.resetPassLink;
+	delete ret.userStatus;
+	delete ret.email;
+
         return ret;
     }
 });

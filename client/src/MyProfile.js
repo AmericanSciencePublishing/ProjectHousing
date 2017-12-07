@@ -1,11 +1,10 @@
 import React from 'react';
 import './MyProfile.css';
-// import {Col,Row} from 'react-bootstrap';
-import { Tabs, Tab  } from 'react-bootstrap';
 import history from './history';
+//import history from './history';
 import ProfileSetting from './ProfileSetting';
 import { Nav, NavItem  } from 'react-bootstrap';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 var axios = require("axios");
 
@@ -13,8 +12,7 @@ class MyProfile extends React.Component{
 
     constructor(props){
 	super(props);
-	this.state = { user:{},
-		       tabkey : 1
+	this.state = { user:{}
 		     };
     }
 
@@ -34,41 +32,47 @@ class MyProfile extends React.Component{
             }
         });
 	
-	if(this.props.match.params.aim === 'setting'){
-	    this.setState({
-		tabkey:3
-	    });
-	}else if(this.props.match.params.aim === 'save'){
-	    this.setState({
-		tabkey:2
-	    });
-	}else{
-	    this.setState({
-		tabkey:1
-	    });
-	}
-
     }
     
 
     render(){
 	    return(
-	    <div id="profileTabs" className="container">
-	      <Nav activeKey={this.state.tabkey}  >
-		<LinkContainer to="/user/:username/:aim/">
+	    <div  className="container">
+	      <Nav bsStyle="tabs" >
+		<LinkContainer to={`/user/${this.state.user.userName}`}>
 		  <NavItem >My Profile  </NavItem>
-		  </LinkContainer>
-		<NavItem >Tab 2 content</NavItem>
+		</LinkContainer>
+		<LinkContainer to="/user/:username/save">
+                  <NavItem >My Saves  </NavItem>
+                </LinkContainer>
+		<LinkContainer to="/user/:username/setting">
+                  <NavItem >Settings  </NavItem>
+                </LinkContainer>
 
+		
 	      </Nav>
-
-	      
-
-
+	      <Switch>
+                <Route exact path="/user/:username" component={MyProfileDetail} />
+                <Route path="/user/:username/save" component={ProfileSetting}/>
+                <Route path="/user/:username/setting" component={ProfileSetting}/>
+                <Route component={NoMatch}/>
+                </Switch>
 	    </div>
 
 	);
     }
 }
+
+const NoMatch = ({ location }) => (
+        <div>
+        <h3>No match for <code>{location.pathname}</code></h3>
+        </div>
+);
+
+const MyProfileDetail = () => (
+    <div>
+      <h2>my profile hahahahahahahha </h2>
+    </div>
+)
 
 export default MyProfile;
