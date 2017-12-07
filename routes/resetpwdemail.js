@@ -10,21 +10,26 @@ var User = require('../models/User');
 
 router.put('/:linktoken', (req, res) => {
 //    console.log("received new reset request",req.body);
-    const linkToken = req.params.linktoken
+    const linkToken = req.params.linktoken;
     console.log("reset password request token:", linkToken);
-    var newPassword = req.body.newPassword
+    var newPassword = req.body.newPassword;
     bcrypt.hash(newPassword, 10, function (err, hash) {
 	if (err) {
 	    return res.send(err);
 	}
-//	console.log(hash);
+	//	console.log(hash);
 	User.update({resetPassLink:linkToken},{$set:{password:hash}},function(err,updatedUser){
-	if(err){
-	    console.log('error when update new hashedPassword');
-	    throw err;
-	}
-//	console.log(updatedUser);
-	res.send(updatedUser);
+	    if(err){
+		console.log('error when update new hashedPassword');
+		throw err;
+	    }
+	    else if(updatedUser.n === 1){
+//		console.log(updatedUser);
+		return res.status(200).json({message:"Successfully set your password"});
+	    }
+	    else{
+		return res.status(200).json({message:"Something wrong happened, please contact us."});
+	    }
 	});
 
     })

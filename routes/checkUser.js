@@ -11,7 +11,7 @@ mongoose.connect(mLab);
 router.get('/', function (req,res) {
     console.log("checking online status");
     if(req.session.userId === undefined){
-	console.log('session undefined');
+//	console.log('session undefined');
 	res.send();
     }
     User.findOne({_id : req.session.userId}, function(err, doc){

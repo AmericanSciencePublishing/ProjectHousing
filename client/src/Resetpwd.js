@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonGroup,Col, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
-import history from './history';
+//import history from './history';
 
 var axios = require("axios");
 
@@ -14,7 +14,8 @@ class Resetpwd extends React.Component{
 	    submitMSG:"",
 	    inputValPass1:null,
 	    inputValPass2:null,
-	    isLoading:false
+	    isLoading:false,
+	    Msg:""
 	};
 	this.changePass1ValState=this.changePass1ValState.bind(this);
 	this.changePass2ValState=this.changePass2ValState.bind(this);
@@ -95,18 +96,16 @@ class Resetpwd extends React.Component{
 //	    console.log(newUserInfo);
 	    axios.put(`/resetpwdemail/${this.props.match.params.linktoken}`, newUserInfo).then(res=>{
 		console.log("reset req's res:", res);
-		if(!res.data.code){
+		if(res.data.message==='Successfully set your password'){
 		    this.setState({
-			submitMSG:"Automatically jumping to home page, please login again",
+			submitMSG:"Successfully set your password, please login again",
 			isLoading: false
 		    });
-		    history.push('/');
-	//	    this.context.router.history.push("/faq")
-		    //		    console.log("sign up seccessfully!",res);
+//		    history.push('/');
 		}
-		if(res.data.code===11000){
+		else{
 		    this.setState({
-                        submitMSG:"Email Address Already in Use",
+                        submitMSG:"Something wrong happened, please contact us.",
                         isLoading: false
                     });
 //                    console.log("Email Address Already in Use",res);
@@ -122,7 +121,7 @@ class Resetpwd extends React.Component{
 	    });
 	}else{
 	    this.setState({
-		submitMSG:"Can't submit, Check User Info",
+		submitMSG:"Can't submit, Check Input",
 		isLoading: false
 	    });
 	}
@@ -133,9 +132,9 @@ class Resetpwd extends React.Component{
 
 	return(
 	    <div className="conatiner">
-	      <Col xsOffset={3} xs={6}>
-	      <Form onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
-		
+		<Col xsOffset={3} xs={6}>
+		<h4>Please reset your password</h4>
+		<Form onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 		<FormGroup validationState={this.state.inputValPass1} controlId="password" bsSize="large">
 		<FormControl
 		  required
@@ -173,9 +172,9 @@ class Resetpwd extends React.Component{
 		  Submit
 		</Button>
 		</ButtonGroup>
-		<p align="center" style={{color: this.state.submitMSG === "" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
 		</ButtonToolbar>
 		</FormGroup>
+		<p align="center" style={{color: this.state.submitMSG === "" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
 	      </Form>
 	      </Col>
 	    </div>

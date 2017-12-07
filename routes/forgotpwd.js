@@ -9,6 +9,9 @@ mongoose.connect(mLab);
 var User = require('../models/User');
 const {APP_URL_BASE} = process.env;
 
+//when deploy, Change the url and email contents first!
+
+
 // create a random string as a token for user who reset pwd
 const randomString = length => {
     let text = "";
@@ -23,21 +26,7 @@ router.put('/', (req, res) => {
 //    console.log(req.body);
     if ( !req.body) return res.status(400).json({message: 'no request body'});
     if ( !req.body.email) return res.status(400).json({message: 'no email in request'});
-/*    User.findOne({email : req.body.email}, function(err, doc){
-	console.log("Reset password check email result:",doc);
-	if(err){
-	    res.send();
-	}
-	//if the session exist && never signed up, send back json to automatically sign in
-	else if (doc ){
-	    res.send(doc.toJSON());
-	}
-	else{
-	    res.send();
-	}
 
-    });
-*/
     const token = randomString(40); //TODO may not unique string;
 //    var e = req.body.email;
     const emailData = {
@@ -45,11 +34,11 @@ router.put('/', (req, res) => {
 	to : req.body.email,
 	subject : "Reset password",
 	text : 'please use the following link for instructions to reset your password :',
-	html:`<p>use the following link to reset your password</p><a href="http://localhost:3000/resetpwd/${token}">hello</a>`
+	html:`<p>Click the following link to reset your password.</p><p>http://localhost:3000/resetpwd/${token}</p>`
     };
 //    console.log(emailData);
     User.update({ email : req.body.email}, { $set: { resetPassLink : token }}, function(error, feedback){
-	//todo set a time out;
+	//todo set a time out for token expire time.
 	if ( error) return res.send(error);
 	else if(feedback.n===1){
 	    console.log("hello:",feedback);
