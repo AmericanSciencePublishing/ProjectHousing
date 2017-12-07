@@ -29,7 +29,7 @@ export default class HouseList extends Component {
 
   render() {
     return (
-      <div className="" style={{margin: "0 5rem"}}>
+      <div className="house-list" style={{margin: "0 5rem"}}>
         <Row>
           <Col sm={12} md={8}>
             <div className="list-header">
@@ -52,7 +52,7 @@ export default class HouseList extends Component {
               </span>
             </div>
 
-            <div className="house-list">
+            <div className="list">
               {this.state.houses.map(house => (
                 <HouseListItem item={house} key={house._id} />
               ))}
@@ -63,7 +63,7 @@ export default class HouseList extends Component {
           </Col>
           <Col md={4}>
             <div>
-              
+
             </div>
           </Col>
         </Row>

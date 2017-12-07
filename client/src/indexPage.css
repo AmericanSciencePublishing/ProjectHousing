@@ -1,4 +1,4 @@
-#search-area {
+.index-page #search-area {
   background-image: url('./images/index_page/home_background.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
   margin-top: -20px;
 }
 
-#search-area h1 {
+.index-page #search-area h1 {
   text-align: center;
 
   font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
@@ -19,21 +19,21 @@
   color: white;
 }
 
-#search-area #bar {
+.index-page #search-area #bar {
   margin-top: 5rem;
 }
 
-#cities {
+.index-page #cities {
   margin: 10rem auto;
 }
 
-.construction_group {
+.index-page .construction_group {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
 }
 
-.container > h1 {
+.index-page .container > h1 {
   text-align: center;
 
   font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
@@ -42,11 +42,11 @@
   color: #0c2f5c;
 }
 
-.group {
+.index-page .group {
   margin: 5rem auto;
 }
 
-.group .custom-button {
+.index-page .group .custom-button {
   font-weight: bold;
 
   border: 2px solid #0c2f5c;
@@ -61,7 +61,7 @@
   background-color: white;
 }
 
-.group .custom-button:hover {
+.index-page .group .custom-button:hover {
   background-color: #0c2f5c;
   color: white;
 }

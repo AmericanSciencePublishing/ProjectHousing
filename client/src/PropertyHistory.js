@@ -16,7 +16,7 @@ export default class PropertyHistory extends Component {
     ];
 
     return (
-      <div id="property-history">
+      <div className="property-history">
         <h3>Property Price</h3>
         <Table>
           <thead>

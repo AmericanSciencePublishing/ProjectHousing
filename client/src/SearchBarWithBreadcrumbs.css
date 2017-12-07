@@ -1,4 +1,4 @@
-#search-bar-with-breadcrumbs {
+.search-bar-with-breadcrumbs {
   display: flex;
 
   padding: 1rem 5rem;
@@ -7,26 +7,26 @@
   background-color: #163059;
 }
 
-#search-bar-with-breadcrumbs form {
+.search-bar-with-breadcrumbs form {
   width: 30rem;
 }
 
-ul.custom-breadcrumb {
+.search-bar-with-breadcrumbs ul.custom-breadcrumb {
   list-style: none;
   color: white;
 
   margin: auto 0;
 }
 
-ul.custom-breadcrumb li {
+.search-bar-with-breadcrumbs ul.custom-breadcrumb li {
   display: inline;
 }
 
-ul.custom-breadcrumb li + li::before {
+.search-bar-with-breadcrumbs ul.custom-breadcrumb li + li::before {
   padding: 1rem;
   content: '>';
 }
 
-ul.custom-breadcrumb li a:hover {
+.search-bar-with-breadcrumbs ul.custom-breadcrumb li a:hover {
   text-decoration: underline;
 }

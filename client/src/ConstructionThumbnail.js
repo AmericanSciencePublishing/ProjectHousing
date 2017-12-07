@@ -8,7 +8,7 @@ const ConstructionThumbnail = (props) => {
   image = `url(${image})`;
 
   return (
-    <div className="construction" style={{ backgroundImage: image }}>
+    <div className="construction-thumbnail" style={{ backgroundImage: image }}>
       <div className="caption">
         <h1>{title}</h1>
         <p>{description}</p>

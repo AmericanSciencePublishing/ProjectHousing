@@ -114,7 +114,7 @@ const SearchConditions = () => {
   ];
 
   return (
-    <div id="search-conditions">
+    <div className="search-conditions">
       <form id="search-bar">
         <InputGroup>
           <FormControl

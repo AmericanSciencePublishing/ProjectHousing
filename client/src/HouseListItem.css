@@ -13,7 +13,6 @@
 }
 
 .house-item > div {
-  /*border: 1px solid red;*/
 }
 
 
@@ -40,37 +39,37 @@
   margin: 1rem auto;
 }
 
-.house-item #info {
+.house-item .info {
   padding: 1rem;
 }
 
-#info div {
+.house-item .info div {
   margin: 1rem auto;
 }
 
-#info .price {
+.house-item .info .price {
   color: #ff6d00;
   font-size: 2rem;
 }
 
-#info .type {
+.house-item .info .type {
   font-size: 1.2rem;
   font-weight: bold;
   color: gray;
 }
 
-#info .address {
+.house-item .info .address {
   font-size: 1.2rem;
   color: #2196f3;
 }
 
-.house-item .labels {
+.house-item .house-item .labels {
   display: flex;
   flex-flow: row wrap;
   margin: 2rem auto;
 }
 
-.house-item .like {
+.house-item .house-item .like {
   background-color: white;
   background-image: url('./images/likeBefore.png');
   background-repeat: no-repeat;
@@ -82,6 +81,6 @@
   width: 35px;
 }
 
-.house-item .like:hover{
+.house-item .house-item .like:hover{
   background-image: url('./images/likeAfter.png');
 }

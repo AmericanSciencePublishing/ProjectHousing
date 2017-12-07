@@ -36,7 +36,7 @@ class CommercialListItem extends Component {
           </Link>
         </div>
 
-        <div id="info">
+        <div className="info">
           <span className="price">$ {price}</span>
           {forRent ? <span> / Month</span> : null}
 

@@ -57,7 +57,7 @@ export default class IndexPage extends Component {
     ];
 
     return (
-      <div>
+      <div className="index-page">
         <div id="search-area">
           <h1>What are you looking for?</h1>
           <div id="bar">

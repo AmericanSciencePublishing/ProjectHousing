@@ -13,7 +13,7 @@ import './CityList.css';
 
 const CityList = props => {
   return (
-    <div id="city-list">
+    <div className="city-list">
       <img src={hot_cities} alt="hot_cities" />
       <img src={new_york} alt="new_york" />
       <img src={chicago} alt="chicago" />

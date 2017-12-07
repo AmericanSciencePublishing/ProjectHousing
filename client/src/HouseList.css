@@ -1,16 +1,15 @@
-.list-header {
+.house-list .list-header {
   display: flex;
   justify-content: space-between;
 
   margin-top: 1rem;
 }
 
-.list-header > span:first-of-type {
+.house-list .list-header > span:first-of-type {
   margin-top: 8px;
 }
-.list-header {
-}
 
-.house-list {
+
+.house-list .list{
   margin: 10px auto;
 }

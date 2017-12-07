@@ -8,7 +8,7 @@ import './NewConstructionList.css';
 export default class NewConstructionList extends Component {
   render() {
     return (
-      <div>
+      <div className="new-construction-list">
         <div id="banner-area" />
 
         <div className="container">

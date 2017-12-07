@@ -1,4 +1,4 @@
-#city-list {
+.city-list {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -6,12 +6,12 @@
   margin: 10rem auto;
 }
 
-#city-list img {
+.city-list img {
   width: 25rem;
   height: 25rem;
 }
 
-#city-list:after {
+.city-list:after {
   content: '';
   width: 25rem;
 }

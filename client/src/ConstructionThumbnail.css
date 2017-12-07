@@ -1,4 +1,4 @@
-.construction {
+.construction-thumbnail {
   background-repeat: no-repeat;
   background-size: cover;
   width: 30rem;
@@ -8,7 +8,7 @@
   margin: 2rem auto;
 }
 
-.caption {
+.construction-thumbnail .caption {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -17,7 +17,7 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.caption h1 {
+.construction-thumbnail .caption h1 {
   font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
   font-size: 2rem;
   color: white;
@@ -25,7 +25,7 @@
   margin-left: 20px;
 }
 
-.caption p {
+.construction-thumbnail .caption p {
   font-family: 'Arial-MT', 'Arial';
   font-size: 1.5rem;
   color: white;

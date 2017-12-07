@@ -6,7 +6,7 @@ import './SearchBarWithBreadcrumbs.css';
 export default class SearchBarWithBreadcrumbs extends Component {
   render() {
     return (
-      <div id="search-bar-with-breadcrumbs">
+      <div className="search-bar-with-breadcrumbs">
         <form>
           <InputGroup>
             <FormControl type="text" placeholder="City, Zip, Address, Key Words"/>

@@ -1,4 +1,4 @@
-#banner-area {
+.new-construction-list #banner-area {
   margin-top: -20px;
 
   background-image: url('./images/new_construction.jpg');
@@ -9,7 +9,7 @@
   height: 25rem;
 }
 
-.strike {
+.new-construction-list .strike {
   display: block;
   text-align: center;
   height: 30px;
@@ -18,7 +18,7 @@
   margin: 5rem auto;
 }
 
-.strike > span {
+.new-construction-list .strike > span {
   font-size: 40px;
   padding: 0 10px;
   background-color: white;
