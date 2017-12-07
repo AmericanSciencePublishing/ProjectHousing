@@ -3,6 +3,7 @@ import './MyProfile.css';
 import history from './history';
 //import history from './history';
 import ProfileSetting from './ProfileSetting';
+import MyProfileDetail from './MyProfileDetail';
 import { Nav, NavItem  } from 'react-bootstrap';
 import {Route, Switch} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
@@ -19,7 +20,6 @@ class MyProfile extends React.Component{
     componentWillMount(){
 //	console.log('MyProfile test:',this.props.match.params.username);
 	console.log('MyProfile props',this.props);
-
 	axios.get('/checkUser/').then (res=>{
             if(res.data === ""){
                 console.log('no such session logged in');
@@ -39,22 +39,22 @@ class MyProfile extends React.Component{
 	    return(
 	    <div  className="container">
 	      <Nav bsStyle="tabs" >
-		<LinkContainer to={`/user/${this.state.user.userName}`}>
-		  <NavItem >My Profile  </NavItem>
+		<LinkContainer exact to={`/user/${this.state.user.userName}`}>
+		  <NavItem > My Profile </NavItem>
 		</LinkContainer>
-		<LinkContainer to="/user/:username/save">
-                  <NavItem >My Saves  </NavItem>
+		<LinkContainer exact to={`/user/${this.state.user.userName}/save`}>
+                  <NavItem > Saved Homes </NavItem>
                 </LinkContainer>
-		<LinkContainer to="/user/:username/setting">
-                  <NavItem >Settings  </NavItem>
+		<LinkContainer exact to={`/user/${this.state.user.userName}/setting`}>
+                  <NavItem > Settings </NavItem>
                 </LinkContainer>
 
 		
 	      </Nav>
 	      <Switch>
                 <Route exact path="/user/:username" component={MyProfileDetail} />
-                <Route path="/user/:username/save" component={ProfileSetting}/>
-                <Route path="/user/:username/setting" component={ProfileSetting}/>
+                <Route exact path="/user/:username/save" component={ProfileSetting}/>
+                <Route exact path="/user/:username/setting" component={ProfileSetting}/>
                 <Route component={NoMatch}/>
                 </Switch>
 	    </div>
@@ -69,10 +69,5 @@ const NoMatch = ({ location }) => (
         </div>
 );
 
-const MyProfileDetail = () => (
-    <div>
-      <h2>my profile hahahahahahahha </h2>
-    </div>
-)
 
 export default MyProfile;

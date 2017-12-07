@@ -1,5 +1,5 @@
 import React from 'react';
-import {ButtonGroup, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
+import {Well, ButtonGroup, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
 //import history from './history';
 var axios = require("axios");
 
@@ -46,9 +46,11 @@ class Forgotpwd extends React.Component{
     render (){
         return(
 	    <div className="container">
-	      <Col xsOffset={3} xs={6}>
-		<h3> Please enter the Email you used to sign up </h3>
-		<h3> We will send you a link to reset your password.  </h3>
+		<Col xsOffset={3} xs={6}>
+		<Well>
+		<h4> Please enter the Email you used to sign up </h4>
+		<h4> We will send you a link to reset your password.</h4>
+		</Well>
 	      <Form id="forgotpwdform" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 		
 		<FormGroup controlId="email" bsSize="large">
@@ -76,7 +78,7 @@ class Forgotpwd extends React.Component{
 		</FormGroup>
 
 		<FormGroup>
-		  <p align="center" style={{color: this.state.Msg === "" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.Msg}</p>
+		<p align="center" style={{color: this.state.Msg === "" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.Msg}</p>
 		</FormGroup>
 	      </Form>
 	      </Col>

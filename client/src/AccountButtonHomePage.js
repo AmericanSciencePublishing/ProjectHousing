@@ -47,8 +47,8 @@ class AccountButtonHomePage extends React.Component{
 		  <MenuItem id="username" header><h4>{this.props.user.userName}</h4></MenuItem>
 		  <MenuItem divider />
 		  <MenuItem href={`/user/${this.props.user.userName}`} eventKey="1">My Profile</MenuItem>
-		  <MenuItem href={`/user/${this.props.user.userName}/save`} eventKey="2">Saved Home</MenuItem>
-		  <MenuItem href={`/user/${this.props.user.userName}/setting`} eventKey="3">Setting</MenuItem>
+		  <MenuItem href={`/user/${this.props.user.userName}/save`} eventKey="2">Saved Homes</MenuItem>
+		  <MenuItem href={`/user/${this.props.user.userName}/setting`} eventKey="3">Settings</MenuItem>
 		  <MenuItem divider />
 		  <MenuItem eventKey="4" onSelect={this.handleSignOut}>Sign Out</MenuItem>
 		</NavDropdown>

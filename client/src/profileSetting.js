@@ -1,5 +1,5 @@
 import React from 'react';
-//import {Col,Row} from 'react-bootstrap';
+import {Jumbotron} from 'react-bootstrap';
 
 class ProfileSetting extends React.Component{
 
@@ -15,7 +15,9 @@ class ProfileSetting extends React.Component{
     render(){
 
         return(
+		<Jumbotron>
                 <h1 id="testt" >test setting</h1>
+		</Jumbotron>
 
         );
     }

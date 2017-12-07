@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonGroup,Col, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
+import {Well, ButtonGroup,Col, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
 //import history from './history';
 
 var axios = require("axios");
@@ -133,7 +133,9 @@ class Resetpwd extends React.Component{
 	return(
 	    <div className="conatiner">
 		<Col xsOffset={3} xs={6}>
+		<Well>
 		<h4>Please reset your password</h4>
+		</Well>
 		<Form onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 		<FormGroup validationState={this.state.inputValPass1} controlId="password" bsSize="large">
 		<FormControl

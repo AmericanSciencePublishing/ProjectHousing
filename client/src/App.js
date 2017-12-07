@@ -27,8 +27,8 @@ var axios = require("axios");
 
 class App extends Component {
 
-    constructor() {
-	super();
+    constructor(props) {
+	super(props);
 	this.state = { showModal: false,
 		       user:{},
 		       action:''
@@ -40,16 +40,17 @@ class App extends Component {
     }
 
     componentWillMount(){
-	console.log('app.js cWillMount');
-	console.log(this.state.user);
+	//	console.log('app.js cWillMount');
+	//right now, we are using a very 'stupid' way for authentication,
+	//that is use browser session to check a user's status in backend.
 	
-	//another higher level check is to write a function of isAuth()
-	//when user click 'My Profile', use onEnter{isAuth()} to check if is authed
-	//only login and logout could call isAuth()
+	//If you want to use localstorage for advanced authentication sysytem:
+	//Auth0-js is a library for advenced authentication system
+	//check a sample: https://github.com/auth0-samples/auth0-react-samples/tree/master/01-Login
+	//official tutorial: https://auth0.com/docs/libraries/auth0js/v8
 	
 	//Right now, only sign out could set userState to 'offline', so user could
 	//aotumatically login if he never sign out.
-	
 	axios.get('/checkUser/').then (res=>{
 	    console.log("checking for automatically sign in:",res);
 	    if(res.data === ""){
@@ -61,6 +62,7 @@ class App extends Component {
 		});
 	    }
 	});
+//	console.log("app.js state", this.state);
 
     }
     
@@ -129,19 +131,12 @@ class App extends Component {
                   </LinkContainer>
 
                   <NavItem disabled>
-                    <p>En/Ch</p>
-                  </NavItem>
-
-                  {this.isEmpty(this.state.user) ? (
-                    <NavItem>
-                      <p onClick={this.handleClick}>Log in</p>
-                    </NavItem>
-                  ) : (
-                    <AccountButton
-                      sendUserToHome={this.sendUserToHome}
-                      user={this.state.user}
-                    />
-                  )}
+                    <LinkContainer to="/">
+                      <p>En/Ch</p>
+                    </LinkContainer>
+                </NavItem>
+            {this.isEmpty(this.state.user) ? <NavItem><p onClick={this.handleClick}>Log in</p></NavItem> : <AccountButton sendUserToHome={this.sendUserToHome} user={this.state.user}/>}
+            
                 </Nav>
               </Navbar.Collapse>
 
