@@ -2,12 +2,9 @@ import React from 'react';
 import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
 import './LogForm.css';
 import history from './history';
-
-var axios = require("axios");
-//import ButtonLoader from 'react-bootstrap-button-loader';
-
-
-//no term of use!!!!!!should add in the future
+import {connect} from 'react-redux';
+import {save_username} from './actions';
+import axios from 'axios';
 
 class RegForm extends React.Component{
     constructor(props){
@@ -164,6 +161,7 @@ class RegForm extends React.Component{
 			submitMSG:"Sign up successfully!",
 			isLoading: false
 		    });
+		    this.props.dispatch(save_username(res.data.userName));
 		    this.props.sendUserToHome(res.data);
 		    axios.put('/online/'+res.data._id);
 		    history.push('/');
@@ -269,4 +267,4 @@ class RegForm extends React.Component{
 	);
     }
 }
-export default RegForm;
+    export default connect()(RegForm);

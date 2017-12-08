@@ -18,11 +18,9 @@ import AccountButton from './AccountButtonHomePage';
 import logo from './images/logo.png';
 import Forgotpwd from './Forgotpwd';
 import Resetpwd from './Resetpwd';
+import {connect} from 'react-redux';
 import './App.css';
-
-
-
-var axios = require("axios");
+import axios from 'axios';
 
 
 class App extends Component {
@@ -31,6 +29,7 @@ class App extends Component {
 	super(props);
 	this.state = { showModal: false,
 		       user:{},
+		       test:"",
 		       action:''
 		     };
 	this.handleClick = this.handleClick.bind(this);
@@ -40,6 +39,7 @@ class App extends Component {
     }
 
     componentWillMount(){
+	console.log("hehehhe",this.props.username);
 	//	console.log('app.js cWillMount');
 	//right now, we are using a very 'stupid' way for authentication,
 	//that is use browser session to check a user's status in backend.
@@ -179,4 +179,8 @@ const NoMatch = ({ location }) => (
         </div>
 )
 
-export default App;
+const mapStateToProps =(state)=>{
+    return {username:state.username};
+}
+
+export default connect(mapStateToProps)(App);
