@@ -14,6 +14,7 @@ var online = require('./routes/online');
 var houses = require('./routes/houses');
 var checkUser = require('./routes/checkUser');
 var cities = require('./routes/cities');
+var save_house = require('./routes/save_house');
 
 var mongoose = require('mongoose');
 var Promise = require("bluebird");
@@ -67,7 +68,7 @@ app.use('/checkUser',checkUser);
 app.use('/cities', cities);
 app.use('/forgotpwd',forgotpwd);
 app.use('/resetpwdemail',resetpwdemail);
-
+app.use('/save_house', save_house);
 
 
 // catch 404 and forward to error handler

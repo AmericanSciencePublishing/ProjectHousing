@@ -10,10 +10,12 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 
 import rootReducer from './reducers';
+
 const persistedState = localStorage.getItem('persistedState') ? JSON.parse(localStorage.getItem('persistedState')):{};
-let store = createStore(rootReducer, persistedState,  applyMiddleware(logger));
+let store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
 
 ReactDOM.render(
   <Provider store={store}>

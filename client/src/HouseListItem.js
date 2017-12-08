@@ -8,9 +8,40 @@ import './HouseListItem.css';
 import { connect } from 'react-redux';
 import { save_house } from './actions';
 
+/*
+House Schema
+  descriptionShort: String,
+  descriptionFull: String,
+  address: { type: String, index: { unique: true } },
+  city: String,
+  county: String,
+  state: String,
+  neighborhood: String,
+  zipcode: String,
+  type: [String],
+  beds: Number,
+  baths: Number,
+  cars: Number,
+  size: Number,
+  features: [String],
+  price: Number,
+  forSale: Boolean,
+  forRent: Boolean,
+  image: String,
+  decoration: String,
+  year: Number,
+  season: String,
+  structure: String,
+  propertyFee: Number,
+  style: String,
+  propertyTax: Number,
+  facilities: [String]
+  */
+
 class CommercialListItem extends Component {
   constructor(props) {
     super(props);
+    this.state = { house: null, liked: false };
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -19,27 +50,39 @@ class CommercialListItem extends Component {
     this.props.dispatch(save_house(this.props.item._id));
   }
 
+  componentDidMount() {
+    this.setState({ house: this.props.item });
+  }
+
   render() {
+    if (!this.state.house) {
+      return <div />;
+    }
+
     const {
+      _id,
       image,
       price,
-      type,
-      forSale,
       forRent,
+      forSale,
+      type,
       beds,
       baths,
-      size,
       cars,
+      size,
+      address,
       city,
       state,
       zipcode,
-      address,
       neighborhood,
-      features,
-      _id
-    } = this.props.item;
+      features
+    } = this.state.house;
 
     const path = `/details/${_id}`;
+
+    const buttonState = `like ${this.props.savedHouses.has(_id)
+      ? 'confirmed'
+      : null}`;
 
     return (
       <div className="house-item">
@@ -75,11 +118,15 @@ class CommercialListItem extends Component {
         </div>
 
         <div>
-          <button className="like" onClick={this.handleClick} />
+          <button className={buttonState} onClick={this.handleClick} />
         </div>
       </div>
     );
   }
 }
 
-export default connect()(CommercialListItem);
+const mapStateToProps = state => ({
+  savedHouses: state.savedHouses
+});
+
+export default connect(mapStateToProps)(CommercialListItem);

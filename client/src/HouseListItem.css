@@ -80,6 +80,6 @@
   width: 35px;
 }
 
-.house-item .like:hover {
+.house-item .like.confirmed {
   background-image: url('./images/likeAfter.png');
 }

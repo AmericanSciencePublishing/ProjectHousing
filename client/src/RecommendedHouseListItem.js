@@ -19,10 +19,10 @@ export default class RecommendedHouseListItem extends Component {
       season,
       features,
       price,
-      id
+      _id
     } = this.props.house;
 
-    const path = `/details/${id}`;
+    const path = `/details/${_id}`;
 
     return (
       <div className="recommended-house-item">

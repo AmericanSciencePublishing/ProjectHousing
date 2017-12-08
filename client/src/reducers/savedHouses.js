@@ -1,7 +1,9 @@
-const savedHouses = (state = [], action) => {
+const savedHouses = (state = new Set(), action) => {
   switch (action.type) {
     case 'SAVE_HOUSE':
-      return [...state, action.houseID];
+      let nextState = new Set(state);
+      nextState.add(action.houseID);
+      return nextState;
     default:
       return state;
   }
