@@ -72,7 +72,7 @@ class App extends Component {
 	this.setState({
 	    user: newuser
 	});
-	console.log(this.state);
+//	console.log(this.state);
     }
 
     isEmpty(obj){

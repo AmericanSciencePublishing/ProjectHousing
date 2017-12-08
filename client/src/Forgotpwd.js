@@ -61,7 +61,7 @@ class Forgotpwd extends React.Component{
 		</Well>
 	      <Form id="forgotpwdform" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 		
-		<FormGroup controlId="email" bsSize="large">
+		<FormGroup controlId="emailForgot" bsSize="large">
 		  <FormControl
 		    required
 		    autoFocus

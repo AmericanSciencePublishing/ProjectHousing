@@ -87,7 +87,7 @@ class LogForm extends React.Component{
 	    //So dont creat field name "status" in data base's Schema,
 	    //to save online status, I used "userStatus"
 	    else if(!res.data.status){
-		console.log(res);
+		console.log("log successfully:",res);
 		this.setState({
 		    isLoading:false,
 		    loginMSG:"sign in successfully"
