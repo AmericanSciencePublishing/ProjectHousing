@@ -2,9 +2,14 @@
     margin-top:1rem;
 }
 
+#ProfileIcon{
+   font-size:18px;
+}
+
 .profileSubItem{
     margin-top:1rem;
     display:flex;
+//    height:5rem;
 }
 
 .subItemLable{
@@ -18,6 +23,6 @@
 .profileSubItem p{
     margin-left:1rem;
     flex:1;
-//    padding: 1rem;
     font-weight:bold;
+    font-size:16px;
  }

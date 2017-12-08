@@ -23,7 +23,14 @@ var userSchema = new Schema({
     },
     resetPassLink:{
 	type: String
+    },
+    phone:{
+	type: String
+    },
+    address:{
+	type: String
     }
+	
 });
 
 //authenticate input against database
@@ -75,7 +82,6 @@ userSchema.set('toJSON', {
 	delete ret.password;
 	delete ret.resetPassLink;
 	delete ret.userStatus;
-	delete ret.email;
 
         return ret;
     }

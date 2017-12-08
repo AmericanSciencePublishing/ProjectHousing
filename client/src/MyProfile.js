@@ -35,17 +35,17 @@ class MyProfile extends React.Component{
 
     render(){
 	    return(
-		<div  className="container">
-		  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">    
+		<div className="profileTabs container">
+		  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">    
 		    <Nav bsStyle="tabs" >
 		      <LinkContainer exact to={`/user/${this.state.user.userName}`}>
-			<NavItem > My Profile </NavItem>
+			<NavItem > My Profile</NavItem>
 		      </LinkContainer>
 		      <LinkContainer exact to={`/user/${this.state.user.userName}/save`}>
-			<NavItem > Saved Homes </NavItem>
+			<NavItem > Saved </NavItem>
                       </LinkContainer>
 		      <LinkContainer exact to={`/user/${this.state.user.userName}/setting`}>
-			<NavItem > Settings </NavItem>
+			<NavItem > Settings</NavItem>
                       </LinkContainer>
 		
 		    </Nav>
