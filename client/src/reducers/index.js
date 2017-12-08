@@ -1,9 +1,10 @@
 import {combineReducers} from 'redux';
-
+import username from './username';
 import savedHouses from './savedHouses';
 
 const rootReducer = combineReducers({
-  savedHouses
+    savedHouses,
+    username
 })
 
 export default rootReducer;

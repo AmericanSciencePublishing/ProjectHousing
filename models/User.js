@@ -15,6 +15,9 @@ var userSchema = new Schema({
     userName:{
 	type:String
     },
+    signupdate:{
+	type:String
+    },
     userStatus:{
 	type: String
     },

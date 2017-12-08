@@ -1,0 +1,23 @@
+#profilePanel{
+    margin-top:1rem;
+}
+
+.profileSubItem{
+    margin-top:1rem;
+    display:flex;
+}
+
+.subItemLable{
+}
+
+.subItemEditLable{
+//    margin-left:1rem;
+//    flex:1;
+ }
+
+.profileSubItem p{
+    margin-left:1rem;
+    flex:1;
+//    padding: 1rem;
+    font-weight:bold;
+ }

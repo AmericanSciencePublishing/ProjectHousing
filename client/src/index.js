@@ -12,8 +12,8 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 import rootReducer from './reducers';
-
-let store = createStore(rootReducer, applyMiddleware(logger));
+const persistedState = localStorage.getItem('persistedState') ? JSON.parse(localStorage.getItem('persistedState')):{};
+let store = createStore(rootReducer, persistedState,  applyMiddleware(logger));
 
 ReactDOM.render(
   <Provider store={store}>
@@ -21,4 +21,9 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+store.subscribe(()=>{
+    localStorage.setItem('persistedState', JSON.stringify(store.getState()));
+});
+
 registerServiceWorker();

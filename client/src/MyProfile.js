@@ -1,6 +1,5 @@
 import React from 'react';
 import './MyProfile.css';
-import history from './history';
 //import history from './history';
 import ProfileSetting from './ProfileSetting';
 import MyProfileDetail from './MyProfileDetail';
@@ -37,20 +36,21 @@ class MyProfile extends React.Component{
 
     render(){
 	    return(
-	    <div  className="container">
-	      <Nav bsStyle="tabs" >
-		<LinkContainer exact to={`/user/${this.state.user.userName}`}>
-		  <NavItem > My Profile </NavItem>
-		</LinkContainer>
-		<LinkContainer exact to={`/user/${this.state.user.userName}/save`}>
-                  <NavItem > Saved Homes </NavItem>
-                </LinkContainer>
-		<LinkContainer exact to={`/user/${this.state.user.userName}/setting`}>
-                  <NavItem > Settings </NavItem>
-                </LinkContainer>
-
+		<div  className="container">
+		  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">    
+		    <Nav bsStyle="tabs" >
+		      <LinkContainer exact to={`/user/${this.state.user.userName}`}>
+			<NavItem > My Profile </NavItem>
+		      </LinkContainer>
+		      <LinkContainer exact to={`/user/${this.state.user.userName}/save`}>
+			<NavItem > Saved Homes </NavItem>
+                      </LinkContainer>
+		      <LinkContainer exact to={`/user/${this.state.user.userName}/setting`}>
+			<NavItem > Settings </NavItem>
+                      </LinkContainer>
 		
-	      </Nav>
+		    </Nav>
+		    </div>
 	      <Switch>
                 <Route exact path="/user/:username" component={MyProfileDetail} />
                 <Route exact path="/user/:username/save" component={ProfileSetting}/>

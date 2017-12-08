@@ -2,12 +2,9 @@ import React from 'react';
 import {Checkbox, ButtonGroup, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
 import './LogForm.css';
 import history from './history';
-
-var axios = require("axios");
-//import ButtonLoader from 'react-bootstrap-button-loader';
-
-
-//no term of use!!!!!!should add in the future
+import {connect} from 'react-redux';
+import {save_username} from './actions';
+import axios from 'axios';
 
 class RegForm extends React.Component{
     constructor(props){
@@ -164,6 +161,7 @@ class RegForm extends React.Component{
 			submitMSG:"Sign up successfully!",
 			isLoading: false
 		    });
+		    this.props.dispatch(save_username(res.data.userName));
 		    this.props.sendUserToHome(res.data);
 		    axios.put('/online/'+res.data._id);
 		    history.push('/');
@@ -201,26 +199,28 @@ class RegForm extends React.Component{
 	
 	return(
 	    <div>
-	      <Form id="formInput" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
+	      <Form id="formInput2" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 
 	    {/* input e-mail */}
 	    
-		<FormGroup validationState={this.state.inputValEmail} controlId="email" bsSize="large">
+		<FormGroup validationState={this.state.inputValEmail} bsSize="large">
 		<FormControl
 		  required
 		  autoFocus
 		  type="email"
+		  id="regformEmail"
 		  onChange={this.getEmail}
 		  placeholder="Enter Email"/>
 		<FormControl.Feedback />
 		</FormGroup>
 
 	    {/*input password */}
-		<FormGroup validationState={this.state.inputValPass1} controlId="password" bsSize="large">
+		<FormGroup validationState={this.state.inputValPass1} bsSize="large">
 		<FormControl
 		  required
 		  onChange={this.getPassword1}
 		  type="password"
+		  id="regformPassword"
 		  placeholder="Creat Password"
 		  />
 		<FormControl.Feedback />
@@ -228,11 +228,12 @@ class RegForm extends React.Component{
 
 	    {/*confirm password*/}
 	    
-		<FormGroup validationState={this.state.inputValPass2} controlId="confirmPassword" bsSize="large">
+		<FormGroup validationState={this.state.inputValPass2} bsSize="large">
                   <FormControl
 		    required
 		    onChange={this.getPassword2}
 		    type="password"
+		    id="regPwd2"
 		    placeholder="Re-enter your Password"
                     />
 		  <FormControl.Feedback />
@@ -251,7 +252,7 @@ class RegForm extends React.Component{
 		<Button
 		  block
 		  active
-		  id="loginSubButton"
+		  id="regSubButton"
 		  bsSize="large"
 		  bsStyle="info"
            	  type="submit"
@@ -269,4 +270,4 @@ class RegForm extends React.Component{
 	);
     }
 }
-export default RegForm;
+    export default connect()(RegForm);
