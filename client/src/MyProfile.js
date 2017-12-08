@@ -1,7 +1,6 @@
 import React from 'react';
 import './MyProfile.css';
 //import history from './history';
-import ProfileSetting from './ProfileSetting';
 import MyProfileDetail from './MyProfileDetail';
 import { Nav, NavItem  } from 'react-bootstrap';
 import {Route, Switch} from 'react-router-dom';
@@ -53,8 +52,8 @@ class MyProfile extends React.Component{
 		    </div>
 	      <Switch>
                 <Route exact path="/user/:username" component={MyProfileDetail} />
-                <Route exact path="/user/:username/save" component={ProfileSetting}/>
-                <Route exact path="/user/:username/setting" component={ProfileSetting}/>
+                <Route exact path="/user/:username/save" component={NoMatch}/>
+                <Route exact path="/user/:username/setting" component={NoMatch}/>
                 <Route component={NoMatch}/>
                 </Switch>
 	    </div>
