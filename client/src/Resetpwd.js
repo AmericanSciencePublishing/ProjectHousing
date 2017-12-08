@@ -165,7 +165,7 @@ class Resetpwd extends React.Component{
 		<Button
 		  block
 		  active
-		  id="loginSubButton"
+		  id="loginSubButtonReset"
 		  bsSize="large"
 		  bsStyle="info"
            	  type="submit"

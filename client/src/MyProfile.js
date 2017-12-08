@@ -1,6 +1,5 @@
 import React from 'react';
 import './MyProfile.css';
-import history from './history';
 //import history from './history';
 import ProfileSetting from './ProfileSetting';
 import MyProfileDetail from './MyProfileDetail';

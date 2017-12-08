@@ -10,6 +10,7 @@ class Forgotpwd extends React.Component{
 	super(props);
 	this.state={
 	    email:'',
+	    isLoading: false,
 	    Msg:''
 	};
 	this.getEmail = this.getEmail.bind(this);
@@ -23,12 +24,18 @@ class Forgotpwd extends React.Component{
 
     handleSubmit(event){
 	event.preventDefault();
+	this.setState({
+            isLoading:true
+        });
 	var e = this.state.email;
 	let loginInfo ={
 	    email:e
 	};
 	axios.put('/forgotpwd/', loginInfo).then(res=>{
-	    console.log(res);
+//	    console.log(res);
+	    this.setState({
+		isLoading:false
+            });
 	    this.setState({
 		Msg : res.data.message
 	    });
@@ -44,6 +51,7 @@ class Forgotpwd extends React.Component{
     
 
     render (){
+	let isLoading = this.state.isLoading;
         return(
 	    <div className="container">
 		<Col xsOffset={3} xs={6}>
@@ -68,11 +76,12 @@ class Forgotpwd extends React.Component{
 		    <Button
 		      block
 		      active
+		      disabled={isLoading}
 		      bsSize="large"
 		      bsStyle="info"
 		      type="submit"
 		      >
-		      Submit
+		      {isLoading ? 'Loading...' : 'Submit'}
 		    </Button>
 		  </ButtonGroup>
 		</FormGroup>

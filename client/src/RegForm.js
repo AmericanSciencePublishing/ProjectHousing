@@ -199,26 +199,28 @@ class RegForm extends React.Component{
 	
 	return(
 	    <div>
-	      <Form id="formInput" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
+	      <Form id="formInput2" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
 
 	    {/* input e-mail */}
 	    
-		<FormGroup validationState={this.state.inputValEmail} controlId="email" bsSize="large">
+		<FormGroup validationState={this.state.inputValEmail} bsSize="large">
 		<FormControl
 		  required
 		  autoFocus
 		  type="email"
+		  id="regformEmail"
 		  onChange={this.getEmail}
 		  placeholder="Enter Email"/>
 		<FormControl.Feedback />
 		</FormGroup>
 
 	    {/*input password */}
-		<FormGroup validationState={this.state.inputValPass1} controlId="password" bsSize="large">
+		<FormGroup validationState={this.state.inputValPass1} bsSize="large">
 		<FormControl
 		  required
 		  onChange={this.getPassword1}
 		  type="password"
+		  id="regformPassword"
 		  placeholder="Creat Password"
 		  />
 		<FormControl.Feedback />
@@ -226,11 +228,12 @@ class RegForm extends React.Component{
 
 	    {/*confirm password*/}
 	    
-		<FormGroup validationState={this.state.inputValPass2} controlId="confirmPassword" bsSize="large">
+		<FormGroup validationState={this.state.inputValPass2} bsSize="large">
                   <FormControl
 		    required
 		    onChange={this.getPassword2}
 		    type="password"
+		    id="regPwd2"
 		    placeholder="Re-enter your Password"
                     />
 		  <FormControl.Feedback />
@@ -249,7 +252,7 @@ class RegForm extends React.Component{
 		<Button
 		  block
 		  active
-		  id="loginSubButton"
+		  id="regSubButton"
 		  bsSize="large"
 		  bsStyle="info"
            	  type="submit"
