@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
+import {ListGroup, ListGroupItem, ControlLabel, Glyphicon } from 'react-bootstrap';
 //import { LinkContainer } from 'react-router-bootstrap';
 //import history from './history';
 import './MyProfileDetail.css';
@@ -29,33 +29,48 @@ class MyProfileDetail extends React.Component{
         });
     }
     render(){
-	const title = (
-	    <h3>Hello, {this.state.user.userName}</h3>
-	);
+
+	const startDate = this.state.user.signupdate;
+
 	return(
 	    <div id="profilePanel" className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">
-	      <Panel header={title} bsStyle="info">
-		<div className="profileSubItem">
-                  <ControlLabel className="subItemLable"><Glyphicon id="ProfileIcon"glyph="envelope" /></ControlLabel>
-		  <p className="subItemContent">{this.state.user.email}</p>
-		  <ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
-                </div>
-		<div className="profileSubItem">
+		<ListGroup>
+		<ListGroupItem bsClass="profileHeader" >
+		<p>Hello! {this.state.user.userName} </p>
+		</ListGroupItem>
+		<div className="subItem">
+		<ListGroupItem bsClass="profileSubItem">
+                <ControlLabel className="subItemLable"><Glyphicon id="ProfileIcon"glyph="envelope" /></ControlLabel>
+		<p className="subItemContent">{this.state.user.email}</p>
+		<ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
+		</ListGroupItem>
+		</div>
+		<div className="subItem">
+		<ListGroupItem bsClass="profileSubItem">
                   <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="user" /></ControlLabel>
                   <p className="subItemContent" >Full Name (optional)</p>
                   <ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
-                </div>
-		<div className="profileSubItem">
+                </ListGroupItem>
+		</div>
+		<div className="subItem">
+		<ListGroupItem bsClass="profileSubItem">
                   <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="earphone" /></ControlLabel>
                   <p className="subItemContent" >Cell phone (optional)</p>
                   <ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
-                </div>
-		<div className="profileSubItem">
+                </ListGroupItem>
+		</div>
+		<div className="subItem">
+		<ListGroupItem bsClass="profileSubItem">
 		  <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="home" /></ControlLabel>
                   <p className="subItemContent" >Address (optional)</p>
                   <ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
-                </div>
-	      </Panel>
+                </ListGroupItem>
+		</div>
+		<ListGroupItem bsClass="profileFooter" >
+                <p>Member since: {startDate} </p>
+                </ListGroupItem>
+		</ListGroup>
+
 	    </div>
 	);
     }
