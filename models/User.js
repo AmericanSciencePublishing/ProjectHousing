@@ -18,6 +18,9 @@ var userSchema = new Schema({
     signupdate:{
 	type:String
     },
+    signuptime:{
+        type:String
+    },
     userStatus:{
 	type: String
     },
@@ -29,6 +32,10 @@ var userSchema = new Schema({
     },
     address:{
 	type: String
+    },
+    bio:{
+	type: String,
+	maxlength: 2
     }
 	
 });
