@@ -14,7 +14,13 @@
 }
 
 #ProfileIcon{
-   font-size:19px;
+    font-size:19px;
+//    cursor:pointer;
+}
+
+#ProfileEditIcon{
+    font-size:19px;
+    cursor:pointer;
 }
 
 .profileSubItem{
@@ -51,6 +57,11 @@
     font-size:17px;
 }
 
+.profileFooter{
+
+}
+
 .profileFooter p{
+    padding-bottom:1rem;
     padding-left:1rem;
 }

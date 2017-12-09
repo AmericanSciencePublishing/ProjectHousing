@@ -1,5 +1,5 @@
 import React from 'react';
-import {ListGroup, ListGroupItem, ControlLabel, Glyphicon } from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Panel,  ControlLabel, Glyphicon } from 'react-bootstrap';
 //import { LinkContainer } from 'react-router-bootstrap';
 //import history from './history';
 import './MyProfileDetail.css';
@@ -13,6 +13,7 @@ class MyProfileDetail extends React.Component{
                        user:{},
                        test:""
                      };
+	this.handleClick=this.handleClick.bind(this);
     }
 
     componentWillMount(){
@@ -28,6 +29,11 @@ class MyProfileDetail extends React.Component{
             }
         });
     }
+
+    handleClick(){
+	alert('You have clicked on me');
+    }
+    
     render(){
 
 	const startDate = this.state.user.signupdate;
@@ -42,30 +48,31 @@ class MyProfileDetail extends React.Component{
 		<ListGroupItem bsClass="profileSubItem">
                 <ControlLabel className="subItemLable"><Glyphicon id="ProfileIcon"glyph="envelope" /></ControlLabel>
 		<p className="subItemContent">{this.state.user.email}</p>
-		<ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
+		<ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.handleClick} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
 		</ListGroupItem>
 		</div>
 		<div className="subItem">
 		<ListGroupItem bsClass="profileSubItem">
                   <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="user" /></ControlLabel>
                   <p className="subItemContent" >Full Name (optional)</p>
-                  <ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
+                  <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.handleClick} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
                 </ListGroupItem>
 		</div>
 		<div className="subItem">
 		<ListGroupItem bsClass="profileSubItem">
                   <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="earphone" /></ControlLabel>
                   <p className="subItemContent" >Cell phone (optional)</p>
-                  <ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
+                  <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.handleClick} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
                 </ListGroupItem>
 		</div>
 		<div className="subItem">
 		<ListGroupItem bsClass="profileSubItem">
-		  <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="home" /></ControlLabel>
-                  <p className="subItemContent" >Address (optional)</p>
-                  <ControlLabel bsClass="subItemEditLable"><Glyphicon id="ProfileIcon" glyph="edit" /></ControlLabel>
+		<ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="home" /></ControlLabel>
+                <p className="subItemContent" >Address (optional)</p>
+                <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.handleClick} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
                 </ListGroupItem>
 		</div>
+		<hr/>
 		<ListGroupItem bsClass="profileFooter" >
                 <p>Member since: {startDate} </p>
                 </ListGroupItem>
