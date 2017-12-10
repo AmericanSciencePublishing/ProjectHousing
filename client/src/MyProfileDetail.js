@@ -1,7 +1,7 @@
 import React from 'react';
-import {ListGroup, ListGroupItem, Panel, Modal, Button, ControlLabel, Glyphicon } from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Panel, Modal, Form, Button, ControlLabel, Glyphicon, FormControl, FormGroup, HelpBlock } from 'react-bootstrap';
 //import { LinkContainer } from 'react-router-bootstrap';
-//import history from './history';
+import history from './history';
 import './MyProfileDetail.css';
 var axios = require("axios");
 
@@ -11,17 +11,25 @@ class MyProfileDetail extends React.Component{
 	super(props);
 	this.state = { showModal: false,
                        user:{},
-                       test:""
-                     };
-	this.open=this.open.bind(this);
-	this.close=this.close.bind(this);
+                       test:"",
+		       bioInput: "",
+		       bioRemain : 300,
+		       bioButtonState : false
+		     };
+
+	this.calculateBioRemain=this.calculateBioRemain.bind(this);
+	this.handleBioChange=this.handleBioChange.bind(this);
+	this.getBioValidationState=this.getBioValidationState.bind(this);
+	this.openBio=this.openBio.bind(this);
+	this.closeBio=this.closeBio.bind(this);
     }
 
     componentWillMount(){
 	axios.get('/checkUser/').then (res=>{
 	    console.log("ProfileDetail user information:",res);
             if(res.data === ""){
-                console.log('no such session logged in');
+                console.log('no such session logged in, pushed to home');
+		history.push('/');
             }
             else{
                 this.setState({
@@ -31,12 +39,47 @@ class MyProfileDetail extends React.Component{
         });
     }
 
-    close() {
-	this.setState({ showModal: false });
+    handleBioChange(e) {
+	this.setState({ bioInput: e.target.value },this.calculateBioRemain);
+    }
+
+    calculateBioRemain(){
+	const length = 300 - this.state.bioInput.length;
+	this.setState({ bioRemain: length });
     }
     
-    open() {
-	this.setState({ showModal: true });
+    getBioValidationState() {
+	const length = this.state.bioInput.length;
+	if (length > 0&& length <280){
+	    return 'success';
+	}
+	else if (length >= 280 && length<=300){
+	    return 'warning';
+	}
+	else if (length > 300){
+	    return 'error';
+	}
+	return null;
+    }
+
+    closeBio() {
+	this.setState({ showBioModal: false });
+    }
+    
+    openBio() {
+	this.setState({ showBioModal: true });
+    }
+
+    handleBioSubmit(event){
+	//	event.preventDefault();
+	const length = this.state.bioInput.length;
+	var newUserInfo={
+		newBio:this.state.bioInput
+	};
+	if(length <= 300){
+	    axios.put('/updatebio/'+this.state.user._id,newUserInfo);
+	}
+	return null;
     }
 
     
@@ -83,13 +126,12 @@ class MyProfileDetail extends React.Component{
                   <ListGroupItem bsClass="profileSubItem">
                     <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="file" /></ControlLabel>
                     <p className="subItemContent" >About Me</p>
-                <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.open} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
+                <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.openBio} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
                   </ListGroupItem>
                 </div>
-		<Panel>
-		  {this.state.user.bio===undefined?<p>Add a bio! Tell the community about yourself, your home, and your profession.</p>:this.state.user.bio}
-		</Panel>
-
+		  <Panel id="biopanel">
+		  {this.state.user.bio===""?<p>Add a bio! Tell the community about yourself, your home, and your profession.</p>:this.state.user.bio}
+		  </Panel>
 		<ListGroupItem bsClass="profileFooter" >
                 <p>Member since: {startDate} </p>
                 </ListGroupItem>
@@ -97,35 +139,40 @@ class MyProfileDetail extends React.Component{
 	    </div>
 
 	    <div>
-	      <Modal show={this.state.showModal} onHide={this.close}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-            <h4>Popover in a modal</h4>
-
-            <h4>Tooltips in a modal</h4>
-
-            <hr />
-
-            <h4>Overflowing text to show scroll behavior</h4>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+	      <Modal show={this.state.showBioModal} onHide={this.closeBio}>
+		<Modal.Header closeButton>
+		</Modal.Header>
+		<Modal.Body>
+		  <Form onSubmit={event=>{this.handleBioSubmit(event);}}>
+                    <FormGroup
+                      validationState={this.getBioValidationState()}
+                      >
+                      <FormControl
+			componentClass="textarea"
+			style={{ height: 200 }}
+                        type="text"
+                        value={this.state.bioInput}
+                        placeholder="Add a bio"
+                        onChange={this.handleBioChange}
+                        />
+                      <FormControl.Feedback />
+                      <HelpBlock>{this.state.bioRemain}/300</HelpBlock>
+                    </FormGroup>
+		    <Button
+		      block
+		      active
+		      bsSize="large"
+		      bsStyle="info"
+		      type="submit"
+		      disabled={this.state.bioButtonState}>
+		      Submit
+		    </Button>
+                  </Form>
+		</Modal.Body>
+		<Modal.Footer>
+		  <Button onClick={this.closeBio}>Close</Button>
+		</Modal.Footer>
+              </Modal>
 	    </div>
 	    </div>
 		
