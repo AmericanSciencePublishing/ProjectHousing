@@ -9,12 +9,17 @@ class MyProfileDetail extends React.Component{
 
     constructor(props){
 	super(props);
-	this.state = { showModal: false,
+	this.state = { showBioModal: false,
+		       showInfoModal: false,
                        user:{},
-                       test:"",
+	               test:"",
 		       bioInput: "",
 		       bioRemain : 300,
-		       bioButtonState : false
+		       bioButtonState : false,
+		       firstNameInput: "",
+		       lastNameInput: "",
+		       phoneInput: "",
+		       emailInput:""
 		     };
 
 	this.calculateBioRemain=this.calculateBioRemain.bind(this);
@@ -22,6 +27,12 @@ class MyProfileDetail extends React.Component{
 	this.getBioValidationState=this.getBioValidationState.bind(this);
 	this.openBio=this.openBio.bind(this);
 	this.closeBio=this.closeBio.bind(this);
+	this.handleEmailChange=this.handleEmailChange.bind(this);
+	this.handleFirstNameChange=this.handleFirstNameChange.bind(this);
+	this.handleLastNameChange=this.handleLastNameChange.bind(this);
+	this.handlePhoneChange=this.handlePhoneChange.bind(this);
+        this.openInfo=this.openInfo.bind(this);
+        this.closeInfo=this.closeInfo.bind(this);
     }
 
     componentWillMount(){
@@ -37,6 +48,22 @@ class MyProfileDetail extends React.Component{
                 });
             }
         });
+    }
+
+    handleEmailChange(e){
+	this.setState({ emailInput: e.target.value.toLowerCase() });
+    }
+
+    handleFirstNameChange(e){
+        this.setState({ firstNameInput: e.target.value});
+    }
+
+    handleLastNameChange(e){
+        this.setState({ lastNameInput: e.target.value});
+    }
+
+    handlePhoneChange(e){
+        this.setState({ phoneInput: e.target.value});
     }
 
     handleBioChange(e) {
@@ -70,6 +97,14 @@ class MyProfileDetail extends React.Component{
 	this.setState({ showBioModal: true });
     }
 
+    closeInfo() {
+        this.setState({ showInfoModal: false });
+    }
+
+    openInfo() {
+        this.setState({ showInfoModal: true });
+    }
+
     handleBioSubmit(event){
 	//	event.preventDefault();
 	const length = this.state.bioInput.length;
@@ -82,10 +117,46 @@ class MyProfileDetail extends React.Component{
 	return null;
     }
 
+    handleInfoSubmit(event){
+        //      event.preventDefault();
+        const phone = this.state.phoneInput;
+	const firstname = this.state.firstNameInput;
+	const lastname = this.state.lastNameInput;
+	var emailRegex = /^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i;
+	if(emailRegex.test(this.state.emailInput)){
+	    const email = this.state.emailInput;
+	    var newEmail={
+		email : email
+	     };
+	    axios.put('/updateinfo/'+this.state.user._id,newEmail);
+	}
+
+	if(phone!==""){
+            var newPhone={
+                phone : phone
+             };
+            axios.put('/updateinfo/'+this.state.user._id,newPhone);
+        }
+
+	if(firstname!=="" && lastname!==""){
+            var newName={
+                firstname : firstname,
+		lastname : lastname
+             };
+            axios.put('/updateinfo/'+this.state.user._id,newName);
+        }
+  
+        return null;
+    }
+
     
     render(){
 
 	const startDate = this.state.user.signupdate;
+	const bioString = this.state.user.bio;
+	const firstnameString = this.state.user.firstname;
+	const lastnameString = this.state.user.lastname;
+	const phoneString = this.state.user.phone;
 
 	return(
 	    <div>
@@ -98,30 +169,24 @@ class MyProfileDetail extends React.Component{
 		<ListGroupItem bsClass="profileSubItem">
                 <ControlLabel className="subItemLable"><Glyphicon id="ProfileIcon"glyph="envelope" /></ControlLabel>
 		<p className="subItemContent">{this.state.user.email}</p>
-		<ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.open} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
+		<ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.openInfo} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
 		</ListGroupItem>
 		</div>
 		<div className="subItem">
 		<ListGroupItem bsClass="profileSubItem">
                   <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="user" /></ControlLabel>
-                  <p className="subItemContent" >Full Name (optional)</p>
-                  <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.open} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
+		{firstnameString===""?<p className="subItemContent" >Full name (optional)</p>: <p className="subItemContent" >{firstnameString} {lastnameString}</p>}
+                  <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.openInfo} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
                 </ListGroupItem>
 		</div>
 		<div className="subItem">
 		<ListGroupItem bsClass="profileSubItem">
-                  <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="earphone" /></ControlLabel>
-                  <p className="subItemContent" >Cell phone (optional)</p>
-                  <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.open} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
+                <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="earphone" /></ControlLabel>
+		{phoneString===""?<p className="subItemContent" >Cell phone (optional)</p>: <p className="subItemContent" >{phoneString}</p>}
+                  <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.openInfo} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
                 </ListGroupItem>
 		</div>
-		<div className="subItem">
-		<ListGroupItem bsClass="profileSubItem">
-		<ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="home" /></ControlLabel>
-                <p className="subItemContent" >Address (optional)</p>
-                <ControlLabel bsClass="subItemEditLable"><Glyphicon onClick={this.open} id="ProfileEditIcon" glyph="edit" /></ControlLabel>
-                </ListGroupItem>
-		</div>
+
 		<div className="subItem">
                   <ListGroupItem bsClass="profileSubItem">
                     <ControlLabel bsClass="subItemLable"><Glyphicon id="ProfileIcon" glyph="file" /></ControlLabel>
@@ -130,7 +195,7 @@ class MyProfileDetail extends React.Component{
                   </ListGroupItem>
                 </div>
 		  <Panel id="biopanel">
-		  {this.state.user.bio===""?<p>Add a bio! Tell the community about yourself, your home, and your profession.</p>:this.state.user.bio}
+		{bioString===""?<p>Add a bio! Tell the community about yourself, your home, and your profession.</p>:bioString}
 		  </Panel>
 		<ListGroupItem bsClass="profileFooter" >
                 <p>Member since: {startDate} </p>
@@ -138,6 +203,8 @@ class MyProfileDetail extends React.Component{
 		</ListGroup>
 	    </div>
 
+
+	    {/*show bio input modal*/}
 	    <div>
 	      <Modal show={this.state.showBioModal} onHide={this.closeBio}>
 		<Modal.Header closeButton>
@@ -171,6 +238,73 @@ class MyProfileDetail extends React.Component{
 		</Modal.Body>
 		<Modal.Footer>
 		  <Button onClick={this.closeBio}>Close</Button>
+		</Modal.Footer>
+              </Modal>
+		</div>
+
+	    {/*info input modal*/}
+	    <div>
+	      <Modal show={this.state.showInfoModal} onHide={this.closeInfo}>
+		<Modal.Header closeButton>
+		</Modal.Header>
+		<Modal.Body>
+		  <Form onSubmit={event=>{this.handleInfoSubmit(event);}}>
+		    <div className="newUserInfoSubForm">
+		      <ControlLabel bsClass="newUserInfoSubLabel">Email</ControlLabel>
+                      <FormGroup bsClass="newUserInfoSubInput">
+			<FormControl
+                          type="email"
+                          value={this.state.emailInput}
+                          placeholder="Enter new email"
+                          onChange={this.handleEmailChange}
+                          />
+                      </FormGroup>
+		    </div>
+		    
+		    <div className="newUserInfoSubForm">
+		      <ControlLabel bsClass="newUserInfoSubLabel">Name</ControlLabel>
+		      <div className="newUserInfoSubInputName">
+		      <FormGroup bsClass="newUserInfoSubInputFirstName">
+			<FormControl
+			  type="text"
+			  placeholder="First"
+			  value={this.state.firstNameInput}
+                          onChange={this.handleFirstNameChange}/>
+		      </FormGroup>
+		      <FormGroup bsClass="newUserInfoSubInputLastName">
+			<FormControl
+			  type="text"
+                          placeholder="Last"
+                          value={this.state.lastNameInput}
+                          onChange={this.handleLastNameChange}/>
+		      </FormGroup>
+		      </div>
+		    </div>
+		    
+		    <div className="newUserInfoSubForm">
+		      <ControlLabel bsClass="newUserInfoSubLabel">Phone</ControlLabel>
+		      <FormGroup bsClass="newUserInfoSubInput">
+			<FormControl
+                          type="phone"
+                          value={this.state.phoneInput}
+                          placeholder="Enter new phone number"
+                          onChange={this.handlePhoneChange}
+                          />
+                      </FormGroup>
+		    </div>
+		    <Button
+		      block
+		      active
+		      bsSize="large"
+		      bsStyle="info"
+		      type="submit"
+		      >
+		      Submit
+		    </Button>
+		  </Form>
+               	</Modal.Body>
+		<Modal.Footer>
+		  <Button onClick={this.closeInfo}>Close</Button>
 		</Modal.Footer>
               </Modal>
 	    </div>

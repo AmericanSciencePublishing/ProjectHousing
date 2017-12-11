@@ -28,7 +28,8 @@ router.post('/', function(req, res, next) {
 	    signuptime : starttime,
 	    bio : "",
 	    phone : "",
-	    address : ""
+	    firstname : "",
+	    lastname : ""
 	}
 	
 /*

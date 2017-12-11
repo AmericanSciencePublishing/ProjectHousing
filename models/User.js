@@ -15,6 +15,12 @@ var userSchema = new Schema({
     userName:{
 	type:String
     },
+    firstname:{
+	type:String
+    },
+    lastname:{
+	type:String
+    },
     signupdate:{
 	type:String
     },
@@ -35,7 +41,6 @@ var userSchema = new Schema({
     },
     bio:{
 	type: String,
-	maxlength: 2
     }
 	
 });
@@ -89,7 +94,7 @@ userSchema.set('toJSON', {
 	delete ret.password;
 	delete ret.resetPassLink;
 	delete ret.userStatus;
-
+	delete ret.signuptime;
         return ret;
     }
 });
