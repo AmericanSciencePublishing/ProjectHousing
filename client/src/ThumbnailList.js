@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
+
+import Thumbnail from './Thumbnail';
 
 import './ThumbnailList.css';
 
@@ -22,13 +23,8 @@ class ThumbnailList extends Component {
   render() {
     return (
       <div className="thumbnail-list">
-        {this.state.houseList.map(item => (
-          <div className="thumbnail" key={item._id}>
-            <img src={item.image} alt="" />
-            <h1>$ {item.price.toLocaleString()}</h1>
-            <p>{item.address}</p>
-            <p>{`${item.beds} bds | ${item.baths} ba | ${item.size} sq ft`}</p>
-          </div>
+        {this.state.houseList.map(house => (
+          <Thumbnail house={house} key={house._id} />
         ))}
       </div>
     );

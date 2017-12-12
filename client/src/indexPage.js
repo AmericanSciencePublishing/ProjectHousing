@@ -9,53 +9,11 @@ import {
 import { Link } from 'react-router-dom';
 
 import CityList from './CityList';
-import ConstructionThumbnail from './ConstructionThumbnail';
+import ThumbnailList from './ThumbnailList';
 import './indexPage.css';
 
 export default class IndexPage extends Component {
   render() {
-    const new_constructions = [
-      {
-        id: 1,
-        image: 'http://lorempixel.com/400/200/sports',
-        title: 'From $85,000',
-        description: 'Condo, Chicago IL'
-      },
-      {
-        id: 2,
-        image: 'http://lorempixel.com/400/200/sports',
-        title: 'From $95,000',
-        description: 'Condo, Chicago IL'
-      },
-      {
-        id: 3,
-        image: 'http://lorempixel.com/400/200/sports',
-        title: 'From $105,000',
-        description: 'Condo, Chicago IL'
-      }
-    ];
-
-    const great_school = [
-      {
-        id: 1,
-        image: 'http://lorempixel.com/400/200/sports',
-        title: 'From $85,000',
-        description: 'Condo, Chicago IL'
-      },
-      {
-        id: 2,
-        image: 'http://lorempixel.com/400/200/sports',
-        title: 'From $95,000',
-        description: 'Condo, Chicago IL'
-      },
-      {
-        id: 3,
-        image: 'http://lorempixel.com/400/200/sports',
-        title: 'From $105,000',
-        description: 'Condo, Chicago IL'
-      }
-    ];
-
     return (
       <div className="index-page">
         <div id="search-area">
@@ -89,37 +47,19 @@ export default class IndexPage extends Component {
         <hr />
 
         <div className="container group">
+          <h1>Great School</h1>
+          <ThumbnailList />
+
+          <button className="custom-button">See More Listing</button>
+        </div>
+
+        <div className="container group">
           <h1>New Constructions</h1>
-          <div className="construction_group">
-            {new_constructions.map(construction => {
-              return (
-                <ConstructionThumbnail
-                  construction={construction}
-                  key={construction.id}
-                />
-              );
-            })}
-          </div>
+          <ThumbnailList />
 
           <Link to="/new-construction">
             <button className="custom-button">See More Listing</button>
           </Link>
-        </div>
-
-        <div className="container group">
-          <h1>Great School</h1>
-          <div className="construction_group">
-            {great_school.map(construction => {
-              return (
-                <ConstructionThumbnail
-                  construction={construction}
-                  key={construction.id}
-                />
-              );
-            })}
-          </div>
-
-          <button className="custom-button">See More Listing</button>
         </div>
       </div>
     );

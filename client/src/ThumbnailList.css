@@ -1,28 +1,5 @@
-.thumbnail-list {
+.thumbnail-list{
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-}
-
-.thumbnail-list .thumbnail {
-  margin-right: 1rem;
-  width: 30rem;
-}
-
-.thumbnail-list .thumbnail:hover {
-  box-shadow: 3px 3px grey;
-}
-
-.thumbnail-list .thumbnail img {
-  height: 15rem;
-  width: 30rem;
-}
-
-.thumbnail-list .thumbnail h1 {
-  font-size: 2rem;
-}
-
-.thumbnail-list .thumbnail p {
-  font-size: 1.5rem;
-  line-height: 1rem;
 }

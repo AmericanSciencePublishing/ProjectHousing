@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.thumbnail {
+  width: 31rem;
+  margin-right: 2rem;
+}
+
+.thumbnail:hover {
+  box-shadow: 3px 3px lightgrey;
+}
+
+.thumbnail > .image-container {
+  height: 20rem;
+  width: 30rem;
+  overflow: hidden;
+
+  position: relative;
+  color: white;
+}
+
+.thumbnail > .image-container img {
+  height: 20rem;
+  width: 30rem;
+}
+
+.thumbnail .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+
+  font-family: 'roboto', sans-serif;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.thumbnail .like-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  background-color: inherit;
+  background-image: url('./images/likeBefore.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  border: none;
+
+  height: 30px;
+  width: 35px;
+}
+
+.thumbnail .like-button.confirmed {
+  background-image: url('./images/likeAfter.png');
+}
+
+.thumbnail .caption-area {
+  padding: 1rem;
+}
+
+.thumbnail .caption-area .title {
+  font-family: 'roboto', sans-serif;
+  font-size: 24px;
+  line-height: 36px;
+
+  color: #53bad1;
+}
+
+.thumbnail .caption-area .subtitle {
+  font-family: 'roboto', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+}
