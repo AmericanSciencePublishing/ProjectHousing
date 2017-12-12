@@ -161,7 +161,7 @@ class RegForm extends React.Component{
 			submitMSG:"Sign up successfully!",
 			isLoading: false
 		    });
-		    this.props.dispatch(save_username(res.data.userName));
+		    this.props.dispatch(save_username(res.data.username));
 		    this.props.sendUserToHome(res.data);
 		    axios.put('/online/'+res.data._id);
 		    history.push('/');

@@ -9,7 +9,7 @@ const { mLab } = require('../config/keys');
 mongoose.connect(mLab);
 
 router.get('/', function (req,res) {
-    console.log("checking online status");
+    console.log("checking online status",req.session.userId);
     if(req.session.userId === undefined){
 //	console.log('session undefined');
 	res.send();
@@ -20,7 +20,7 @@ router.get('/', function (req,res) {
 	    res.send();
 	}
 	//if the session exist && never signed up, send back json to automatically sign in
-	else if (doc !== null && doc.userStatus === 'online' ){
+	else if (doc !== null && doc.user_status === 'online' ){
 	    res.send(doc.toJSON());
 	}
 	else{

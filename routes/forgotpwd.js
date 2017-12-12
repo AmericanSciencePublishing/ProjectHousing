@@ -37,11 +37,11 @@ router.put('/', (req, res) => {
 	html:`<p>Click the following link to reset your password.</p><p>http://localhost:3000/resetpwd/${token}</p>`
     };
 //    console.log(emailData);
-    User.update({ email : req.body.email}, { $set: { resetPassLink : token }}, function(error, feedback){
+    User.update({ email : req.body.email}, { $set: { reset_pass_link : token }}, function(error, feedback){
 	//todo set a time out for token expire time.
 	if ( error) return res.send(error);
 	else if(feedback.n===1){
-	    console.log("hello:",feedback);
+//	    console.log("someone requested to reset password:",feedback);
 	    sendEmail(emailData);
 	    return res.status(200).json({message:`Email has been sent to ${req.body.email}. Please check your email account's Spam or Junk folder to ensure the message was not filtered.`});
 	}

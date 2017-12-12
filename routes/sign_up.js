@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
 	    email : req.body.email,
 	    password : req.body.password1,
 	    //automatically create a username by parsing email address
-	    userName : req.body.email.substring(0, req.body.email.indexOf("@")),
+	    username : req.body.email.substring(0, req.body.email.indexOf("@")),
 	    signupdate : startdate,
 	    signuptime : starttime,
 	    bio : "",

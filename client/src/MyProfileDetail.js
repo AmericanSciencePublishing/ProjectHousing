@@ -163,7 +163,7 @@ class MyProfileDetail extends React.Component{
 	    <div id="profilePanel" className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">
 		<ListGroup>
 		<ListGroupItem bsClass="profileHeader" >
-		<p>Hello! {this.state.user.userName} </p>
+		<p>Hello! {this.state.user.username} </p>
 		</ListGroupItem>
 		<div className="subItem">
 		<ListGroupItem bsClass="profileSubItem">

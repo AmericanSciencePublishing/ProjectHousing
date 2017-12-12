@@ -12,7 +12,7 @@ var userSchema = new Schema({
     password: {
 	type: String
     },
-    userName:{
+    username:{
 	type:String
     },
     firstname:{
@@ -27,10 +27,10 @@ var userSchema = new Schema({
     signuptime:{
         type:String
     },
-    userStatus:{
+    user_status:{
 	type: String
     },
-    resetPassLink:{
+    reset_pass_link:{
 	type: String
     },
     phone:{
@@ -92,8 +92,8 @@ userSchema.pre('save', function (next) {
 userSchema.set('toJSON', {
     transform: function(doc, ret, options) {
 	delete ret.password;
-	delete ret.resetPassLink;
-	delete ret.userStatus;
+	delete ret.reset_pass_link;
+	delete ret.user_status;
 	delete ret.signuptime;
         return ret;
     }

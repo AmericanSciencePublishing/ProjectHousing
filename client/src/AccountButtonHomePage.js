@@ -44,11 +44,11 @@ class AccountButtonHomePage extends React.Component{
 		  title="My Account"
 		  id="dropdown-custom-1">
 		  <MenuItem header>Signed in as</MenuItem>
-		  <MenuItem id="username" header><h4>{this.props.user.userName}</h4></MenuItem>
+		  <MenuItem id="username" header><h4>{this.props.user.username}</h4></MenuItem>
 		  <MenuItem divider />
-		  <MenuItem href={`/user/${this.props.user.userName}`} eventKey="1">My Profile</MenuItem>
-		  <MenuItem href={`/user/${this.props.user.userName}/save`} eventKey="2">Saved Homes</MenuItem>
-		  <MenuItem href={`/user/${this.props.user.userName}/setting`} eventKey="3">Settings</MenuItem>
+		  <MenuItem href={`/user/${this.props.user.username}`} eventKey="1">My Profile</MenuItem>
+		  <MenuItem href={`/user/${this.props.user.username}/save`} eventKey="2">Saved Homes</MenuItem>
+		  <MenuItem href={`/user/${this.props.user.username}/setting`} eventKey="3">Settings</MenuItem>
 		  <MenuItem divider />
 		  <MenuItem eventKey="4" onSelect={this.handleSignOut}>Sign Out</MenuItem>
 		</NavDropdown>
