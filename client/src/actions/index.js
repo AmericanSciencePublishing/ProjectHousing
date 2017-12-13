@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const save_house_to_store = id => {
+export const save_house_to_store = id => {
   return {
     type: 'SAVE_HOUSE',
     houseID: id

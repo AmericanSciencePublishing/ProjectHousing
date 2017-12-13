@@ -14,9 +14,10 @@ var online = require('./routes/online');
 var houses = require('./routes/houses');
 var checkUser = require('./routes/checkUser');
 var cities = require('./routes/cities');
-var save_house = require('./routes/save_house');
 var updatebio = require('./routes/updatebio');
 var updateinfo = require('./routes/updateinfo');
+var saved_houses = require('./routes/saved_houses');
+var users = require('./routes/users');
 
 var mongoose = require('mongoose');
 var Promise = require("bluebird");
@@ -73,7 +74,8 @@ app.use('/resetpwdemail',resetpwdemail);
 app.use('/save_house', save_house);
 app.use('/updatebio',updatebio);
 app.use('/updateinfo',updateinfo);
-
+app.use('/saved_houses', saved_houses);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

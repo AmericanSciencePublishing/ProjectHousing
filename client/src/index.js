@@ -11,11 +11,19 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
+import axios from 'axios';
 
 import rootReducer from './reducers';
-
-const persistedState = localStorage.getItem('persistedState') ? JSON.parse(localStorage.getItem('persistedState')):{};
+import { save_house_to_store } from './actions';
 let store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
+
+axios
+  .get('/users')
+  .then(res => res.data)
+  .then(user => {
+    const saved_houses = user.savedHouses || [];    
+    saved_houses.map(house => store.dispatch(save_house_to_store(house)));
+  });
 
 ReactDOM.render(
   <Provider store={store}>
@@ -23,9 +31,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-store.subscribe(()=>{
-    localStorage.setItem('persistedState', JSON.stringify(store.getState()));
-});
 
 registerServiceWorker();
