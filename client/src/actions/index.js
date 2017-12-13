@@ -9,7 +9,7 @@ export const save_house_to_store = id => {
 
 export const save_house = id => {
   return dispatch => {
-    axios.post('/saved_houses/add', { id: id });
+    axios.post('/api/saved_houses/add', { id: id });
     dispatch(save_house_to_store(id));
   };
 };
@@ -23,7 +23,7 @@ export const remove_house_from_store = id => {
 
 export const remove_house = id => {
   return dispatch => {
-    axios.post('/saved_houses/delete', { id: id });
+    axios.post('/api/saved_houses/delete', { id: id });
     dispatch(remove_house_from_store(id));
   };
 };

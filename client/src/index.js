@@ -18,7 +18,7 @@ import { save_house_to_store, set_username } from './actions';
 let store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
 
 axios
-  .get('/users')
+  .get('/api/current_user')
   .then(res => res.data)
   .then(user => {
     // put saved houses in redux store

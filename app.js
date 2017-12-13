@@ -6,26 +6,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var sign_up = require('./routes/sign_up');
-var log_in = require('./routes/log_in');
-var offline = require('./routes/offline');
-var online = require('./routes/online');
-var houses = require('./routes/houses');
-var checkUser = require('./routes/checkUser');
-var cities = require('./routes/cities');
-var updatebio = require('./routes/updatebio');
-var updateinfo = require('./routes/updateinfo');
-var saved_houses = require('./routes/saved_houses');
-var users = require('./routes/users');
+var applyRoutes = require('./routes');
 
 var mongoose = require('mongoose');
 var Promise = require("bluebird");
 //mongoose.Promise = Promise;
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-var resetpwdemail = require('./routes/resetpwdemail');
-var forgotpwd = require('./routes/forgotpwd');
+
 const { mLab } = require('./config/keys');
 mongoose.connect(mLab);
 
@@ -61,21 +49,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/sign_up', sign_up);
-app.use('/log_in', log_in);
-app.use('/online',online);
-app.use('/houses', houses);
-app.use('/offline',offline);
-app.use('/checkUser',checkUser);
-app.use('/cities', cities);
-app.use('/forgotpwd',forgotpwd);
-app.use('/resetpwdemail',resetpwdemail);
-app.use('/save_house', save_house);
-app.use('/updatebio',updatebio);
-app.use('/updateinfo',updateinfo);
-app.use('/saved_houses', saved_houses);
-app.use('/users', users);
+applyRoutes(app); // apply all routes to server object
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
