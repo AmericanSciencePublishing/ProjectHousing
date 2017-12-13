@@ -140,7 +140,6 @@ class LogForm extends React.Component{
 		  <FormControl.Feedback />
 		</FormGroup>
 
-		<p style={{color: this.state.loginMSG === "sign in successfully" ? "#4caf50": "#f44336"}} id="submitTip">{this.state.loginMSG}</p>
 		
 		{/*submit button*/}
 		<FormGroup style={{postion:'relative'}}>
@@ -161,6 +160,8 @@ class LogForm extends React.Component{
 		    <Button id="forgetpwdTip" href="/forgotpwd" bsStyle="link">Forgot your password?</Button>
 		  </ButtonToolbar>
 		</FormGroup>
+
+	    <p style={{color: this.state.loginMSG === "sign in successfully" ? "#4caf50": "#f44336"}} id="submitTip">{this.state.loginMSG}</p>
 	      </Form>
 	    </div>
 	    

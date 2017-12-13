@@ -1,7 +1,6 @@
 import React from 'react';
 import './MyProfile.css';
 //import history from './history';
-import ProfileSetting from './ProfileSetting';
 import MyProfileDetail from './MyProfileDetail';
 import { Nav, NavItem  } from 'react-bootstrap';
 import {Route, Switch} from 'react-router-dom';
@@ -36,25 +35,25 @@ class MyProfile extends React.Component{
 
     render(){
 	    return(
-		<div  className="container">
-		  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">    
+		<div className="profileTabs container">
+		  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">    
 		    <Nav bsStyle="tabs" >
-		      <LinkContainer exact to={`/user/${this.state.user.userName}`}>
-			<NavItem > My Profile </NavItem>
+		      <LinkContainer exact to={`/user/${this.state.user.username}`}>
+			<NavItem > My Profile</NavItem>
 		      </LinkContainer>
-		      <LinkContainer exact to={`/user/${this.state.user.userName}/save`}>
-			<NavItem > Saved Homes </NavItem>
+		      <LinkContainer exact to={`/user/${this.state.user.username}/save`}>
+			<NavItem > Saved </NavItem>
                       </LinkContainer>
-		      <LinkContainer exact to={`/user/${this.state.user.userName}/setting`}>
-			<NavItem > Settings </NavItem>
+		      <LinkContainer exact to={`/user/${this.state.user.username}/setting`}>
+			<NavItem > Settings</NavItem>
                       </LinkContainer>
 		
 		    </Nav>
 		    </div>
 	      <Switch>
                 <Route exact path="/user/:username" component={MyProfileDetail} />
-                <Route exact path="/user/:username/save" component={ProfileSetting}/>
-                <Route exact path="/user/:username/setting" component={ProfileSetting}/>
+                <Route exact path="/user/:username/save" component={NoMatch}/>
+                <Route exact path="/user/:username/setting" component={NoMatch}/>
                 <Route component={NoMatch}/>
                 </Switch>
 	    </div>

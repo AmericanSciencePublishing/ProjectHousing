@@ -16,7 +16,7 @@ router.put('/:id', function (req,res) {
 //	    res.send();
 //	}
 //    });
-    User.update({_id: req.params.id},{$set:{userStatus:'offline'}},function(err,updatedUser){
+    User.update({_id: req.params.id},{$set:{user_status:'offline'}},function(err,updatedUser){
 	if(err){
 	    console.log('error when put offline');
 	    throw err;

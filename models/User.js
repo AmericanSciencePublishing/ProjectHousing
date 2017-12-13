@@ -12,18 +12,37 @@ var userSchema = new Schema({
     password: {
 	type: String
     },
-    userName:{
+    username:{
+	type:String
+    },
+    firstname:{
+	type:String
+    },
+    lastname:{
 	type:String
     },
     signupdate:{
 	type:String
     },
-    userStatus:{
+    signuptime:{
+        type:String
+    },
+    user_status:{
 	type: String
     },
-    resetPassLink:{
+    reset_pass_link:{
 	type: String
+    },
+    phone:{
+	type: String
+    },
+    address:{
+	type: String
+    },
+    bio:{
+	type: String,
     }
+	
 });
 
 //authenticate input against database
@@ -73,10 +92,9 @@ userSchema.pre('save', function (next) {
 userSchema.set('toJSON', {
     transform: function(doc, ret, options) {
 	delete ret.password;
-	delete ret.resetPassLink;
-	delete ret.userStatus;
-	delete ret.email;
-
+	delete ret.reset_pass_link;
+	delete ret.user_status;
+	delete ret.signuptime;
         return ret;
     }
 });

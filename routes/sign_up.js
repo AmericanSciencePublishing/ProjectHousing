@@ -17,13 +17,19 @@ router.post('/', function(req, res, next) {
     }
     //here is a bug, when using if(email&&password),the if will return 0 when you sign up as a new user with a new email. delete&&password 'sovle this', I think its about User.create, in which there is a hash for password.
     else if(req.body.email&&(req.body.password1 === req.body.password2)){
-	var start = moment().format(); 
+	var startdate = moment().format('MM/DD/YYYY');
+	var starttime = moment().format('H:mm:ss');
 	var userData = {
 	    email : req.body.email,
 	    password : req.body.password1,
 	    //automatically create a username by parsing email address
-	    userName : req.body.email.substring(0, req.body.email.indexOf("@")),
-	    signupdate : start
+	    username : req.body.email.substring(0, req.body.email.indexOf("@")),
+	    signupdate : startdate,
+	    signuptime : starttime,
+	    bio : "",
+	    phone : "",
+	    firstname : "",
+	    lastname : ""
 	}
 	
 /*

@@ -18,7 +18,7 @@ router.put('/:linktoken', (req, res) => {
 	    return res.send(err);
 	}
 	//	console.log(hash);
-	User.update({resetPassLink:linkToken},{$set:{password:hash}},function(err,updatedUser){
+	User.update({reset_pass_link:linkToken},{$set:{password:hash}},function(err,updatedUser){
 	    if(err){
 		console.log('error when update new hashedPassword');
 		throw err;
