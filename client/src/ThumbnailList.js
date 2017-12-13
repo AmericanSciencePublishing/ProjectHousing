@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Thumbnail from './Thumbnail';
-
 import './ThumbnailList.css';
 
 class ThumbnailList extends Component {

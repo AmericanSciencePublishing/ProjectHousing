@@ -6,9 +6,8 @@ var User = require('../models/User');
 mongoose.connect(require('../config/keys').mLab);
 
 router
-  .post('/', function(req, res) {
+  .post('/add', function(req, res) {
     const houseID = req.body.id;
-
     const userId = req.session.userId;
 
     if (!userId) {
@@ -18,7 +17,21 @@ router
     User.findByIdAndUpdate(userId, {
       $addToSet: { savedHouses: houseID }
     }).then(doc => {
+      res.send(doc);
+    });
+  })
+  .post('/delete', function(req, res) {
+    const houseID = req.body.id;
+    const userId = req.session.userId;
+
+    if (!userId) {
       res.end();
+    }
+
+    User.findByIdAndUpdate(userId, {
+      $pull: { savedHouses: houseID }
+    }).then(doc => {
+      res.send(doc);
     });
   })
   .get('/', function(req, res) {
