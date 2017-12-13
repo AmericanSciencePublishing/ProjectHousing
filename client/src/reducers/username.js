@@ -1,10 +1,9 @@
 const username = (state = "", action) =>{
     switch(action.type){
-    case 'SAVE_USERNAME' : 
+    case 'SET_USERNAME' : 
 	return action.username;
     default : return state;
     }
 }
 
 export default username;
-    

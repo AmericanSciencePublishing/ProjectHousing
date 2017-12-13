@@ -16,8 +16,13 @@ class Thumbnail extends Component {
   }
 
   handleClick(e) {
+    if (!this.props.username) {
+      alert('Please log in!');
+      return ;
+    }
+
     const _id = this.state.house._id;
-    const saved = this.props.savedHouses.has(_id);
+    let saved = this.props.savedHouses.has(_id);
     if (saved) {
       this.props.remove_house(_id);
       this.setState({ buttonClass: 'like-button' });
@@ -41,7 +46,7 @@ class Thumbnail extends Component {
     if (!this.state.house) {
       return <div />;
     }
-    
+
     const {
       _id,
       image,
@@ -82,6 +87,7 @@ class Thumbnail extends Component {
 }
 
 const mapStateToProps = state => ({
+  username: state.username,
   savedHouses: state.savedHouses
 });
 

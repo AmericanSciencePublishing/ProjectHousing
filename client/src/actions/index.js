@@ -28,7 +28,7 @@ export const remove_house = id => {
   };
 };
 
-export const save_username = username => ({
-  type: 'SAVE_USERNAME',
+export const set_username = username => ({
+  type: 'SET_USERNAME',
   username
 });
