@@ -7,36 +7,33 @@ import {
   Col
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import CityList from './CityList';
 import ThumbnailList from './ThumbnailList';
+import SearchBar from './SearchBar';
 import './indexPage.css';
 
-export default class IndexPage extends Component {
+class IndexPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(queryString) {
+    const path = `/house-list?city=${queryString}`;
+
+    this.props.history.push(path);
+  }
+
   render() {
     return (
       <div className="index-page">
         <div id="search-area">
           <h1>What are you looking for?</h1>
           <div id="bar">
-            <Col xs={12} sm={6} smOffset={3}>
-              <form>
-                <FormGroup>
-                  <InputGroup>
-                    <FormControl
-                      type="text"
-                      placeholder="City, Zip, Address, Key Words"
-                      bsSize="lg"
-                    />
-                    <InputGroup.Button>
-                      <Button bsStyle="warning" bsSize="lg">
-                        Search
-                      </Button>
-                    </InputGroup.Button>
-                  </InputGroup>
-                </FormGroup>
-              </form>
-            </Col>
+            <SearchBar handleSearch={this.handleSearch} />
           </div>
         </div>
 
@@ -65,3 +62,5 @@ export default class IndexPage extends Component {
     );
   }
 }
+
+export default withRouter(IndexPage);

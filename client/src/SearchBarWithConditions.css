@@ -9,11 +9,12 @@
   background-color: #0c2f5c;
 }
 
-.search-conditions #search-bar {
-  margin: 1rem 1rem 1rem 0;
-  width: 30rem;
-}
-
 .search-conditions .search-item {
   margin: 1rem 1rem;
+}
+
+.search-conditions #search-bar {
+  width: 30rem;
+    
+  margin: auto 1rem auto 0;
 }

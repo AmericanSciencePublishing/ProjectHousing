@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+
+import SearchBar from './SearchBar';
 
 import './SearchBarWithBreadcrumbs.css';
 
@@ -7,15 +8,7 @@ export default class SearchBarWithBreadcrumbs extends Component {
   render() {
     return (
       <div className="search-bar-with-breadcrumbs">
-        <form>
-          <InputGroup>
-            <FormControl type="text" placeholder="City, Zip, Address, Key Words"/>
-
-            <InputGroup.Button>
-              <Button bsStyle="warning">Search</Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </form>
+        <SearchBar setResult={this.props.setResult} />
 
         <ul className="custom-breadcrumb">
           <li>California</li>

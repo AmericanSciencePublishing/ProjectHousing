@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import SearchConditions from './SearchConditions';
 import HouseList from './HouseList';
 
-export default class NewListing extends Component {
-  render() {
-    return (
-      <div>
-        <SearchConditions />
-        <HouseList labels={['New Listing', 'new construction']}/>
-      </div>
-    );
-  }
-}
+const NewListing = props => {
+  return <HouseList labels={['New Listing']} />;
+};
+
+export default NewListing;

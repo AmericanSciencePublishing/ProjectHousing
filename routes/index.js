@@ -9,6 +9,7 @@ const saved_houses = require('./saved_houses');
 const users = require('./users');
 const forgotpwd = require('./forgotpwd');
 const resetpwdemail = require('./resetpwdemail');
+const search = require('./search');
 
 module.exports = function(app){
   app.use('/sign_up', sign_up);
@@ -22,4 +23,5 @@ module.exports = function(app){
   app.use('/resetpwdemail',resetpwdemail);
   app.use('/api/saved_houses', saved_houses);
   app.use('/api/current_user', users);
+  app.use('/search', search);
 }

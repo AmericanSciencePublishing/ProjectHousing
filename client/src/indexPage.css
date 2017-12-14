@@ -20,7 +20,13 @@
 }
 
 .index-page #search-area #bar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 5rem;
+
+  width: 40%;
+  min-width: 40rem;
 }
 
 .index-page #cities {

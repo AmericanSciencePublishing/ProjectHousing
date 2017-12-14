@@ -1,73 +1,86 @@
-import React, { Component } from 'react';
-import { Row, Col, DropdownButton, MenuItem } from 'react-bootstrap';
+import React from 'react';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
+import SearchBarWithConditions from './SearchBarWithConditions';
 import HouseListItem from './HouseListItem';
 import Label from './Label';
 import Pagination from './Pagination';
 
 import './HouseList.css';
 
-export default class HouseList extends Component {
+class HouseList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { order: 'Newest', labels: [], houses: [] };
+    this.state = { labels: [], houseList: [] };
+    this.handleSearch = this.handleSearch.bind(this);
+    this.fetchHouseList = this.fetchHouseList.bind(this);
   }
 
   componentDidMount() {
-    axios
-      .get('/houses')
-      .then(res => res.data)
-      .then(houses => {
-        this.setState({ houses: houses });
-      });
+    const query = new URLSearchParams(this.props.location.search);
+    const city = query.get('city');
+    this.fetchHouseList(city);
 
-    if (this.props.labels) {
-      this.setState({ labels: this.props.labels });
-    }
+    this.setState({ labels: this.props.labels });
+  }
+
+  fetchHouseList(city) {
+    axios
+      .get(`/search?city=${city}`)
+      .then(res => res.data)
+      .then(houseList => this.setState({ houseList: houseList }));
+  }
+
+  handleSearch(queryString) {
+    const city = queryString;
+
+    this.props.history.push(`/house-list?city=${city}`);
+    this.fetchHouseList(city);
   }
 
   render() {
+    const labels = this.state.labels || [];
+
     return (
-      <div className="house-list" style={{margin: "0 5rem"}}>
-        <Row>
-          <Col sm={12} md={8}>
-            <div className="list-header">
-              <span>
-                {this.state.labels.map(label => (
-                  <Label key={label} title={label} withHandle />
-                ))}
-              </span>
+      <div className="house-list">
+        <SearchBarWithConditions handleSearch={this.handleSearch} />
 
-              <span>
-                Sort By &nbsp;
-                <DropdownButton title="Relevant" id="sort_by_button">
-                  <MenuItem eventKey="Relevant">Relevant</MenuItem>
-                  <MenuItem eventKey="Newest">Newest</MenuItem>
-                  <MenuItem eventKey="Lowest_Price">Lowest Price</MenuItem>
-                  <MenuItem eventKey="Highest_Price">Highest Price</MenuItem>
-                  <MenuItem eventKey="Largest">Largest</MenuItem>
-                  <MenuItem eventKey="Price_Reduced">Price Reduced</MenuItem>
-                </DropdownButton>
-              </span>
-            </div>
+        <div className="list-header container">
+          <span style={{ margin: 'auto 0' }}>
+            {labels.map(label => (
+              <Label key={label} title={label} withHandle />
+            ))}
+          </span>
 
-            <div className="list">
-              {this.state.houses.map(house => (
-                <HouseListItem item={house} key={house._id} />
-              ))}
-            </div>
-
-            <Pagination />
-
-          </Col>
-          <Col md={4}>
+          <span>
             <div>
-
+              Sort By &nbsp;
+              <DropdownButton title="Relevant" id="sort_by_button">
+                <MenuItem eventKey="Relevant">Relevant</MenuItem>
+                <MenuItem eventKey="Newest">Newest</MenuItem>
+                <MenuItem eventKey="Lowest_Price">Lowest Price</MenuItem>
+                <MenuItem eventKey="Highest_Price">Highest Price</MenuItem>
+                <MenuItem eventKey="Largest">Largest</MenuItem>
+                <MenuItem eventKey="Price_Reduced">Price Reduced</MenuItem>
+              </DropdownButton>
             </div>
-          </Col>
-        </Row>
+          </span>
+        </div>
+
+        <div className="container">
+          {this.state.houseList.map(house => (
+            <HouseListItem item={house} key={house._id} />
+          ))}
+        </div>
+
+        {this.state.houseList.length > 0 ? <Pagination /> : null}
+
+        <div />
       </div>
     );
   }
 }
+
+export default withRouter(HouseList);
