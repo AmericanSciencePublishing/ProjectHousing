@@ -6,7 +6,7 @@ import Label from './Label';
 import './HouseListItem.css';
 
 import { connect } from 'react-redux';
-import { save_house } from './actions';
+import { save_house, remove_house } from './actions';
 
 /*
 House Schema
@@ -41,13 +41,26 @@ House Schema
 class CommercialListItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { house: null, liked: false };
+    this.state = { house: null, buttonClass: 'like-button' };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
-    e.preventDefault();
-    this.props.dispatch(save_house(this.props.item._id));
+    if (!this.props.username) {
+      alert('Please log in first !');
+      return;
+    }
+
+    const _id = this.state.house._id;
+    const saved = this.props.savedHouses.has(_id);
+
+    if (saved) {
+      this.props.remove_house(_id);
+      this.setState({ buttonClass: 'like-button' });
+    } else {
+      this.props.save_house(_id);
+      this.setState({ buttonClass: 'like-button confirmed' });
+    }
   }
 
   componentDidMount() {
@@ -87,7 +100,7 @@ class CommercialListItem extends Component {
     return (
       <div className="house-item">
         <div>
-          <Link to={path}>
+          <Link to={path} target="_blank">
             <img src={image} alt="house" />
           </Link>
         </div>
@@ -126,7 +139,17 @@ class CommercialListItem extends Component {
 }
 
 const mapStateToProps = state => ({
+  username: state.username,
   savedHouses: state.savedHouses
 });
 
-export default connect(mapStateToProps)(CommercialListItem);
+const mapDispatchToProps = dispatch => {
+  const save = id => dispatch(save_house(id));
+  const remove = id => dispatch(remove_house(id));
+  return {
+    save_house: save,
+    remove_house: remove
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommercialListItem);

@@ -176,7 +176,7 @@ export default class Details extends Component {
         </div>
 
         <div className="container box">
-          <h2>Recommned</h2>
+          <h2>Recommended</h2>
           <ThumbnailList />
         </div>
       </div>

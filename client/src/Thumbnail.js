@@ -18,7 +18,7 @@ class Thumbnail extends Component {
   handleClick(e) {
     if (!this.props.username) {
       alert('Please log in!');
-      return ;
+      return;
     }
 
     const _id = this.state.house._id;
@@ -65,7 +65,9 @@ class Thumbnail extends Component {
     return (
       <div className="thumbnail">
         <div className="image-container">
-          <img src={image} alt="house item" />
+          <a href={`/details/${_id}`} target="_blank">
+            <img src={image} alt="house item" />
+          </a>
           <div className="overlay">$ {price.toLocaleString()}</div>
           <button className={buttonClass} onClick={this.handleClick} />
         </div>
