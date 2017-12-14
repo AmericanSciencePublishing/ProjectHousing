@@ -3,6 +3,7 @@ var csv = require('fast-csv');
 var path = require('path');
 var mongoose = require('mongoose');
 var moment = require('moment');
+var junk = require('junk');
 const { mLab } = require('../config/keys');
 mongoose.connect(mLab);
 var NewHouse = require('../models/NewHouse.js');
@@ -20,6 +21,7 @@ var walk = function(dir, done) {
     fs.readdir(dir, function(err, list) {
 //	console.log(list);
 	if (err) return done(err);
+	list=list.filter(junk.not);
 	var pending = list.length;
 	if (!pending) return done(null, results);
 	list.forEach(function(file) {
