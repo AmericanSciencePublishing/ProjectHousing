@@ -41,7 +41,8 @@ var userSchema = new Schema({
     },
     bio:{
 	type: String,
-    }
+    },
+    saved_house:[String]
 	
 });
 
