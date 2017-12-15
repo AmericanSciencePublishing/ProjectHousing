@@ -18,6 +18,7 @@ import AccountButton from './AccountButtonHomePage';
 import logo from './images/logo.png';
 import Forgotpwd from './Forgotpwd';
 import Resetpwd from './Resetpwd';
+import MapContainer from './MapContainer';
 import {connect} from 'react-redux';
 import './App.css';
 import axios from 'axios';
@@ -152,6 +153,7 @@ class App extends Component {
 		<Route path="/user/:username" component={MyProfile}/>
 		<Route path="/forgotpwd" component={Forgotpwd}/>
 		<Route path="/resetpwd/:linktoken" component={Resetpwd}/>
+		<Route path="/m" component={MapContainer}/>
 		<Route component={NoMatch}/>
 		</Switch>
 

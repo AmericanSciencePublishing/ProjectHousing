@@ -33,7 +33,9 @@ const HouseSchema = new Schema({
     images:[{
 	data: Buffer,
 	content_type: String
-    }]
+    }],
+    lat : String,
+    lon : String
 });
 
 const NewHouse = mongoose.model('devhouses', HouseSchema);
