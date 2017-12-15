@@ -21,11 +21,13 @@ axios
   .get('/api/current_user')
   .then(res => res.data)
   .then(user => {
-    // put saved houses in redux store
-    const saved_houses = user.savedHouses || [];
-    saved_houses.map(house => store.dispatch(save_house_to_store(house)));
-    // set username
-    store.dispatch(set_username(user.userName));
+    if (user) { // no cookie in browser, therefore no previous state
+      // put saved houses in redux store
+      const saved_houses = user.savedHouses || [];
+      saved_houses.map(house => store.dispatch(save_house_to_store(house)));
+      // set username
+      store.dispatch(set_username(user.userName));
+    }
   });
 
 ReactDOM.render(
