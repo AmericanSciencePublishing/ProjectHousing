@@ -1,0 +1,10 @@
+.MapContainerOriginal{
+//    margin-top:-2rem;
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+}
+
+.MapItself{
+//    position:absolute;
+}
