@@ -142,7 +142,7 @@ class LogForm extends React.Component{
 
 		
 		{/*submit button*/}
-		<FormGroup style={{postion:'relative'}}>
+		<FormGroup >
 		  <ButtonToolbar justified='true'>
 		    <ButtonGroup >
 			<Button
@@ -157,7 +157,9 @@ class LogForm extends React.Component{
 			  Sign in
 			</Button>
 		    </ButtonGroup>
-		    <Button id="forgetpwdTip" href="/forgotpwd" bsStyle="link">Forgot your password?</Button>
+		    <div className="inline_tips">
+		      <Button bsClass="termofuse_tip" href="/forgotpwd" bsStyle="link">Forgot your password?</Button>
+		    </div>
 		  </ButtonToolbar>
 		</FormGroup>
 

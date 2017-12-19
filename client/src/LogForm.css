@@ -12,11 +12,6 @@
     padding-right:10px;
 }
 
-#loginSubButton{
-//    margin-left:50px;
-//    width:200%;
-}
-
 
 #forget{
     margin-left:14rem;
@@ -24,14 +19,6 @@
     font-size:18px;
     
 }
-
-#forgetpwdTip{
-    position:absolute;
-    right:0rem;
-    top:20.5rem;
-//    margin-top:20px;
-//    text-align: center;
-};
 
 #passwordTip{
     margin-bottom:-5px;
@@ -41,4 +28,27 @@
 #submitTip{
     //    margin-top:10px;
     text-align:center;
+}
+
+.inline_tips{
+    display:flex;
+    padding-top:1em;
+    position:relative;
+}
+
+.inline_tips p{
+    position:absolute;
+    right:6.2em;
+}
+
+.inline_tips .termofuse_tip{
+    position:absolute;
+    top:1em;
+    right:0em;
+}
+
+.inline_tips .forgetpwd_tip{
+    position:absolute;
+    top:0.5em;
+    right:0em;
 }
