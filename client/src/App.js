@@ -18,6 +18,7 @@ import AccountButton from './AccountButtonHomePage';
 import logo from './images/logo.png';
 import Forgotpwd from './Forgotpwd';
 import Resetpwd from './Resetpwd';
+import MapContainer from './MapContainer';
 import {connect} from 'react-redux';
 import './App.css';
 import axios from 'axios';
@@ -90,85 +91,81 @@ class App extends Component {
     render() {
 	return (
 
-      <div id="site">
-        <Router history={history}>
-          <div id="site-content">
-            <Navbar fluid>
-              <Navbar.Header>
-                <Navbar.Brand>
-                  <NavLink to="/">
-                    <img src={logo} alt="brand" id="brand-image" />
-                  </NavLink>
-                </Navbar.Brand>
-                <Navbar.Toggle />
-              </Navbar.Header>
-              <Navbar.Collapse>
-                <Nav pullRight>
-                  <LinkContainer to="/new-listing">
-                    <NavItem>
-                      <p>New Listing</p>
-                    </NavItem>
-                  </LinkContainer>
-                  <LinkContainer to="/commercial">
-                    <NavItem>
-                      <p>Commercial</p>
-                    </NavItem>
-                  </LinkContainer>
-                  <LinkContainer to="/new-construction">
-                    <NavItem>
-                      <p>New Construction</p>
-                    </NavItem>
-                  </LinkContainer>
-                  <LinkContainer to="/info">
-                    <NavItem>
-                      <p>More Info</p>
-                    </NavItem>
-                  </LinkContainer>
-                  <LinkContainer to="/faq">
-                    <NavItem>
-                      <p>FAQ</p>
-                    </NavItem>
-                  </LinkContainer>
-
-                  <NavItem disabled>
-                    <LinkContainer to="/">
-                      <p>En/Ch</p>
-                    </LinkContainer>
-                </NavItem>
-            {this.isEmpty(this.state.user) ? <NavItem><p onClick={this.handleClick}>Log in</p></NavItem> : <AccountButton sendUserToHome={this.sendUserToHome} user={this.state.user}/>}
-            
-                </Nav>
-              </Navbar.Collapse>
-
-		</Navbar>
-		<Switch>
-		<Route exact path="/" component={IndexPage} />
-		<Route path="/new-listing" component={NewListing} />
-		<Route path="/faq" component={Faq} />
-		<Route path="/commercial" component={Commercial} />
-		<Route path="/new-construction" component={NewConstructionList} />
-		<Route path="/info" component={Info} />
-		<Route path="/details/:id" component={Details} />
-		<Route path="/user/:username" component={MyProfile}/>
-		<Route path="/forgotpwd" component={Forgotpwd}/>
-		<Route path="/resetpwd/:linktoken" component={Resetpwd}/>
-		<Route component={NoMatch}/>
-		</Switch>
-
+	    <div id="site">
+	      <Router history={history}>
+		<div id="site-content">
+		  <Navbar fluid >
+		    <Navbar.Header>
+                      <Navbar.Brand>
+			<NavLink to="/">
+			  <img src={logo} alt="brand" id="brand-image" />
+			</NavLink>
+                      </Navbar.Brand>
+                      <Navbar.Toggle/>
+		    </Navbar.Header>
+		    <Navbar.Collapse>
+                      <Nav pullRight>
+			<LinkContainer to="/new-listing">
+			  <NavItem>
+			    <p>New Listing</p>
+			  </NavItem>
+			</LinkContainer>
+			<LinkContainer to="/commercial">
+			  <NavItem>
+			    <p>Commercial</p>
+			  </NavItem>
+			</LinkContainer>
+			<LinkContainer to="/new-construction">
+			  <NavItem>
+			    <p>New Construction</p>
+			  </NavItem>
+			</LinkContainer>
+			<LinkContainer to="/info">
+			  <NavItem>
+			    <p>More Info</p>
+			  </NavItem>
+			</LinkContainer>
+			<LinkContainer to="/faq">
+			  <NavItem>
+			    <p>FAQ</p>
+			  </NavItem>
+			</LinkContainer>
+			<NavItem disabled>
+			  <LinkContainer to="/">
+			    <p>En/Ch</p>
+			  </LinkContainer>
+			</NavItem>
+			{this.isEmpty(this.state.user) ? <NavItem><p onClick={this.handleClick}>Log in</p></NavItem> : <AccountButton sendUserToHome={this.sendUserToHome} user={this.state.user}/>}
+		      </Nav>
+		    </Navbar.Collapse>
+		  </Navbar>
+		  
+		  <Switch>
+		    <Route exact path="/" component={IndexPage} />
+		    <Route path="/new-listing" component={NewListing} />
+		    <Route path="/faq" component={Faq} />
+		    <Route path="/commercial" component={Commercial} />
+		    <Route path="/new-construction" component={NewConstructionList} />
+		    <Route path="/info" component={Info} />
+		    <Route path="/details/:id" component={Details} />
+		    <Route path="/user/:username" component={MyProfile}/>
+		    <Route path="/forgotpwd" component={Forgotpwd}/>
+		    <Route path="/resetpwd/:linktoken" component={Resetpwd}/>
+		    <Route exact path="/m" component={MapContainer}/>
+		    <Route component={NoMatch}/>
+		  </Switch>
+		  
 		{/*to pass props in <Route>, check here:https://github.com/ReactTraining/react-router/issues/4627, I chose to use a checkuser() again in myprofile's componentWillMount */}
 		</div>
-		</Router>
-
-
-
-        <LoginRegisForm
-          sendUserToHome={this.sendUserToHome}
-          show={this.state.showModal}
-          onHide={this.close}
-        />
-
-        <Footer />
-      </div>
+	      </Router>
+	      <LoginRegisForm
+		sendUserToHome={this.sendUserToHome}
+		show={this.state.showModal}
+		onHide={this.close}
+		/>
+	      
+              <Footer />
+	    </div>
     );
   }
 }
