@@ -9,6 +9,8 @@ import SchoolList from './SchoolList';
 import PropertyHistory from './PropertyHistory';
 import ThumbnailList from './ThumbnailList';
 
+import { withRouter } from 'react-router-dom';
+
 import house_1 from './images/house_1.png';
 import house_2 from './images/house_2.png';
 import facebook from './images/facebook.png';
@@ -47,12 +49,13 @@ propertyTax: Number,
 facilities: [String]
 */
 
-export default class Details extends Component {
+class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
       house: null
     };
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -67,13 +70,19 @@ export default class Details extends Component {
       );
   }
 
+  handleSearch(queryString) {
+    const city = queryString;
+
+    this.props.history.push(`/house-list?city=${city}`);
+  }
+
   render() {
     if (!this.state.house) {
       return <div />;
     }
 
     const attributes = [
-      { attribute: 'Type', value: this.state.house.type.join(" / ") },
+      { attribute: 'Type', value: this.state.house.type.join(' / ') },
       {
         attribute: 'Decoration Condition',
         value: this.state.house.decoration
@@ -88,7 +97,7 @@ export default class Details extends Component {
 
     return (
       <div className="details">
-        <SearchBarWithBreadcrumbs />
+        <SearchBarWithBreadcrumbs handleSearch={this.handleSearch} />
 
         <div className="container" style={{ marginTop: '2rem' }}>
           <Row>
@@ -104,9 +113,7 @@ export default class Details extends Component {
                 </Carousel>
               </div>
             </Col>
-            <Col xs={12} sm={4}>
-
-            </Col>
+            <Col xs={12} sm={4} />
           </Row>
         </div>
 
@@ -183,3 +190,5 @@ export default class Details extends Component {
     );
   }
 }
+
+export default withRouter(Details);

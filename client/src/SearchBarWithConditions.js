@@ -132,7 +132,7 @@ class SearchConditions extends Component {
     return (
       <div className="search-conditions">
         <div id="search-bar">
-          <SearchBar handleSearch={this.props.handleSearch} />
+          <SearchBar handleSearch={this.props.handleSearch} suggestions={cities}/>
         </div>
 
         <DropdownButton

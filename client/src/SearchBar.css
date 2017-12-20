@@ -1,0 +1,22 @@
+.search-bar {
+  position: relative;
+}
+
+.search-bar .dropdown {
+  background-color: white;
+  padding: 1rem;
+
+  position: absolute;
+  width: 100%;
+
+  z-index: 1;
+}
+
+.search-bar .dropdown div {
+  line-height: 3rem;
+  cursor: pointer;
+}
+
+.search-bar .dropdown div:hover {
+  background-color: #f1f1f1;
+}

@@ -14,8 +14,8 @@ class HouseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { labels: [], houseList: [] };
-    this.handleSearch = this.handleSearch.bind(this);
     this.fetchHouseList = this.fetchHouseList.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {

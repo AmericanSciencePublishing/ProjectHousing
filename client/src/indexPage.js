@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import {
-  FormGroup,
-  FormControl,
-  InputGroup,
-  Button,
-  Col
-} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
@@ -13,6 +6,39 @@ import CityList from './CityList';
 import ThumbnailList from './ThumbnailList';
 import SearchBar from './SearchBar';
 import './indexPage.css';
+
+const initialSuggestions = [
+  'Arlington',
+  'Atlanta',
+  'Austin',
+  'Boston',
+  'Chicago',
+  'Columbus',
+  'Dallas',
+  'Denver',
+  'Fort Worth',
+  'Houston',
+  'Indianapolis',
+  'Jacksonville',
+  'Las Vegas',
+  'Long Beach',
+  'Los Angeles',
+  'Memphis',
+  'Miami',
+  'Milwaukee',
+  'Minneapolis',
+  'New Your',
+  'Oakland',
+  'Philadelphia',
+  'Phoenix',
+  'Portland',
+  'San Antonio',
+  'San Diego',
+  'San Francisco',
+  'San Jose',
+  'Virginia Beach',
+  'Washington'
+];
 
 class IndexPage extends Component {
   constructor(props) {
@@ -33,7 +59,10 @@ class IndexPage extends Component {
         <div id="search-area">
           <h1>What are you looking for?</h1>
           <div id="bar">
-            <SearchBar handleSearch={this.handleSearch} />
+            <SearchBar
+              handleSearch={this.handleSearch}
+              suggestions={initialSuggestions}
+            />
           </div>
         </div>
 
