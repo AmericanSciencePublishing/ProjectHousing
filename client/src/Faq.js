@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 import {Image} from 'react-bootstrap';
 import './Faq.css';
 import faqImg from "./images/FAQ.png";
@@ -6,11 +7,11 @@ export default class Faq extends React.Component {
   render() {
     return (
 	   
-	    <div className = "container">
+	    <div >
 	    <Image responsive className="faqImg col-xs-12 col-sm-12 c\
 ol-md-12 col-lg-12 col-xl-12" src={faqImg} alt="faq"/>
 	    <hr/>
-	    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+	    <div className="container">
       	    <h2 style={{color:"#1A237E"}}>1. Can foreigners without green cards buy real estate in the United States?</h2>
 
 	    <p> The United States is a more mature market economy, welcomed by foreign investors. At the same time, the law transparent and open than other countries relatively simple and clear. Anyone can buy American real estate, as long as you have a Chinese passport, you c purchase transaction, even if you do not have a US visa, you can also complete the transaction by fax. Specific questions can contact of the North American purchase network.
@@ -31,7 +32,8 @@ ol-md-12 col-lg-12 col-xl-12" src={faqImg} alt="faq"/>
 	    <p>At the end of 2008, housing prices in many cities in the United States continued to skyrocket for a few years and began to fall. Now, p have fallen by about 30 percent or more, and some prices have fallen back to the beginning of 2000. Relatively speaking, the current States has great investment value. However, just as the stock market, no one can finish the transaction at the lowest point. Investors their own financial situation and family circumstances to determine the time of investment and purchase the location of the house.
 	    </p>
 	    </div>
-	    </div>
+	    <Footer />
+	</div>
 
     );
   }

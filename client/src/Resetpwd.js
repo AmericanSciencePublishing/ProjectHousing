@@ -1,5 +1,7 @@
 import React from 'react';
 import {Well, ButtonGroup,Col, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
+import './findpwd.css';
+import Footer from './Footer'
 //import history from './history';
 
 var axios = require("axios");
@@ -131,7 +133,8 @@ class Resetpwd extends React.Component{
     render(){
 
 	return(
-	    <div className="conatiner">
+	    <div>
+	    <div className="conatiner forget_input_email_page">
 		<Col xsOffset={3} xs={6}>
 		<Well>
 		<h4>Please reset your password</h4>
@@ -179,7 +182,9 @@ class Resetpwd extends React.Component{
 		<p align="center" style={{color: this.state.submitMSG === "" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
 	      </Form>
 	      </Col>
-	    </div>
+		</div>
+		<Footer />
+		</div>
 	);
     }
 }

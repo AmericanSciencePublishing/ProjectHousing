@@ -4,12 +4,10 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Router, Route, NavLink, Switch } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import history from './history';
-
 import HouseList from './HouseList';
 import NewListing from './NewListing';
 import Commercial from './Commercial';
 import Faq from './Faq';
-import Footer from './Footer';
 import Info from './Info';
 import LoginRegisForm from './LoginRegisForm';
 import IndexPage from './indexPage';
@@ -172,7 +170,7 @@ class App extends Component {
           onHide={this.close}
         />
 
-        <Footer />
+
       </div>
     );
   }

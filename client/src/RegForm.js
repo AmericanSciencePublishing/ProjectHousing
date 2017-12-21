@@ -286,38 +286,6 @@ class RegForm extends React.Component {
 		</div>
 
 
-          {/*submit button*/}
-          <FormGroup>
-            <ButtonToolbar justified="true">
-              <ButtonGroup>
-                <Button
-                  block
-                  active
-                  id="regSubButton"
-                  bsSize="large"
-                  bsStyle="info"
-                  type="submit"
-                  disabled={this.state.isLoading}
-                >
-                  Submit
-                </Button>
-              </ButtonGroup>
-              <p
-                align="center"
-                style={{
-                  color:
-                    this.state.submitMSG === 'Sign up successfully!'
-                      ? '#4caf50'
-                      : '#f44336'
-                }}
-                id="submitTip"
-              >
-                {this.state.submitMSG}
-              </p>
-            </ButtonToolbar>
-          </FormGroup>
-        </Form>
-      </div>
     );
   }
 }

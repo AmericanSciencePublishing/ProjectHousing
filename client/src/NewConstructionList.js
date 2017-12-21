@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Footer from './Footer';
 import CityList from './CityList';
 import HouseList from './RecommendedHouseList';
 
@@ -19,7 +19,8 @@ export default class NewConstructionList extends Component {
           </div>
 
           <HouseList />
-        </div>
+            </div>
+	    <Footer />
       </div>
     );
   }

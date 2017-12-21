@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import Footer from './Footer';
 import CityList from './CityList';
 import ThumbnailList from './ThumbnailList';
 import SearchBar from './SearchBar';
@@ -106,7 +106,8 @@ class IndexPage extends Component {
           <ThumbnailList houseList={houses_great_school} />
 
           <button className="custom-button">See More Listing</button>
-        </div>
+            </div>
+	    <Footer />
       </div>
     );
   }

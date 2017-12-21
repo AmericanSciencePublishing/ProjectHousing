@@ -1,0 +1,5 @@
+.forget_input_email_page{
+    display: flex;
+    min-height: 70vh;
+    flex-direction: column;
+}
