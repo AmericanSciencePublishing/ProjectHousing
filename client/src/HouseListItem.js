@@ -8,58 +8,52 @@ import './HouseListItem.css';
 import { connect } from 'react-redux';
 import { save_house, remove_house } from './actions';
 
-class CommercialListItem extends Component {
+class HouseListItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { house: null, buttonClass: 'like-button' };
+    this.state = { saved: false };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) {
+  componentDidMount() {
+    const { _id } = this.props.house;
+
+    const saved = this.props.savedHouses.has(_id);
+    this.setState({ saved });
+  }
+
+  handleClick(_id) {
     if (!this.props.username) {
+      // username exis in redux store if user is logged in
       alert('Please log in first !');
       return;
     }
 
-    const _id = this.state.house._id;
-    const saved = this.props.savedHouses.has(_id);
-
-    if (saved) {
+    if (this.state.saved) {
       this.props.remove_house(_id);
-      this.setState({ buttonClass: 'like-button' });
+      this.setState({saved: false})
     } else {
       this.props.save_house(_id);
-      this.setState({ buttonClass: 'like-button confirmed' });
+      this.setState({saved: true})
     }
-  }
-
-  componentDidMount() {
-    this.setState({ house: this.props.item });
   }
 
   render() {
-    if (!this.state.house) {
-      return <div />;
-    }
-
     const {
       _id,
-      price_per_sqft,
+      price,
       beds,
       baths,
-      cars,
-      sqft,
+      size,
       address,
       state,
       zipcode,
       imageDirectory
-    } = this.state.house;
+    } = this.props.house;
 
     const path = `/details/${_id}`;
 
-    const buttonState = `like ${this.props.savedHouses.has(_id)
-      ? 'confirmed'
-      : null}`;
+    const buttonClass = this.state.saved ? 'like confirmed' : 'like';
 
     return (
       <div className="house-item">
@@ -70,15 +64,18 @@ class CommercialListItem extends Component {
         </div>
 
         <div className="info">
-          <span className="price">$ {price_per_sqft}</span>
+          <span className="price">$ {price.toLocaleString()}</span>
 
-          <div className="type">{`${beds} beds | ${baths} baths | ${sqft} sqft | ${cars} cars`}</div>
+          <div className="type">{`${beds} beds | ${baths} baths | ${size} sqft`}</div>
 
           <div className="address">{`${address} `}</div>
         </div>
 
         <div>
-          <button className={buttonState} onClick={this.handleClick} />
+          <button
+            className={buttonClass}
+            onClick={() => this.handleClick(_id)}
+          />
         </div>
       </div>
     );
@@ -99,4 +96,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommercialListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(HouseListItem);

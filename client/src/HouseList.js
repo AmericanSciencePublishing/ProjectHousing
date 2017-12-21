@@ -126,9 +126,7 @@ class HouseList extends React.Component {
               believed. ~
             </p>
             <p>list shows here</p>
-            {this.state.houseList.map(house => (
-              <Thumbnail item={house} key={house._id} />
-            ))}
+            {houseList.map(house => <Thumbnail item={house} key={house._id} />)}
             {this.state.houseList.length > 0 ? <Pagination /> : null}
             <Footer />
           </div>

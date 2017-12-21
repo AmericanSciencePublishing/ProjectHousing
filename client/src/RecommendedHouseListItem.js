@@ -8,16 +8,18 @@ import './RecommendedHouseListItem.css';
 export default class RecommendedHouseListItem extends Component {
   render() {
     const {
-      images,
-      sqft,
-      type,
-      beds,
-      baths,
-      year_built,
-      price_per_sqft,
       _id,
       address,
-      imageDirectory
+      city,
+      state,
+      zipcode,
+      beds,
+      baths,
+      imageDirectory,
+      size,
+      price,
+      year_built,
+      type
     } = this.props.house;
 
     const path = `/details/${_id}`;
@@ -41,7 +43,7 @@ export default class RecommendedHouseListItem extends Component {
           </Link>
 
           <p>{`Main Unit: ${beds} beds | ${baths} baths`}</p>
-          <p>{`House Size: ${sqft} sqft`}</p>
+          <p>{`House Size: ${size} sqft`}</p>
 
           <p>Property Type: {type}</p>
           <p>Region</p>
@@ -49,7 +51,7 @@ export default class RecommendedHouseListItem extends Component {
           <p>Recommended Reason: </p>
 
           <div className="price-line">
-            Start From:<span className="price">{price_per_sqft}</span>
+            Start From:<span className="price">$ {price.toLocaleString()}</span>
           </div>
         </div>
       </div>

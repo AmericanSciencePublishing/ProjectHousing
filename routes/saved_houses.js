@@ -25,11 +25,11 @@ router
     const userId = req.session.userId;
 
     if (!userId) {
-      res.end();
+      res.send('User not logged in!');
     }
 
     User.findByIdAndUpdate(userId, {
-      $pull: { savedHouses: houseID }
+      $pull: { saved_houses: houseID }
     }).then(doc => {
       res.send(doc);
     });
