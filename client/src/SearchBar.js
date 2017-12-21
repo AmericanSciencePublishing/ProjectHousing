@@ -32,9 +32,7 @@ class Search extends Component {
     }
   }
 
-  handleSearch(e) {
-    e.preventDefault();
-
+  handleSearch() {
     this.setState({ value: '' });
     this.props.handleSearch(this.state.value);
 
@@ -114,7 +112,12 @@ class Search extends Component {
 
     return (
       <div className="search-bar">
-        <form onSubmit={this.handleSearch}>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            this.handleSearch();
+          }}
+        >
           <InputGroup>
             <FormControl
               type="text"
@@ -122,7 +125,6 @@ class Search extends Component {
               value={value}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
-              onBlur={this.clearSuggestions}
             />
 
             <InputGroup.Button>
