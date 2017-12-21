@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { mLab } = require('../config/keys');
 mongoose.connect(mLab);
 
-const House = require('../models/House');
+const House = require('../models/NewHouse');
 
 router
   .get('/', function(req, res) {

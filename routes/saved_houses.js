@@ -15,7 +15,7 @@ router
     }
 
     User.findByIdAndUpdate(userId, {
-      $addToSet: { savedHouses: houseID }
+      $addToSet: { saved_houses: houseID }
     }).then(doc => {
       res.send(doc);
     });

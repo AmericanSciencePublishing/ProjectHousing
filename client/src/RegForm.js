@@ -175,7 +175,7 @@ class RegForm extends React.Component {
               isLoading: false
             });
 
-            this.props.dispatch(set_username(res.data.userName));
+            this.props.dispatch(set_username(res.data.username));
             this.props.sendUserToHome(res.data);
             axios.put('/online/' + res.data._id);
             history.push('/');

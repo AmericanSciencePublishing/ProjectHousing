@@ -23,10 +23,10 @@ axios
   .then(user => {
     if (user) { // no cookie in browser, therefore no previous state
       // put saved houses in redux store
-      const saved_houses = user.savedHouses || [];
+      const saved_houses = user.saved_houses || [];
       saved_houses.map(house => store.dispatch(save_house_to_store(house)));
       // set username
-      store.dispatch(set_username(user.userName));
+      store.dispatch(set_username(user.username));
     }
   });
 

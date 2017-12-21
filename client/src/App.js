@@ -153,6 +153,7 @@ class App extends Component {
               <Route path="/faq" component={Faq} />
               <Route path="/commercial" component={Commercial} />
               <Route path="/new-construction" component={NewConstructionList} />
+              <Route path="/house-list" component={HouseList} />
               <Route path="/info" component={Info} />
               <Route path="/details/:id" component={Details} />
               <Route path="/user/:username" component={MyProfile} />

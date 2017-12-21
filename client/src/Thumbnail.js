@@ -49,38 +49,40 @@ class Thumbnail extends Component {
 
     const {
       _id,
-      image,
-      price,
+      images,
+      price_per_sqft,
       address,
       city,
       state,
       beds,
       baths,
-      size,
-      year
+      sqft,
+      year_built
     } = this.state.house;
 
     const buttonClass = this.state.buttonClass;
+
+    const imageData = images[0].data;
 
     return (
       <div className="thumbnail">
         <div className="image-container">
           <a href={`/details/${_id}`} target="_blank">
-            <img src={image} alt="house item" />
+            <img src={`data:image/jpeg;base64,${imageData}`} alt="house"/>
           </a>
-          <div className="overlay">$ {price.toLocaleString()}</div>
+          <div className="overlay">{price_per_sqft}</div>
           <button className={buttonClass} onClick={this.handleClick} />
         </div>
 
         <div className="caption-area">
-          <p className="title">{`${beds} bds | ${baths} ba | ${size} sq ft`}</p>
-          <p className="subtitle">{`${address}, ${city}, ${state}`}</p>
+          <p className="title">{`${beds} bds | ${baths} ba | ${sqft} sqft`}</p>
+          <p className="subtitle">{`${address}`}</p>
 
           <hr />
 
           <p>
             {city}
-            <span style={{ float: 'right' }}>{year}</span>
+            <span style={{ float: 'right' }}>{year_built}</span>
           </p>
         </div>
       </div>

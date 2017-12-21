@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const House = require('../models/House');
+const House = require('../models/NewHouse');
 
 router.get('/', function(req, res) {
   const city = req.query.city;

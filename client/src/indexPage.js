@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 import CityList from './CityList';
 import ThumbnailList from './ThumbnailList';
 import SearchBar from './SearchBar';
+
 import './indexPage.css';
 
 const initialSuggestions = [
@@ -43,7 +45,10 @@ const initialSuggestions = [
 class IndexPage extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      houses_great_school: [],
+      houses_new_construction: []
+    };
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -53,7 +58,22 @@ class IndexPage extends Component {
     this.props.history.push(path);
   }
 
+  componentDidMount() {
+    axios
+      .get('/houses')
+      .then(res => res.data)
+      .then(houseList =>
+        this.setState({
+          houses_new_construction: houseList.slice(0, 2),
+          houses_great_school: houseList.slice(2, 4)
+        })
+      )
+      .catch(err => console.log(err));
+  }
+
   render() {
+    const { houses_new_construction, houses_great_school } = this.state;
+
     return (
       <div className="index-page">
         <div id="search-area">
@@ -73,19 +93,19 @@ class IndexPage extends Component {
         <hr />
 
         <div className="container group">
-          <h1>Great School</h1>
-          <ThumbnailList />
-
-          <button className="custom-button">See More Listing</button>
-        </div>
-
-        <div className="container group">
           <h1>New Constructions</h1>
-          <ThumbnailList />
+          <ThumbnailList houseList={houses_new_construction} />
 
           <Link to="/new-construction">
             <button className="custom-button">See More Listing</button>
           </Link>
+        </div>
+
+        <div className="container group">
+          <h1>Great School</h1>
+          <ThumbnailList houseList={houses_great_school} />
+
+          <button className="custom-button">See More Listing</button>
         </div>
       </div>
     );

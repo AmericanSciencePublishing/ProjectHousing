@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  FormControl,
-  InputGroup,
-  Button,
-  DropdownButton,
-  MenuItem
-} from 'react-bootstrap';
-import axios from 'axios';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 import SearchBar from './SearchBar';
 
@@ -132,7 +125,10 @@ class SearchConditions extends Component {
     return (
       <div className="search-conditions">
         <div id="search-bar">
-          <SearchBar handleSearch={this.props.handleSearch} suggestions={cities}/>
+          <SearchBar
+            handleSearch={this.props.handleSearch}
+            suggestions={cities}
+          />
         </div>
 
         <DropdownButton

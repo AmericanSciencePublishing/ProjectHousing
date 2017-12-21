@@ -42,7 +42,7 @@ var userSchema = new Schema({
   bio: {
     type: String
   },
-  saved_house: [String]
+  saved_houses: [String]
 });
 
 //authenticate input against database

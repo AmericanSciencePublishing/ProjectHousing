@@ -19,41 +19,50 @@ import linkedin from './images/linkedin.png';
 
 import './Details.css';
 
-// House Schmea
-/*
-descriptionShort: String,
-descriptionFull: String,
-address: { type: String, index: { unique: true } },
-city: String,
-county: String,
-state: String,
-neighborhood: String,
-zipcode: String,
-type: [String],
-beds: Number,
-baths: Number,
-cars: Number,
-size: Number,
-features: [String],
-price: Number,
-forSale: Boolean,
-forRent: Boolean,
-image: String,
-decoration: String,
-year: Number,
-season: String,
-structure: String,
-propertyFee: Number,
-style: String,
-propertyTax: Number,
-facilities: [String]
-*/
+// House Schema
+// {
+//     house_id : String,
+//     address : String,
+//     type: String,
+//     year_built: String,
+//     beds : String,
+//     baths: String,
+//     sqft : String,
+//     lot : String,
+//     price_per_sqft : String,
+//     descriptions_short : [String],
+//     description : String,
+//     bedrooms : [String],
+//     bathrooms : [String],
+//     kitchen_dining : [String],
+//     exterior_and_lot : [String],
+//     other_rooms : [String],
+//     interior : [String],
+//     home : [String],
+//     building_construction : [String],
+//     garage_parking : [String],
+//     heating_cooling : [String],
+//     utilities : [String],
+//     appliances : [String],
+//     amenities_community_feature : [String],
+//     school_information: [String],
+//     other_info : [String],
+//     save_date : String,
+//     save_time : String,
+//     images:[{
+// 	data: Buffer,
+// 	content_type: String
+//     }],
+//     lat : String,
+//     lon : String
+// }
 
 class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      house: null
+      house: null,
+      recommendedHouseList: []
     };
     this.handleSearch = this.handleSearch.bind(this);
   }
@@ -82,18 +91,23 @@ class Details extends Component {
     }
 
     const attributes = [
-      { attribute: 'Type', value: this.state.house.type.join(' / ') },
+      { attribute: 'Type', value: this.state.house.type },
       {
         attribute: 'Decoration Condition',
-        value: this.state.house.decoration
+        value: ''
       },
-      { attribute: 'Built Year', value: this.state.house.year },
-      { attribute: 'House Structure', value: this.state.house.structure },
-      { attribute: 'Property Fee', value: `$ ${this.state.house.propertyFee}` },
-      { attribute: 'Style', value: this.state.house.style },
-      { attribute: 'Property Tax', value: `$ ${this.state.house.propertyTax}` },
-      { attribute: 'Facilities', value: this.state.house.facilities }
+      { attribute: 'Built Year', value: this.state.house.year_built },
+      { attribute: 'House Structure', value: '' },
+      { attribute: 'Property Fee', value: '' },
+      { attribute: 'Style', value: '' },
+      { attribute: 'Property Tax', value: '' },
+      {
+        attribute: 'Exterior and Lot Features',
+        value: this.state.house.exterior_and_lot
+      }
     ];
+
+    const { recommendedHouseList } = this.state;
 
     return (
       <div className="details">
@@ -119,10 +133,10 @@ class Details extends Component {
 
         <div className="container info">
           <div>
-            <span className="price">{`$${this.state.house.price}`}</span>
+            <span className="price">{`Price per sqft: ${this.state.house
+              .price_per_sqft}`}</span>
             <span>{`${this.state.house.beds} beds | ${this.state.house
-              .baths} baths | ${this.state.house.size} sqft | ${this.state.house
-              .cars} cars`}</span>
+              .baths} baths | ${this.state.house.sqft} sqft`}</span>
             <br />
             <span className="address">{this.state.house.address}</span>
             <a href="">See in Google Maps</a>
@@ -184,7 +198,7 @@ class Details extends Component {
 
         <div className="container box">
           <h2>Recommended</h2>
-          <ThumbnailList />
+          <ThumbnailList houseList={recommendedHouseList} />
         </div>
       </div>
     );
