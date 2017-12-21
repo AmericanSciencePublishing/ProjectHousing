@@ -20,7 +20,7 @@ import Forgotpwd from './Forgotpwd';
 import Resetpwd from './Resetpwd';
 import MapContainer from './MapContainer';
 import { connect } from 'react-redux';
-
+//import Footer from './Footer';
 import './App.css';
 import axios from 'axios';
 
@@ -169,7 +169,6 @@ class App extends Component {
           show={this.state.showModal}
           onHide={this.close}
         />
-
 
       </div>
     );

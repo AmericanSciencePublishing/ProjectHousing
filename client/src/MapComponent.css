@@ -1,10 +1,8 @@
 .MapContainerOriginal{
-//    margin-top:-2rem;
-    width: 100vw;
-    height: 80vh;
+    width: inherit;
     position: relative;
+    height:calc(100vh - 140px);
 }
 
 .MapItself{
-//    position:absolute;
 }

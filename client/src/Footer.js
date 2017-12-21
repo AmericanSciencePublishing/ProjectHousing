@@ -19,7 +19,8 @@ const Footer = () => {
 
   return (
     <div className="footer">
-      <div className="container" id="social-network-links">
+	  <div className="container" id="social-network-links">
+	  {/*
         {links.map(linkItem => {
           return (
             <a href={linkItem.link} key={linkItem.link}>
@@ -27,6 +28,7 @@ const Footer = () => {
             </a>
           );
         })}
+	   */}
       </div>
       <hr />
       <p>Copyright &copy;2017 All Rights Reserved</p>
