@@ -16,19 +16,18 @@ export default class RecommendedHouseListItem extends Component {
       year_built,
       price_per_sqft,
       _id,
-      address
+      address,
+      imageDirectory
     } = this.props.house;
 
     const path = `/details/${_id}`;
-
-    const imageData = images[0].data; // binary data of first image
 
     return (
       <div className="recommended-house-item">
         <div>
           <Link to={path}>
             <img
-              src={`data:image/jpeg;base64,${imageData}`}
+              src={`${imageDirectory}/1.jpg`}
               alt="house"
               width="100%"
               height="100%"

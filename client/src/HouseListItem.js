@@ -88,7 +88,8 @@ class CommercialListItem extends Component {
       state,
       zipcode,
       neighborhood,
-      features
+      features,
+      imageDirectory
     } = this.state.house;
 
     const path = `/details/${_id}`;
@@ -101,7 +102,7 @@ class CommercialListItem extends Component {
       <div className="house-item">
         <div>
           <Link to={path} target="_blank">
-            <img src={image} alt="house" />
+            <img src={`${imageDirectory}/1.jpg`} alt="house" />
           </Link>
         </div>
 

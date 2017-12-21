@@ -77,6 +77,13 @@ class Details extends Component {
           house
         })
       );
+
+    axios
+      .get(`/houses`)
+      .then(res => res.data)
+      .then(houses =>
+        this.setState({ recommendedHouseList: houses.slice(0, 2) })
+      );
   }
 
   handleSearch(queryString) {

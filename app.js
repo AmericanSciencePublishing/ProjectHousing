@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var applyRoutes = require('./routes');
 
 var mongoose = require('mongoose');
-var Promise = require("bluebird");
+var Promise = require('bluebird');
 //mongoose.Promise = Promise;
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -21,19 +21,21 @@ var db = mongoose.connection;
 
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
+db.once('open', function() {
   // we're connected!
 });
 
 //use sessions for tracking logins
-app.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false,
-  store: new MongoStore({
-    mongooseConnection: db
+app.use(
+  session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: db
+    })
   })
-}));
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,6 +52,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 applyRoutes(app); // apply all routes to server object
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

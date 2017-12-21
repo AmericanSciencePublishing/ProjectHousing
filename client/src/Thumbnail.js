@@ -57,18 +57,17 @@ class Thumbnail extends Component {
       beds,
       baths,
       sqft,
-      year_built
+      year_built,
+      imageDirectory
     } = this.state.house;
 
     const buttonClass = this.state.buttonClass;
-
-    const imageData = images[0].data;
 
     return (
       <div className="thumbnail">
         <div className="image-container">
           <a href={`/details/${_id}`} target="_blank">
-            <img src={`data:image/jpeg;base64,${imageData}`} alt="house"/>
+            <img src={`${imageDirectory}/1.jpg`} alt="" />
           </a>
           <div className="overlay">{price_per_sqft}</div>
           <button className={buttonClass} onClick={this.handleClick} />

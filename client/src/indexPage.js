@@ -64,8 +64,8 @@ class IndexPage extends Component {
       .then(res => res.data)
       .then(houseList =>
         this.setState({
-          houses_new_construction: houseList.slice(0, 2),
-          houses_great_school: houseList.slice(2, 4)
+          houses_new_construction: houseList.slice(0, 3),
+          houses_great_school: houseList.slice(3,5)
         })
       )
       .catch(err => console.log(err));

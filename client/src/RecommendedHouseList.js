@@ -13,12 +13,12 @@ export default class RecommendedHouseList extends Component {
     axios
       .get('/houses')
       .then(res => res.data)
-      .then(houses => this.setState({ houses }));
+      .then(houses => this.setState({ houses: houses.slice(0, 5) }));
   }
 
   render() {
     return (
-      <div style={{margin: "5rem auto"}}>
+      <div style={{ margin: '5rem auto' }}>
         {this.state.houses.map(house => (
           <HouseListItem house={house} key={house._id} />
         ))}
