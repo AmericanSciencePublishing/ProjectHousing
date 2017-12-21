@@ -79,11 +79,9 @@ class Details extends Component {
       );
 
     axios
-      .get(`/houses`)
+      .get(`/houses/recommended`)
       .then(res => res.data)
-      .then(houses =>
-        this.setState({ recommendedHouseList: houses.slice(0, 2) })
-      );
+      .then(houses => this.setState({ recommendedHouseList: houses }));
   }
 
   handleSearch(queryString) {
