@@ -9,8 +9,7 @@ class Thumbnail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      house: null,
-      buttonClass: 'like-button'
+      saved: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -21,29 +20,20 @@ class Thumbnail extends Component {
       return;
     }
 
-    const _id = this.state.house._id;
-    let saved = this.props.savedHouses.has(_id);
+    const { _id } = this.props.house;
+    const saved = this.state.saved;
+
     if (saved) {
       this.props.remove_house(_id);
-      this.setState({ buttonClass: 'like-button' });
+      this.setState({ saved: false });
     } else {
       this.props.save_house(_id);
-      this.setState({ buttonClass: 'like-button confirmed' });
+      this.setState({ saved: true });
     }
   }
 
-  componentDidMount() {
-    this.setState({ house: this.props.house }, () => {
-      const _id = this.state.house._id;
-      const saved = this.props.savedHouses.has(_id);
-      if (saved) {
-        this.setState({ buttonClass: 'like-button confirmed' });
-      }
-    });
-  }
-
   render() {
-    if (!this.state.house) {
+    if (!this.props.house) {
       return <div />;
     }
 
@@ -59,9 +49,9 @@ class Thumbnail extends Component {
       size,
       price,
       year_built
-    } = this.state.house;
+    } = this.props.house;
 
-    const buttonClass = this.state.buttonClass;
+    const buttonClass = this.state.saved ? 'like confirmed' : 'like';
 
     return (
       <div className="thumbnail">
@@ -91,7 +81,7 @@ class Thumbnail extends Component {
 
 const mapStateToProps = state => ({
   username: state.username,
-  savedHouses: state.savedHouses
+  saved_houses: state.savedHouses
 });
 
 const mapDispatchToProps = dispatch => {
