@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import HouseListItem from './RecommendedHouseListItem';
+import parseHouseDocument from './parseHouseDocument';
 
 export default class RecommendedHouseList extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class RecommendedHouseList extends Component {
     axios
       .get('/houses')
       .then(res => res.data)
+      .then(houseList=>parseHouseDocument(houseList))
       .then(houses => this.setState({ houses: houses.slice(0, 5) }));
   }
 

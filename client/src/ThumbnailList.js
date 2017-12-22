@@ -5,7 +5,7 @@ import './ThumbnailList.css';
 
 class ThumbnailList extends Component {
   render() {
-    const { houseList } = this.props;
+    const houseList = this.props.houseList || [];
 
     return (
       <div className="thumbnail-list">

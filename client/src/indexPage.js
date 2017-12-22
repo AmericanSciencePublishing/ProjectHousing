@@ -7,6 +7,8 @@ import CityList from './CityList';
 import ThumbnailList from './ThumbnailList';
 import SearchBar from './SearchBar';
 
+import parseHouseDocument from './parseHouseDocument';
+
 import './indexPage.css';
 
 const initialSuggestions = [
@@ -53,19 +55,30 @@ class IndexPage extends Component {
   }
 
   handleSearch(queryString) {
-    const path = `/house-list?city=${queryString}`;
+    const path = `/house-list?address=${queryString}`;
 
     this.props.history.push(path);
   }
 
   componentDidMount() {
     axios
-      .get('/houses')
+      .get('/houses/new-construction')
       .then(res => res.data)
+      .then(houseList => parseHouseDocument(houseList))
       .then(houseList =>
         this.setState({
-          houses_new_construction: houseList.slice(0, 3),
-          houses_great_school: houseList.slice(3,5)
+          houses_new_construction: houseList
+        })
+      )
+      .catch(err => console.log(err));
+
+    axios
+      .get('/houses/great-school')
+      .then(res => res.data)
+      .then(houseList => parseHouseDocument(houseList))
+      .then(houseList =>
+        this.setState({
+          houses_great_school: houseList
         })
       )
       .catch(err => console.log(err));

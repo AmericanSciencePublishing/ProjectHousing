@@ -8,95 +8,52 @@ import './HouseListItem.css';
 import { connect } from 'react-redux';
 import { save_house, remove_house } from './actions';
 
-/*
-House Schema
-  descriptionShort: String,
-  descriptionFull: String,
-  address: { type: String, index: { unique: true } },
-  city: String,
-  county: String,
-  state: String,
-  neighborhood: String,
-  zipcode: String,
-  type: [String],
-  beds: Number,
-  baths: Number,
-  cars: Number,
-  size: Number,
-  features: [String],
-  price: Number,
-  forSale: Boolean,
-  forRent: Boolean,
-  image: String,
-  decoration: String,
-  year: Number,
-  season: String,
-  structure: String,
-  propertyFee: Number,
-  style: String,
-  propertyTax: Number,
-  facilities: [String]
-  */
-
-class CommercialListItem extends Component {
+class HouseListItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { house: null, buttonClass: 'like-button' };
+    this.state = { saved: false };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) {
+  componentDidMount() {
+    const { _id } = this.props.house;
+
+    const saved = this.props.savedHouses.has(_id);
+    this.setState({ saved });
+  }
+
+  handleClick(_id) {
     if (!this.props.username) {
+      // username exis in redux store if user is logged in
       alert('Please log in first !');
       return;
     }
 
-    const _id = this.state.house._id;
-    const saved = this.props.savedHouses.has(_id);
-
-    if (saved) {
+    if (this.state.saved) {
       this.props.remove_house(_id);
-      this.setState({ buttonClass: 'like-button' });
+      this.setState({saved: false})
     } else {
       this.props.save_house(_id);
-      this.setState({ buttonClass: 'like-button confirmed' });
+      this.setState({saved: true})
     }
-  }
-
-  componentDidMount() {
-    this.setState({ house: this.props.item });
   }
 
   render() {
-    if (!this.state.house) {
-      return <div />;
-    }
-
     const {
       _id,
-      image,
       price,
-      forRent,
-      forSale,
-      type,
       beds,
       baths,
-      cars,
       size,
       address,
-      city,
       state,
       zipcode,
-      neighborhood,
-      features,
       imageDirectory
-    } = this.state.house;
+    } = this.props.house;
 
     const path = `/details/${_id}`;
 
-    const buttonState = `like ${this.props.savedHouses.has(_id)
-      ? 'confirmed'
-      : null}`;
+    const buttonClass = this.state.saved ? 'like confirmed' : 'like';
 
     return (
       <div className="house-item">
@@ -107,32 +64,18 @@ class CommercialListItem extends Component {
         </div>
 
         <div className="info">
-          <span className="price">$ {price}</span>
-          {forRent ? <span> / Month</span> : null}
+          <span className="price">$ {price.toLocaleString()}</span>
 
-          <div>
-            {type.map(t => (
-              <span className="type" key={t}>
-                {t + ' / '}
-              </span>
-            ))}
-            <span className="type">{forSale ? 'For Sale' : 'For Rent'}</span>
-          </div>
+          <div className="type">{`${beds} beds | ${baths} baths | ${size} sqft`}</div>
 
-          <div className="type">{`${beds} beds | ${baths} baths | ${size} sqft | ${cars} cars`}</div>
-
-          <div className="address">{`${address} , ${city}, ${state} ${zipcode}`}</div>
-
-          <div className="type">{neighborhood}</div>
-          <div className="labels">
-            {features.map(label => (
-              <Label key={label} title={label} color="green" />
-            ))}
-          </div>
+          <div className="address">{`${address} `}</div>
         </div>
 
         <div>
-          <button className={buttonState} onClick={this.handleClick} />
+          <button
+            className={buttonClass}
+            onClick={() => this.handleClick(_id)}
+          />
         </div>
       </div>
     );
@@ -153,4 +96,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommercialListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(HouseListItem);

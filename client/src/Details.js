@@ -9,6 +9,8 @@ import SchoolList from './SchoolList';
 import PropertyHistory from './PropertyHistory';
 import ThumbnailList from './ThumbnailList';
 
+import parseHouseDocument from './parseHouseDocument';
+
 import { withRouter } from 'react-router-dom';
 
 import house_1 from './images/house_1.png';
@@ -18,44 +20,6 @@ import google from './images/google.png';
 import linkedin from './images/linkedin.png';
 
 import './Details.css';
-
-// House Schema
-// {
-//     house_id : String,
-//     address : String,
-//     type: String,
-//     year_built: String,
-//     beds : String,
-//     baths: String,
-//     sqft : String,
-//     lot : String,
-//     price_per_sqft : String,
-//     descriptions_short : [String],
-//     description : String,
-//     bedrooms : [String],
-//     bathrooms : [String],
-//     kitchen_dining : [String],
-//     exterior_and_lot : [String],
-//     other_rooms : [String],
-//     interior : [String],
-//     home : [String],
-//     building_construction : [String],
-//     garage_parking : [String],
-//     heating_cooling : [String],
-//     utilities : [String],
-//     appliances : [String],
-//     amenities_community_feature : [String],
-//     school_information: [String],
-//     other_info : [String],
-//     save_date : String,
-//     save_time : String,
-//     images:[{
-// 	data: Buffer,
-// 	content_type: String
-//     }],
-//     lat : String,
-//     lon : String
-// }
 
 class Details extends Component {
   constructor(props) {
@@ -72,6 +36,7 @@ class Details extends Component {
     axios
       .get(path)
       .then(res => res.data)
+      .then(house => parseHouseDocument(house))
       .then(house =>
         this.setState({
           house
@@ -79,11 +44,10 @@ class Details extends Component {
       );
 
     axios
-      .get(`/houses`)
+      .get(`/houses/recommended`)
       .then(res => res.data)
-      .then(houses =>
-        this.setState({ recommendedHouseList: houses.slice(0, 2) })
-      );
+      .then(houseList => parseHouseDocument(houseList))
+      .then(houses => this.setState({ recommendedHouseList: houses }));
   }
 
   handleSearch(queryString) {
@@ -97,24 +61,37 @@ class Details extends Component {
       return <div />;
     }
 
+    const { recommendedHouseList } = this.state;
+
+    const {
+      price,
+      beds,
+      baths,
+      size,
+      address,
+      type,
+      year_built,
+      city,
+      state,
+      description
+    } = this.state.house;
+
     const attributes = [
-      { attribute: 'Type', value: this.state.house.type },
+      { attribute: 'Type', value: type },
       {
         attribute: 'Decoration Condition',
         value: ''
       },
-      { attribute: 'Built Year', value: this.state.house.year_built },
+      { attribute: 'Built Year', value: year_built },
       { attribute: 'House Structure', value: '' },
       { attribute: 'Property Fee', value: '' },
       { attribute: 'Style', value: '' },
       { attribute: 'Property Tax', value: '' },
       {
         attribute: 'Exterior and Lot Features',
-        value: this.state.house.exterior_and_lot
+        value: ''
       }
     ];
-
-    const { recommendedHouseList } = this.state;
 
     return (
       <div className="details">
@@ -140,12 +117,10 @@ class Details extends Component {
 
         <div className="container info">
           <div>
-            <span className="price">{`Price per sqft: ${this.state.house
-              .price_per_sqft}`}</span>
-            <span>{`${this.state.house.beds} beds | ${this.state.house
-              .baths} baths | ${this.state.house.sqft} sqft`}</span>
+            <span className="price">{`$ ${price.toLocaleString()}`}</span>
+            <span>{`${beds} beds | ${baths} baths | ${size} sqft`}</span>
             <br />
-            <span className="address">{this.state.house.address}</span>
+            <span className="address">{address}</span>
             <a href="">See in Google Maps</a>
           </div>
           <div>
@@ -176,7 +151,7 @@ class Details extends Component {
             </Col>
           ))}
 
-          <div className="description">{this.state.house.descriptionFull}</div>
+          <div className="description">{description}</div>
         </div>
 
         <div className="container box">
@@ -186,10 +161,10 @@ class Details extends Component {
         <div className="container box">
           <h2>Neighborhood</h2>
           <Neighborhood
-            address={this.state.house.address}
-            neighborhood={this.state.house.neighborhood}
-            city={this.state.house.city}
-            state={this.state.house.state}
+            address={address}
+            neighborhood=''
+            city={city}
+            state={state}
           />
         </div>
 
