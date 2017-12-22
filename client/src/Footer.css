@@ -1,32 +1,89 @@
 .footer {
-  padding: 2rem;
-  margin-top: 2rem;
-
-  text-align: center;
+  padding: 2em 2em;
+  margin-top: 2em;
   background-color: rgb(51, 51, 51);
   color: white;
 }
 
-.footer h1 {
-  font-weight: bold;
-  font-size: 2rem;
-  line-height: 5rem;
+@media screen and (max-width: 500px){
+    .upper{
+        text-align:center;
+    }
+
+    .upper a{
+        padding:0 0.5em;
+        color:white;
+	font-size:10px;
+    }
+    
 }
 
-.footer p {
-  font-size: 1.5rem;
+@media screen and (min-width: 500px){
+    .upper{
+	text-align:center;
+    }
+    
+    .upper a{
+	padding:0 2em;
+	color:white;
+	font-weight:bold;
+    }
 }
 
-.footer a {
-  margin: auto 5px;
+@media screen and (max-width: 500px){
+    .lower{
+    }
+
+    .lower_copyright{
+        text-align:center;
+    }
+
+    .lower_icons{
+	text-align:center;
+    }
+    .lower_icons a{
+        padding: 0 5px;
+    }
 }
 
-.footer a:hover {
-  opacity: 0.8;
+@media screen and (min-width: 500px){
+    .lower{
+	display:flex;
+    }
+
+    .lower_copyright{
+	flex:1;
+	text-align:left;
+    }
+
+    .lower_icons{
+	flex:1;
+	text-align:right;
+    }
+
+    .lower_icons a{
+	padding-right:1em;
+    }
 }
 
-.footer #social-network-links {
-//  display: flex;
-//  flex-flow: row nowrap;
-//  justify-content: flex-end;
+.fa-facebook-square:hover {
+    color: #3b5998;
 }
+
+.fa-twitter:hover {
+    color: #1dcaff;
+}
+
+.fa-weixin:hover {
+    color: #09b83e;
+}
+
+.lower p{
+    font-size: 1em;
+}
+
+.lower a {
+    color:white;
+}
+
+
