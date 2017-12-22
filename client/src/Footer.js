@@ -19,9 +19,9 @@ const Footer = () => {
 	    <p>Copyright &copy;2017 All Rights Reserved</p>
 	  </div>
 	  <div className="lower_icons">
-	    <a href="http://www.facebook.com" target='_blank'> <i className="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
-	    <a href="http://www.twitter.com" target='_blank'> <i className="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-	    <a href="http://http://www.wechat.com/en/" target='_blank'> <i className="fa fa-weixin fa-2x " aria-hidden="true"></i></a>
+	    <a href="http://www.facebook.com" target='_blank' rel="noopener noreferrer"> <i className="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+	    <a href="http://www.twitter.com" target='_blank' rel="noopener noreferrer"> <i className="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+	    <a href="http://http://www.wechat.com/en/" target='_blank' rel="noopener noreferrer"> <i className="fa fa-weixin fa-2x " aria-hidden="true"></i></a>
 	    </div>
 	</div>
       </div>
