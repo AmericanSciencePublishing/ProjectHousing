@@ -5,6 +5,7 @@ import MyProfileDetail from './MyProfileDetail';
 import { Nav, NavItem  } from 'react-bootstrap';
 import {Route, Switch} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
+import Footer from './Footer';
 var axios = require("axios");
 
 class MyProfile extends React.Component{
@@ -34,7 +35,8 @@ class MyProfile extends React.Component{
     
 
     render(){
-	    return(
+	return(
+	    <div>
 		<div className="profileTabs container">
 		  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">    
 		    <Nav bsStyle="tabs" >
@@ -55,8 +57,10 @@ class MyProfile extends React.Component{
                 <Route exact path="/user/:username/save" component={NoMatch}/>
                 <Route exact path="/user/:username/setting" component={NoMatch}/>
                 <Route component={NoMatch}/>
-                </Switch>
-	    </div>
+                    </Switch>
+		</div>
+		<Footer />
+		</div>
 
 	);
     }

@@ -1,6 +1,11 @@
-.house-list .list-header {
-  margin: 2rem auto;
+.house_list_all{
+    height:calc(100vh - 50px);
+    width:100vw;
+//    background-color:green;
+}
 
+.house-list .list-header {
+//  margin: 2rem auto;
   display: flex;
   justify-content: space-between;
 }
@@ -15,4 +20,45 @@
 
 .house-list .list-header span:last-of-type > div {
   float: right;
+}
+
+@media screen and (min-width: 768px){
+    .map_and_list{
+//	display:flex;
+	height:calc(100vh - 140px);
+//	flex-grow:1;
+//	overflow: hidden;
+//	background-color:red;
+    }
+
+    .map_on_the_left{
+	width: 50vw;
+	float: left;
+	height:calc(100vh - 140px);
+//	background-color:blue;
+    }
+
+    .list_on_the_right{
+	float: right;
+	width: 50vw;
+//	background-color:red;
+	height:calc(100vh - 140px);
+	overflow: auto;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .map_and_list{
+	display:flex;
+    }
+    
+    .map_on_the_left{
+	flex:0;
+	width:50%;
+    }
+    
+    .list_on_the_right{
+	flex:1;
+//	width:50%;
+    }
 }

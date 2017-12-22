@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Carousel, Button, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
-
+import Footer from './Footer';
 import SearchBarWithBreadcrumbs from './SearchBarWithBreadcrumbs';
 import City from './City';
 import Neighborhood from './Neighborhood';
@@ -206,7 +206,8 @@ class Details extends Component {
         <div className="container box">
           <h2>Recommended</h2>
           <ThumbnailList houseList={recommendedHouseList} />
-        </div>
+            </div>
+	    <Footer />
       </div>
     );
   }

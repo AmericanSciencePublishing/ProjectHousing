@@ -1,5 +1,7 @@
 import React from 'react';
 import {Well, ButtonGroup, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
+import Footer from './Footer';
+import './findpwd.css';
 //import history from './history';
 var axios = require("axios");
 
@@ -53,7 +55,8 @@ class Forgotpwd extends React.Component{
     render (){
 	let isLoading = this.state.isLoading;
         return(
-	    <div className="container">
+	    <div >
+	    <div className="container forget_input_email_page">
 		<Col xsOffset={3} xs={6}>
 		<Well>
 		<h4> Please enter the Email you used to sign up </h4>
@@ -90,9 +93,10 @@ class Forgotpwd extends React.Component{
 		<p align="center" style={{color: this.state.Msg === "" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.Msg}</p>
 		</FormGroup>
 	      </Form>
-	      </Col>
+		</Col>
 	    </div>
-
+		<Footer />
+		</div>
 	);
     }
     

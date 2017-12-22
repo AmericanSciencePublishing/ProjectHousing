@@ -1,12 +1,13 @@
 import React from 'react';
 import './Info.css';
+import Footer from './Footer';
 import {Col,Row, Image} from 'react-bootstrap';
 import infoImg from "./images/moreinfo.png";
 
 class Info extends React.Component{
     render(){
 	return(
-		<div className="container">
+		<div >
 		
 	    {/*	    	<div id="infoBanner" className="container col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 		<h1>More Info</h1>
@@ -79,7 +80,7 @@ ngeles or second-hand house</a></li>
 		</Col>
 		</Row>
 		</div>
-		 
+		<Footer />
 	    </div>
 
 	    

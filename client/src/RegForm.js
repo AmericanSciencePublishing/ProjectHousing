@@ -257,42 +257,35 @@ class RegForm extends React.Component {
 
           {/*checkbox for landlord */}
 
-          <FormGroup>
-            <Checkbox> I am a landlord or industry professional</Checkbox>
-          </FormGroup>
 
-          {/*submit button*/}
-          <FormGroup>
-            <ButtonToolbar justified="true">
-              <ButtonGroup>
-                <Button
-                  block
-                  active
-                  id="regSubButton"
-                  bsSize="large"
-                  bsStyle="info"
-                  type="submit"
-                  disabled={this.state.isLoading}
-                >
-                  Submit
-                </Button>
-              </ButtonGroup>
-              <p
-                align="center"
-                style={{
-                  color:
-                    this.state.submitMSG === 'Sign up successfully!'
-                      ? '#4caf50'
-                      : '#f44336'
-                }}
-                id="submitTip"
-              >
-                {this.state.submitMSG}
-              </p>
-            </ButtonToolbar>
-          </FormGroup>
-        </Form>
-      </div>
+		<FormGroup>
+		<Checkbox> I am a landlord or industry professional</Checkbox>
+		</FormGroup>
+		
+		{/*submit button*/}
+		<FormGroup>
+		<ButtonToolbar justified='true'>
+		<ButtonGroup >
+		<Button
+		  block
+		  active
+		  id="regSubButton"
+		  bsSize="large"
+		  bsStyle="info"
+           	  type="submit"
+		  disabled={this.state.isLoading}
+		  >
+		  Submit
+		</Button>
+		</ButtonGroup>
+		<div className="inline_tips"><p>I accept </p><Button bsClass="termofuse_tip" href="/terms" target='_blank' bsStyle="link">Terms of Use</Button></div>
+		</ButtonToolbar>
+		</FormGroup>
+		<p align="center" style={{color: this.state.submitMSG === "Sign up successfully!" ? '#4caf50': "#f44336"}} id="submitTip">{this.state.submitMSG}</p>
+		</Form>
+		</div>
+
+
     );
   }
 }
