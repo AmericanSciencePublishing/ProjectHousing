@@ -55,7 +55,7 @@ class IndexPage extends Component {
   }
 
   handleSearch(queryString) {
-    const path = `/house-list?city=${queryString}`;
+    const path = `/house-list?address=${queryString}`;
 
     this.props.history.push(path);
   }

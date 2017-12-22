@@ -9,27 +9,47 @@ import Pagination from './Pagination';
 import MapContainer from './MapContainer';
 import ThumbnailList from './ThumbnailList';
 
+import parseHouseDocument from './parseHouseDocument';
+
 import './HouseList.css';
 
 class HouseList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { houseList: [] };
     this.handleSearch = this.handleSearch.bind(this);
+    this.updateHouseList = this.updateHouseList.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const search = new URLSearchParams(nextProps.location.search);
+    const address = search.get('address');
+
+    this.updateHouseList(address);
+  }
+
+  componentDidMount() {
+    const search = new URLSearchParams(this.props.location.search);
+    const address = search.get('address');
+
+    this.updateHouseList(address);
   }
 
   handleSearch(queryString) {
-    // const city = queryString;
-    //
-    // this.props.history.push(`/house-list?city=${city}`);
-    // this.fetchHouseList(city);
+    this.props.history.push(`/house-list?address=${queryString}`);
+  }
+
+  updateHouseList(address) {
+    axios
+      .get(`/search?address=${address}`)
+      .then(res => res.data)
+      .then(houseList => parseHouseDocument(houseList))
+      .then(houseList => this.setState({ houseList }));
   }
 
   render() {
     const labels = this.props.labels || [];
-    const houseList = this.props.houseList || [];
-
-    console.log(houseList.length);
+    const houseList = this.state.houseList || [];
 
     return (
       <div className="house_list_all">
