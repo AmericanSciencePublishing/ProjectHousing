@@ -155,7 +155,7 @@ class Details extends Component {
         </div>
 
         <div className="container box">
-          <City cityName="San Francisco" />
+          <City cityName={city} />
         </div>
 
         <div className="container box">
