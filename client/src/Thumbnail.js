@@ -14,6 +14,14 @@ class Thumbnail extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    // check if user liked this house
+    const { _id } = this.props.house;
+    const { saved_houses } = this.props;
+
+    this.setState({ saved: saved_houses.has(_id) });
+  }
+
   handleClick(e) {
     if (!this.props.username) {
       alert('Please log in!');
@@ -51,7 +59,9 @@ class Thumbnail extends Component {
       year_built
     } = this.props.house;
 
-    const buttonClass = this.state.saved ? 'like confirmed' : 'like';
+    const buttonClass = this.state.saved
+      ? 'like-button confirmed'
+      : 'like-button';
 
     return (
       <div className="thumbnail">
