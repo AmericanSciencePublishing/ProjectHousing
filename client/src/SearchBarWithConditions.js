@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
 
@@ -44,7 +44,7 @@ const types = [
   'Apartment',
   'Condo/Co-ops',
   'Townhouse',
-  'Conmercial',
+  'Commercial',
   'Lots/Land',
   'Off-Market',
   'Chateau/Castle',
@@ -112,6 +112,7 @@ const ages = [
 class SearchConditions extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
     this.searchWithAttribute = this.searchWithAttribute.bind(this);
   }
 
@@ -119,7 +120,14 @@ class SearchConditions extends Component {
     return (eventKey, event) => {
       const value = eventKey;
 
-      this.props.history.push(`/house-list?${attribute}=${value}`);
+      this.setState({ [attribute]: value }, () => {
+        const nextLocation =
+          '/house-list?' +
+          Object.keys(this.state)
+            .map(key => `${key}=${this.state[key]}`)
+            .join('&');
+        this.props.history.push(nextLocation);
+      });
     };
   }
 
@@ -143,13 +151,14 @@ class SearchConditions extends Component {
           ))}
         </DropdownButton>
 
-        <DropdownButton
-          title="Area"
-          id="Area"
-          className="search-item"
-        />
+        <DropdownButton title="Area" id="Area" className="search-item" />
 
-        <DropdownButton title="Type" id="Type" className="search-item">
+        <DropdownButton
+          title="Type"
+          id="Type"
+          className="search-item"
+          onSelect={this.searchWithAttribute('type')}
+        >
           {types.map(type => (
             <MenuItem eventKey={type} key={type}>
               {type}
