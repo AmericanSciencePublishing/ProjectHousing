@@ -11,39 +11,6 @@ import parseHouseDocument from './parseHouseDocument';
 
 import './indexPage.css';
 
-const initialSuggestions = [
-  'Arlington',
-  'Atlanta',
-  'Austin',
-  'Boston',
-  'Chicago',
-  'Columbus',
-  'Dallas',
-  'Denver',
-  'Fort Worth',
-  'Houston',
-  'Indianapolis',
-  'Jacksonville',
-  'Las Vegas',
-  'Long Beach',
-  'Los Angeles',
-  'Memphis',
-  'Miami',
-  'Milwaukee',
-  'Minneapolis',
-  'New Your',
-  'Oakland',
-  'Philadelphia',
-  'Phoenix',
-  'Portland',
-  'San Antonio',
-  'San Diego',
-  'San Francisco',
-  'San Jose',
-  'Virginia Beach',
-  'Washington'
-];
-
 class IndexPage extends Component {
   constructor(props) {
     super(props);
@@ -51,16 +18,10 @@ class IndexPage extends Component {
       houses_great_school: [],
       houses_new_construction: []
     };
-    this.handleSearch = this.handleSearch.bind(this);
-  }
-
-  handleSearch(queryString) {
-    const path = `/house-list?address=${queryString}`;
-
-    this.props.history.push(path);
   }
 
   componentDidMount() {
+    // load houses for two categories
     axios
       .get('/houses/new-construction')
       .then(res => res.data)
@@ -92,10 +53,7 @@ class IndexPage extends Component {
         <div id="search-area">
           <h1>What are you looking for?</h1>
           <div id="bar">
-            <SearchBar
-              handleSearch={this.handleSearch}
-              suggestions={initialSuggestions}
-            />
+            <SearchBar />
           </div>
         </div>
 
@@ -119,8 +77,8 @@ class IndexPage extends Component {
           <ThumbnailList houseList={houses_great_school} />
 
           <button className="custom-button">See More Listing</button>
-            </div>
-	    <Footer />
+        </div>
+        <Footer />
       </div>
     );
   }

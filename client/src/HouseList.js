@@ -17,7 +17,6 @@ class HouseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { houseList: [] };
-    this.handleSearch = this.handleSearch.bind(this);
     this.updateHouseList = this.updateHouseList.bind(this);
   }
 
@@ -35,10 +34,6 @@ class HouseList extends React.Component {
     this.updateHouseList(address);
   }
 
-  handleSearch(queryString) {
-    this.props.history.push(`/house-list?address=${queryString}`);
-  }
-
   updateHouseList(address) {
     axios
       .get(`/search?address=${address}`)
@@ -53,7 +48,7 @@ class HouseList extends React.Component {
 
     return (
       <div className="house_list_all">
-        <SearchBarWithConditions handleSearch={this.handleSearch} />
+        <SearchBarWithConditions />
         <div className="list-header">
           <span style={{ margin: 'auto 0' }}>
             {labels.map(label => (
