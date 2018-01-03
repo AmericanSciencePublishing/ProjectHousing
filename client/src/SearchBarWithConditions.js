@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
+import {withRouter} from 'react-router-dom';
 
 import SearchBar from './SearchBar';
 
@@ -117,7 +118,8 @@ class SearchConditions extends Component {
   searchWithAttribute(attribute) {
     return (eventKey, event) => {
       const value = eventKey;
-      this.props.handleSearch(value);
+
+      this.props.history.push(`/house-list?${attribute}=${value}`);
     };
   }
 
@@ -125,10 +127,7 @@ class SearchConditions extends Component {
     return (
       <div className="search-conditions">
         <div id="search-bar">
-          <SearchBar
-            handleSearch={this.props.handleSearch}
-            suggestions={cities}
-          />
+          <SearchBar />
         </div>
 
         <DropdownButton
@@ -148,7 +147,6 @@ class SearchConditions extends Component {
           title="Area"
           id="Area"
           className="search-item"
-          disabled
         />
 
         <DropdownButton title="Type" id="Type" className="search-item">
@@ -215,4 +213,4 @@ class SearchConditions extends Component {
   }
 }
 
-export default SearchConditions;
+export default withRouter(SearchConditions);

@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.auto-suggest {
+  position: relative;
+}
+
+.auto-suggest input {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 33px;
+
+  height: 33px;
+  width: 100%;
+
+  padding-left: 10px;
+}
+
+.auto-suggest .suggestions {
+  background-color: white;
+
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.auto-suggest .suggestions .option {
+  font-size: 16px;
+  text-align: left;
+
+  padding: 5px;
+  padding-left: 10px;
+
+  cursor: pointer;
+}
+
+.auto-suggest .suggestions .option.focused {
+  background-color: #f1f1f1;
+}

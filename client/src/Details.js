@@ -28,7 +28,6 @@ class Details extends Component {
       house: null,
       recommendedHouseList: []
     };
-    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -48,12 +47,6 @@ class Details extends Component {
       .then(res => res.data)
       .then(houseList => parseHouseDocument(houseList))
       .then(houses => this.setState({ recommendedHouseList: houses }));
-  }
-
-  handleSearch(queryString) {
-    const city = queryString;
-
-    this.props.history.push(`/house-list?city=${city}`);
   }
 
   render() {
@@ -95,7 +88,7 @@ class Details extends Component {
 
     return (
       <div className="details">
-        <SearchBarWithBreadcrumbs handleSearch={this.handleSearch} />
+        <SearchBarWithBreadcrumbs />
 
         <div className="container" style={{ marginTop: '2rem' }}>
           <Row>
@@ -155,14 +148,14 @@ class Details extends Component {
         </div>
 
         <div className="container box">
-          <City cityName="San Francisco" />
+          <City cityName={city} />
         </div>
 
         <div className="container box">
           <h2>Neighborhood</h2>
           <Neighborhood
             address={address}
-            neighborhood=''
+            neighborhood=""
             city={city}
             state={state}
           />
@@ -181,8 +174,8 @@ class Details extends Component {
         <div className="container box">
           <h2>Recommended</h2>
           <ThumbnailList houseList={recommendedHouseList} />
-            </div>
-	    <Footer />
+        </div>
+        <Footer />
       </div>
     );
   }
