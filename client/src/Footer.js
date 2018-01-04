@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import Mailto from './Mailto';
 
 const Footer = () => {
 
@@ -7,7 +8,8 @@ const Footer = () => {
       <div className="footer">
 	<div className="upper">
 	  <a href="/about" target='_blank'>ABOUT US </a>
-	  <a href="/contact" target='_blank'>CONTACT US </a>
+	  <Mailto email="szhao31@hawk.iit.edu" obfuscate={true}>CONTACT US
+	  </Mailto>
 	  <a href="/contact" target='_blank'>SUPPORT</a>
 	  <a href="/terms" target='_blank'>TERMS</a>
 	  <a href="/terms" target='_blank'>PRIVACY</a>
@@ -16,7 +18,7 @@ const Footer = () => {
 	<hr />
 	<div className="lower">
 	  <div className="lower_copyright">
-	    <p>Copyright &copy;2017 All Rights Reserved</p>
+	    <p>Copyright &copy;2017-2018 All Rights Reserved</p>
 	  </div>
 	  <div className="lower_icons">
 	    <a href="http://www.facebook.com" target='_blank' rel="noopener noreferrer"> <i className="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
