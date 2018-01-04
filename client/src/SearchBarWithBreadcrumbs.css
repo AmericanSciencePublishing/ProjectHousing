@@ -7,6 +7,10 @@
   background-color: #163059;
 }
 
+.search-bar-with-breadcrumbs #search-bar{
+  width: 30rem;
+}
+
 .search-bar-with-breadcrumbs ul.custom-breadcrumb {
   list-style: none;
   color: white;

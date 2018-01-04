@@ -8,7 +8,9 @@ export default class SearchBarWithBreadcrumbs extends Component {
   render() {
     return (
       <div className="search-bar-with-breadcrumbs">
-        <SearchBar />
+        <div id="search-bar">
+          <SearchBar />
+        </div>
 
         <ul className="custom-breadcrumb">
           <li>California</li>

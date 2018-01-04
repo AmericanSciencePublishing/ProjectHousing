@@ -3,10 +3,10 @@
   padding: 5px 15px;
 
   margin-right: 1rem;
+  white-space: nowrap;
 }
 
 .custom-label p {
-  white-space: nowrap;
 }
 
 .custom-label span {

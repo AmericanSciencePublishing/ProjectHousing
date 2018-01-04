@@ -3,6 +3,7 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
+import Label from './Label';
 
 import './SearchBarWithConditions.css';
 
@@ -65,9 +66,13 @@ const prices = [
   '$10M+'
 ];
 
-const beds = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'];
+const beds = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'].map(
+  bed => bed + ' beds'
+);
 
-const baths = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'];
+const baths = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'].map(
+  bath => bath + ' baths'
+);
 
 const house_sizes = [
   '600+ sq ft',
@@ -90,7 +95,6 @@ const house_sizes = [
 ];
 
 const lot_sizes = [
-  'Lot Size',
   'Under 1/2 acre',
   '1/2+ acre',
   '1+ acre',
@@ -114,6 +118,20 @@ class SearchConditions extends Component {
     super(props);
     this.state = {};
     this.searchWithAttribute = this.searchWithAttribute.bind(this);
+    this.clickLabel = this.clickLabel.bind(this);
+    this.updateStateFromURL = this.updateStateFromURL.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateStateFromURL();
+  }
+
+  updateStateFromURL() {
+    const searchParams = new URLSearchParams(this.props.location.search);
+
+    for (let k of searchParams.keys()) {
+      this.setState({ [k]: searchParams.get(k) });
+    }
   }
 
   searchWithAttribute(attribute) {
@@ -131,92 +149,172 @@ class SearchConditions extends Component {
     };
   }
 
+  clickLabel(attribute) {
+    // change url when user clicks a label
+    return () => {
+      const { location } = this.props;
+
+      const searchParams = new URLSearchParams(location.search);
+
+      searchParams.delete(attribute);
+
+      const nextSearch = searchParams.toString();
+
+      const nextLocation = { ...location, ...{ search: nextSearch } };
+
+      this.props.history.push(nextLocation);
+
+      delete this.state[attribute];
+    };
+  }
+
   render() {
+    const searchParams = new URLSearchParams(this.props.location.search);
+    let labels = [];
+
+    for (let k of searchParams.keys()) {
+      labels.push({ key: k, value: searchParams.get(k) });
+    }
+
     return (
-      <div className="search-conditions">
-        <div id="search-bar">
-          <SearchBar />
+      <div>
+        <div className="search-conditions">
+          <div id="search-bar">
+            <SearchBar />
+          </div>
+
+          <DropdownButton
+            title="City"
+            id="City"
+            className="search-item"
+            onSelect={this.searchWithAttribute('address')}
+          >
+            {cities.map(city => (
+              <MenuItem eventKey={city} key={city}>
+                {city}
+              </MenuItem>
+            ))}
+          </DropdownButton>
+
+          <DropdownButton
+            title="Type"
+            id="Type"
+            className="search-item"
+            onSelect={this.searchWithAttribute('type')}
+          >
+            {types.map(type => (
+              <MenuItem eventKey={type} key={type}>
+                {type}
+              </MenuItem>
+            ))}
+          </DropdownButton>
+
+          <DropdownButton
+            title="Price"
+            id="Price"
+            className="search-item"
+            onSelect={this.searchWithAttribute('price')}
+          >
+            {prices.map(price => (
+              <MenuItem eventKey={price} key={price}>
+                {price}
+              </MenuItem>
+            ))}
+          </DropdownButton>
+
+          <DropdownButton
+            title="Beds"
+            id="Beds"
+            className="search-item"
+            onSelect={this.searchWithAttribute('beds')}
+          >
+            {beds.map(bed => (
+              <MenuItem eventKey={bed} key={bed}>
+                {bed}
+              </MenuItem>
+            ))}
+          </DropdownButton>
+
+          <DropdownButton
+            title="Baths"
+            id="Baths"
+            className="search-item"
+            onSelect={this.searchWithAttribute('baths')}
+          >
+            {baths.map(bath => (
+              <MenuItem eventKey={bath} key={bath}>
+                {bath}
+              </MenuItem>
+            ))}
+          </DropdownButton>
+
+          <DropdownButton
+            title="House Size"
+            id="House_Size"
+            className="search-item"
+            onSelect={this.searchWithAttribute('houseSize')}
+          >
+            {house_sizes.map(size => (
+              <MenuItem eventKey={size} key={size}>
+                {size}
+              </MenuItem>
+            ))}
+          </DropdownButton>
+
+          <DropdownButton
+            title="Lot Size"
+            id="Lot_Size"
+            className="search-item"
+            onSelect={this.searchWithAttribute('lotSize')}
+          >
+            {lot_sizes.map(size => (
+              <MenuItem eventKey={size} key={size}>
+                {size}
+              </MenuItem>
+            ))}
+          </DropdownButton>
+
+          <DropdownButton
+            title="Age"
+            id="Age"
+            className="search-item"
+            onSelect={this.searchWithAttribute('age')}
+          >
+            {ages.map(age => (
+              <MenuItem eventKey={age} key={age}>
+                {age}
+              </MenuItem>
+            ))}
+          </DropdownButton>
         </div>
 
-        <DropdownButton
-          title="City"
-          id="City"
-          className="search-item"
-          onSelect={this.searchWithAttribute('city')}
-        >
-          {cities.map(city => (
-            <MenuItem eventKey={city} key={city}>
-              {city}
-            </MenuItem>
-          ))}
-        </DropdownButton>
+        <div className="list-header">
+          <div style={{ float: 'left' }}>
+            {labels.map(label => (
+              <Label
+                key={label.key}
+                attribute={label.key}
+                title={label.value}
+                withHandle
+                onClick={this.clickLabel(label.key)}
+              />
+            ))}
+          </div>
 
-        <DropdownButton title="Area" id="Area" className="search-item" />
-
-        <DropdownButton
-          title="Type"
-          id="Type"
-          className="search-item"
-          onSelect={this.searchWithAttribute('type')}
-        >
-          {types.map(type => (
-            <MenuItem eventKey={type} key={type}>
-              {type}
-            </MenuItem>
-          ))}
-        </DropdownButton>
-
-        <DropdownButton title="Price" id="Price" className="search-item">
-          {prices.map(price => (
-            <MenuItem eventKey={price} key={price}>
-              {price}
-            </MenuItem>
-          ))}
-        </DropdownButton>
-
-        <DropdownButton title="Beds" id="Beds" className="search-item">
-          {beds.map(bed => (
-            <MenuItem eventKey={bed} key={bed}>
-              {bed}
-            </MenuItem>
-          ))}
-        </DropdownButton>
-
-        <DropdownButton title="Baths" id="Baths" className="search-item">
-          {baths.map(bath => (
-            <MenuItem eventKey={bath} key={bath}>
-              {bath}
-            </MenuItem>
-          ))}
-        </DropdownButton>
-
-        <DropdownButton
-          title="House Size"
-          id="House_Size"
-          className="search-item"
-        >
-          {house_sizes.map(size => (
-            <MenuItem eventKey={size} key={size}>
-              {size}
-            </MenuItem>
-          ))}
-        </DropdownButton>
-
-        <DropdownButton title="Lot Size" id="Lot_Size" className="search-item">
-          {lot_sizes.map(size => (
-            <MenuItem eventKey={size} key={size}>
-              {size}
-            </MenuItem>
-          ))}
-        </DropdownButton>
-
-        <DropdownButton title="Age" id="Age" className="search-item">
-          {ages.map(age => (
-            <MenuItem eventKey={age} key={age}>
-              {age}
-            </MenuItem>
-          ))}
-        </DropdownButton>
+          <div style={{ float: 'right' }}>
+            <div>
+              Sort By &nbsp;
+              <DropdownButton title="Relevant" id="sort_by_button">
+                <MenuItem eventKey="Relevant">Relevant</MenuItem>
+                <MenuItem eventKey="Newest">Newest</MenuItem>
+                <MenuItem eventKey="Lowest_Price">Lowest Price</MenuItem>
+                <MenuItem eventKey="Highest_Price">Highest Price</MenuItem>
+                <MenuItem eventKey="Largest">Largest</MenuItem>
+                <MenuItem eventKey="Price_Reduced">Price Reduced</MenuItem>
+              </DropdownButton>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
