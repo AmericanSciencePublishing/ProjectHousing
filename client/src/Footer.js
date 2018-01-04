@@ -10,7 +10,8 @@ const Footer = () => {
 	  <a href="/about" target='_blank'>ABOUT US </a>
 	  <Mailto email="szhao31@hawk.iit.edu" obfuscate={true}>CONTACT US
 	  </Mailto>
-	  <a href="/contact" target='_blank'>SUPPORT</a>
+	  <Mailto email="szhao31@hawk.iit.edu" obfuscate={true}>SUPPORT
+          </Mailto>
 	  <a href="/terms" target='_blank'>TERMS</a>
 	  <a href="/terms" target='_blank'>PRIVACY</a>
 	  
