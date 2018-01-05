@@ -3,24 +3,6 @@
     width:100vw;
 }
 
-.house_list_all .list-header {
-  padding: .5rem 5rem .5rem 5rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.house_list_all .list-header span:first-of-type {
-  flex: 2;
-}
-
-.house_list_all .list-header span:last-of-type {
-  flex: 1;
-}
-
-.house_list_all .list-header span:last-of-type > div {
-  float: right;
-}
-
 .house_list_all .list_on_the_right{
   padding-left: 1rem;
 }

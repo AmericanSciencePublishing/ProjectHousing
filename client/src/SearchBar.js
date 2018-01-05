@@ -45,6 +45,7 @@ class Search extends Component {
 
     const handleSearch = query => {
       this.props.history.push(`/house-list?address=${query}`);
+      window.location.reload();
     };
 
     const handleClick = e => {
