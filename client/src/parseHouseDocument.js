@@ -33,7 +33,10 @@ const parseSingleHouseDocument = houseDocument => {
 };
 
 const parseHouseDocument = houseList => {
-  if (Array.isArray(houseList)) {
+  if(!houseList){
+    return [];
+  }
+  else if (Array.isArray(houseList)) {
     // return array if input is array
     return houseList.map(parseSingleHouseDocument);
   } else {

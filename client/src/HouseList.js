@@ -18,23 +18,19 @@ class HouseList extends React.Component {
     this.updateHouseList = this.updateHouseList.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const search = new URLSearchParams(nextProps.location.search);
-    const address = search.get('address');
-
-    this.updateHouseList(address);
-  }
-
   componentDidMount() {
-    const search = new URLSearchParams(this.props.location.search);
-    const address = search.get('address');
-
-    this.updateHouseList(address);
+    const { search } = this.props.location;
+    this.updateHouseList(search);
   }
 
-  updateHouseList(address) {
+  componentWillReceiveProps(nextProps) {
+    const { search } = nextProps.location;
+    this.updateHouseList(search);
+  }
+
+  updateHouseList(queryString) {
     axios
-      .get(`/search?address=${address}`)
+      .get(`/search${queryString}`)
       .then(res => res.data)
       .then(houseList => parseHouseDocument(houseList))
       .then(houseList => this.setState({ houseList }));

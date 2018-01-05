@@ -54,64 +54,32 @@ const types = [
   'Recommended'
 ];
 
-const prices = [
-  '$0 - 500k',
-  '$500k - 1M',
-  '$1M - 2M',
-  '$2M - 3M',
-  '$3M - 4M',
-  '$4M - 5M',
-  '$5M - 8M',
-  '$8M - 10M',
-  '$10M+'
-];
-
-const beds = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'].map(
-  bed => bed + ' beds'
-);
-
-const baths = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'].map(
-  bath => bath + ' baths'
-);
+const prices = [2, 3, 4, 5, 6, 7, 8, 9, 10].map(price => price * 50000);
+const beds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const baths = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const house_sizes = [
-  '600+ sq ft',
-  '800+ sq ft',
-  '1,000+ sq ft',
-  '1,200+ sq ft',
-  '1,400+ sq ft',
-  '1,600+ sq ft',
-  '1,800+ sq ft',
-  '2,000+ sq ft',
-  '2,250+ sq ft',
-  '2,500+ sq ft',
-  '2,750+ sq ft',
-  '3,000+ sq ft',
-  '3,500+ sq ft',
-  '4,000+ sq ft',
-  '5,000+ sq ft',
-  '6,000+ sq ft',
-  '7,000+ sq ft'
+  600,
+  800,
+  1000,
+  1200,
+  1400,
+  1600,
+  1800,
+  2000,
+  2250,
+  2500,
+  2750,
+  3000,
+  3500,
+  4000,
+  5000,
+  6000,
+  7000
 ];
 
-const lot_sizes = [
-  'Under 1/2 acre',
-  '1/2+ acre',
-  '1+ acre',
-  '2+ acres',
-  '5+ acres',
-  '10+ acres',
-  '20+ acres'
-];
-
-const ages = [
-  '0-5 Years',
-  '0-10 Years',
-  '0-15 Years',
-  '0-20 Years',
-  '0-50 Years',
-  '51+ Years'
-];
+const lot_sizes = [0.5, 1, 2, 5, 10, 20];
+const ages = [5,10,15,20,50];
 
 class SearchConditions extends Component {
   constructor(props) {
@@ -173,7 +141,31 @@ class SearchConditions extends Component {
     let labels = [];
 
     for (let k of searchParams.keys()) {
-      labels.push({ key: k, value: searchParams.get(k) });
+      // text displays in label
+
+      switch (k) {
+        case 'price':
+          labels.push({ key: k, value: 'Price $' + searchParams.get(k) });
+          break;
+        case 'beds':
+          labels.push({ key: k, value: searchParams.get(k) + ' beds' });
+          break;
+        case 'baths':
+          labels.push({ key: k, value: searchParams.get(k) + ' baths' });
+          break;
+        case 'houseSize':
+          labels.push({ key: k, value: 'House size > ' + searchParams.get(k) });
+          break;
+        case 'lotSize':
+          labels.push({ key: k, value: 'Lot size > ' + searchParams.get(k) });
+          break;
+        case 'age':
+          labels.push({ key: k, value: 'Built age < ' + searchParams.get(k) });
+          break;
+        default:
+          labels.push({ key: k, value: searchParams.get(k) });
+      }
+      // labels.push({ key: k, value: searchParams.get(k) });
     }
 
     return (
@@ -217,7 +209,7 @@ class SearchConditions extends Component {
           >
             {prices.map(price => (
               <MenuItem eventKey={price} key={price}>
-                {price}
+                $ {price.toLocaleString()}
               </MenuItem>
             ))}
           </DropdownButton>
@@ -230,7 +222,7 @@ class SearchConditions extends Component {
           >
             {beds.map(bed => (
               <MenuItem eventKey={bed} key={bed}>
-                {bed}
+                {bed} +
               </MenuItem>
             ))}
           </DropdownButton>
@@ -243,7 +235,7 @@ class SearchConditions extends Component {
           >
             {baths.map(bath => (
               <MenuItem eventKey={bath} key={bath}>
-                {bath}
+                {bath} +
               </MenuItem>
             ))}
           </DropdownButton>
@@ -256,7 +248,7 @@ class SearchConditions extends Component {
           >
             {house_sizes.map(size => (
               <MenuItem eventKey={size} key={size}>
-                {size}
+                {size}+ sq ft
               </MenuItem>
             ))}
           </DropdownButton>
@@ -269,7 +261,7 @@ class SearchConditions extends Component {
           >
             {lot_sizes.map(size => (
               <MenuItem eventKey={size} key={size}>
-                {size}
+                {size}+ acres
               </MenuItem>
             ))}
           </DropdownButton>
@@ -282,7 +274,7 @@ class SearchConditions extends Component {
           >
             {ages.map(age => (
               <MenuItem eventKey={age} key={age}>
-                {age}
+                {age}+ years
               </MenuItem>
             ))}
           </DropdownButton>
