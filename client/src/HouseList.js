@@ -110,7 +110,9 @@ class HouseList extends React.Component {
             </div>
 
             <button onClick={this.loadMoreHouse}>Show More</button>
+
             <Footer />
+	    </div>
           </div>
         </div>
       </div>
