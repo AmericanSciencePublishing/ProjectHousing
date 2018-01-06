@@ -15,8 +15,15 @@ const parseSingleHouseDocument = houseDocument => {
   const city = address.split(',')[1].trim();
   const state = address.split(',')[2].slice(1,3);
   //split the address
-  const fixedPrice=(price_per_sqft/100).toFixed(2);
+  const fixedPrice=(price_per_sqft/100).toFixed(2) * sqft;
   //in database, we save $100.01 as 10001
+  const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0,
+  // the default value for minimumFractionDigits depends on the currency
+  // and is usually already 2
+  });
 
   return {
     _id,
@@ -28,7 +35,7 @@ const parseSingleHouseDocument = houseDocument => {
     baths,
     imageDirectory,
     size: sqft,
-    price:fixedPrice * sqft,
+    price:formatter.format(fixedPrice),
     year_built,
     type,
     description
