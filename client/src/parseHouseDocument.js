@@ -11,9 +11,12 @@ const parseSingleHouseDocument = houseDocument => {
     type,
     description
   } = houseDocument;
-
+    
   const city = address.split(',')[1].trim();
   const state = address.split(',')[2].slice(1,3);
+  //split the address
+  const fixedPrice=(price_per_sqft/100).toFixed(2);
+  //in database, we save $100.01 as 10001
 
   return {
     _id,
@@ -25,7 +28,7 @@ const parseSingleHouseDocument = houseDocument => {
     baths,
     imageDirectory,
     size: sqft,
-    price: price_per_sqft * sqft,
+    price:fixedPrice * sqft,
     year_built,
     type,
     description
