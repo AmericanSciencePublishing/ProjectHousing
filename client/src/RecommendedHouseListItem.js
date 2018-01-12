@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Label from './Label';
-
 import './RecommendedHouseListItem.css';
 
 export default class RecommendedHouseListItem extends Component {
@@ -10,9 +8,6 @@ export default class RecommendedHouseListItem extends Component {
     const {
       _id,
       address,
-      city,
-      state,
-      zipcode,
       beds,
       baths,
       imageDirectory,

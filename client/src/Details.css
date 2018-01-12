@@ -1,44 +1,22 @@
-.details #carousel {
-}
-
-.details #carousel img {
-  height: 30rem;
-  width: 100%;
-}
-
 .details .info {
   padding: 1rem;
   margin: 2rem auto;
 
-  display: flex;
-
   color: grey;
+  line-height: 4rem;
 }
 
-.details .info > div {
-  flex: 1;
-  line-height: 40px;
-}
-
-.details .info button {
-  display: block;
-  margin: 0 0 0 auto;
-}
-
-.details .info #links {
-  text-align: right;
-  margin-top: 1rem;
-}
-
-.details .price {
+.details .info .price {
   color: #ff6d00;
   font-size: 2rem;
   margin-right: 2rem;
 }
 
-.details .address {
+.details .info .address {
   color: #163059;
   margin-right: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 .details #custom-navbar {

@@ -6,6 +6,8 @@ import './SearchBarWithBreadcrumbs.css';
 
 export default class SearchBarWithBreadcrumbs extends Component {
   render() {
+    const { state, city } = this.props;
+
     return (
       <div className="search-bar-with-breadcrumbs">
         <div id="search-bar">
@@ -13,9 +15,8 @@ export default class SearchBarWithBreadcrumbs extends Component {
         </div>
 
         <ul className="custom-breadcrumb">
-          <li>California</li>
-          <li>San Francisco County</li>
-          <li>San Francisco</li>
+          <li>{state}</li>
+          <li>{city}</li>
         </ul>
       </div>
     );

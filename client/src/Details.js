@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Button, Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import axios from 'axios';
 import Footer from './Footer';
 import SearchBarWithBreadcrumbs from './SearchBarWithBreadcrumbs';
@@ -8,16 +8,15 @@ import Neighborhood from './Neighborhood';
 import SchoolList from './SchoolList';
 import PropertyHistory from './PropertyHistory';
 import ThumbnailList from './ThumbnailList';
+import Carousel from './Carousel';
 
 import parseHouseDocument from './parseHouseDocument';
 
 import { withRouter } from 'react-router-dom';
 
-import house_1 from './images/house_1.png';
-import house_2 from './images/house_2.png';
-import facebook from './images/facebook.png';
-import google from './images/google.png';
-import linkedin from './images/linkedin.png';
+// import facebook from './images/facebook.png';
+// import google from './images/google.png';
+// import linkedin from './images/linkedin.png';
 
 import './Details.css';
 
@@ -66,8 +65,14 @@ class Details extends Component {
       year_built,
       city,
       state,
-      description
+      description,
+      imageDirectory
     } = this.state.house;
+
+    let images = [];
+    for (var i = 1; i < 4; i++) {
+      images.push(`${imageDirectory}/${i}.jpg`);
+    }
 
     const attributes = [
       { attribute: 'Type', value: type },
@@ -88,43 +93,22 @@ class Details extends Component {
 
     return (
       <div className="details">
-        <SearchBarWithBreadcrumbs />
-
-        <div className="container" style={{ marginTop: '2rem' }}>
-          <Row>
-            <Col xs={12} sm={8}>
-              <div id="carousel">
-                <Carousel>
-                  <Carousel.Item>
-                    <img src={house_1} alt="house_image" />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img src={house_2} alt="house_image" />
-                  </Carousel.Item>
-                </Carousel>
-              </div>
-            </Col>
-            <Col xs={12} sm={4} />
-          </Row>
-        </div>
-
+        <SearchBarWithBreadcrumbs state={state} city={city} />
         <div className="container info">
           <div>
-            <span className="price">{`$ ${price.toLocaleString()}`}</span>
+            <span className="address">{city}</span>
             <span>{`${beds} beds | ${baths} baths | ${size} sqft`}</span>
-            <br />
-            <span className="address">{address}</span>
-            <a href="">See in Google Maps</a>
           </div>
           <div>
-            <Button className="">Like</Button>
-
-            <div id="links">
-              <img src={facebook} alt="facebook" />
-              <img src={google} alt="google" />
-              <img src={linkedin} alt="linkedin" />
-            </div>
+            <span className="price">{`$ ${price.toLocaleString()}`}</span>
+            <a href="">See in Google Maps</a>
           </div>
+        </div>
+
+        <div className="container" style={{ margin: '2rem auto' }}>
+          <Carousel height={450} width={800}>
+            {images.map(image => <img src={image} alt="" key={image} />)}
+          </Carousel>
         </div>
 
         <div className="container" id="custom-navbar">
