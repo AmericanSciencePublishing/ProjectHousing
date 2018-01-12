@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import axios from 'axios';
 import Footer from './Footer';
 import SearchBarWithBreadcrumbs from './SearchBarWithBreadcrumbs';
@@ -14,11 +14,9 @@ import parseHouseDocument from './parseHouseDocument';
 
 import { withRouter } from 'react-router-dom';
 
-import house_1 from './images/house_1.png';
-import house_2 from './images/house_2.png';
-import facebook from './images/facebook.png';
-import google from './images/google.png';
-import linkedin from './images/linkedin.png';
+// import facebook from './images/facebook.png';
+// import google from './images/google.png';
+// import linkedin from './images/linkedin.png';
 
 import './Details.css';
 
@@ -95,7 +93,7 @@ class Details extends Component {
 
     return (
       <div className="details">
-        <SearchBarWithBreadcrumbs />
+        <SearchBarWithBreadcrumbs state={state} city={city} />
         <div className="container info">
           <div>
             <span className="address">{city}</span>

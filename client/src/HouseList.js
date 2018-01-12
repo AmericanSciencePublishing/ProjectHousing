@@ -52,6 +52,8 @@ class HouseList extends React.Component {
             <div id="thumbnail_list">
               <ThumbnailList houseList={houseList} />
             </div>
+
+            {houseList.length > 0 ? <Pagination /> : null}
             <Footer />
           </div>
         </div>

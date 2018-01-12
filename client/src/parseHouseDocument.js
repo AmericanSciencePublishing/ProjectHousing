@@ -13,7 +13,7 @@ const parseSingleHouseDocument = houseDocument => {
   } = houseDocument;
 
   const city = address.split(',')[1].trim();
-  const state = address.split(',')[2].split(' ')[0];
+  const state = address.split(',')[2].slice(1,3);
 
   return {
     _id,

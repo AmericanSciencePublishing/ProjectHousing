@@ -49,8 +49,6 @@ class Thumbnail extends Component {
       _id,
       address,
       city,
-      state,
-      zipcode,
       beds,
       baths,
       imageDirectory,
