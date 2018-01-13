@@ -1,47 +1,23 @@
 .details .info {
-  padding: 1rem;
-  margin: 2rem auto;
+  padding-top: 2rem;
 
+  line-height: 3rem;
   color: grey;
-  line-height: 4rem;
+}
+
+.details .info .city {
+  color: #163059;
+  margin-right: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
+
+  display: inline;
 }
 
 .details .info .price {
   color: #ff6d00;
   font-size: 2rem;
   margin-right: 2rem;
-}
-
-.details .info .address {
-  color: #163059;
-  margin-right: 2rem;
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-.details #custom-navbar {
-  display: flex;
-  flex-flow: row nowrap;
-
-  background-color: #163059;
-  color: white;
-
-  margin: 2rem auto;
-}
-
-.details #custom-navbar div {
-  flex: 1;
-
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-
-  padding: 1rem;
-  border: 5px solid #163059;
-}
-
-.details #custom-navbar div:hover {
-  border-bottom: 5px solid white;
 }
 
 .details .attributes {
