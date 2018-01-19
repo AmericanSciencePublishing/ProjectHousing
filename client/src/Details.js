@@ -96,12 +96,13 @@ class Details extends Component {
         <SearchBarWithBreadcrumbs state={state} city={city} />
         <div className="container info">
           <div>
-            <span className="address">{city}</span>
+            <span className="city">{city}</span>
             <span>{`${beds} beds | ${baths} baths | ${size} sqft`}</span>
           </div>
+          <div>{address}</div>
           <div>
             <span className="price">{`$ ${price.toLocaleString()}`}</span>
-            <a href="">See in Google Maps</a>
+            <a href={`https://www.google.com/maps/search/?api=1&query=${address}`} target="_blank">See in Google Maps</a>
           </div>
         </div>
 
@@ -111,14 +112,7 @@ class Details extends Component {
           </Carousel>
         </div>
 
-        <div className="container" id="custom-navbar">
-          <div>Property Details</div>
-          <div>City Intro</div>
-          <div>Neighborhood</div>
-          <div>Schools</div>
-          <div>Property History</div>
-          <div>Nearby Options</div>
-        </div>
+
 
         <div className="container attributes">
           {attributes.map(pair => (

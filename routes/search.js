@@ -21,6 +21,8 @@ router.get('/', function(req, res) {
   const lotSize = query.lotSize ? { lotSize: { $gte: query.lotSize } } : {};
   const age = query.age ? { age: { $lte: query.age } } : {};
 
+  const limitEntries = query.page ? query.page * 4 : 4;
+
   const conditons = {
     ...address,
     ...type,
@@ -35,7 +37,9 @@ router.get('/', function(req, res) {
 
   console.log('conditons: ', conditons);
 
-  House.find(conditons).then(doc => res.send(doc));
+  House.find(conditons)
+    .limit(limitEntries)
+    .then(doc => res.send(doc));
 });
 
 module.exports = router;

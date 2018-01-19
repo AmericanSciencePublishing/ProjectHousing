@@ -61,10 +61,10 @@ export default class Carouse extends Component {
       const progress = timestamp - start;
 
       this.setState({
-        offset: currentOffset + (nextOffset - currentOffset) * progress / 500
+        offset: currentOffset + (nextOffset - currentOffset) * progress / 200
       });
 
-      if (progress < 500) {
+      if (progress < 200) {
         requestAnimationFrame(move);
       } else {
         if (nextIndex <= 0) {
@@ -101,7 +101,8 @@ export default class Carouse extends Component {
       top: '40%',
       bottom: '40%',
       width: '10%',
-      background: 'rgba(0,0,0,0.2)',
+      background: 'rgba(0,0,0,0.5)',
+      color: 'white',
       outline: 'none',
       border: 'none'
     };

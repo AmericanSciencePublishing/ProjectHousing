@@ -79,15 +79,16 @@ const house_sizes = [
 ];
 
 const lot_sizes = [0.5, 1, 2, 5, 10, 20];
-const ages = [5,10,15,20,50];
+const ages = [5, 10, 15, 20, 50];
 
 class SearchConditions extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { orderTitle: 'Relevant' };
     this.searchWithAttribute = this.searchWithAttribute.bind(this);
     this.clickLabel = this.clickLabel.bind(this);
     this.updateStateFromURL = this.updateStateFromURL.bind(this);
+    this.changeOrder = this.changeOrder.bind(this);
   }
 
   componentDidMount() {
@@ -136,14 +137,27 @@ class SearchConditions extends Component {
     };
   }
 
+  changeOrder(eventKey, event) {
+    const { sortHouses } = this.props;
+
+    this.setState({ orderTitle: eventKey });
+    sortHouses(eventKey);
+  }
+
   render() {
     const searchParams = new URLSearchParams(this.props.location.search);
     let labels = [];
 
     for (let k of searchParams.keys()) {
-      // text displays in label
+      // text in label
 
       switch (k) {
+        case 'address':
+          labels.push({ key: k, value: searchParams.get(k) });
+          break;
+        case 'type':
+          labels.push({ key: k, value: searchParams.get(k) });
+          break;
         case 'price':
           labels.push({ key: k, value: 'Price $' + searchParams.get(k) });
           break;
@@ -163,9 +177,8 @@ class SearchConditions extends Component {
           labels.push({ key: k, value: 'Built age < ' + searchParams.get(k) });
           break;
         default:
-          labels.push({ key: k, value: searchParams.get(k) });
+          break;
       }
-      // labels.push({ key: k, value: searchParams.get(k) });
     }
 
     return (
@@ -296,7 +309,11 @@ class SearchConditions extends Component {
           <div style={{ float: 'right' }}>
             <div>
               Sort By &nbsp;
-              <DropdownButton title="Relevant" id="sort_by_button">
+              <DropdownButton
+                title={this.state.orderTitle}
+                id="sort_by_button"
+                onSelect={this.changeOrder}
+              >
                 <MenuItem eventKey="Relevant">Relevant</MenuItem>
                 <MenuItem eventKey="Newest">Newest</MenuItem>
                 <MenuItem eventKey="Lowest_Price">Lowest Price</MenuItem>

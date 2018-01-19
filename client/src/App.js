@@ -6,7 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import history from './history';
 import HouseList from './HouseList';
 import NewListing from './NewListing';
-import Commercial from './Commercial';
+// import Commercial from './Commercial';
 import Faq from './Faq';
 import Info from './Info';
 import LoginRegisForm from './LoginRegisForm';
@@ -106,7 +106,7 @@ class App extends Component {
                       <p>New Listing</p>
                     </NavItem>
                   </LinkContainer>
-                  <LinkContainer to="/commercial">
+                  <LinkContainer to="/house-list?type=Commercial">
                     <NavItem>
                       <p>Commercial</p>
                     </NavItem>
@@ -149,7 +149,6 @@ class App extends Component {
               <Route exact path="/" component={IndexPage} />
               <Route path="/new-listing" component={NewListing} />
               <Route path="/faq" component={Faq} />
-              <Route path="/commercial" component={Commercial} />
               <Route path="/new-construction" component={NewConstructionList} />
               <Route path="/house-list" component={HouseList} />
               <Route path="/info" component={Info} />
