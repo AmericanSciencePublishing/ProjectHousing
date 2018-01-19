@@ -79,7 +79,7 @@ const house_sizes = [
 ];
 
 const lot_sizes = [0.5, 1, 2, 5, 10, 20];
-const ages = [5,10,15,20,50];
+const ages = [5, 10, 15, 20, 50];
 
 class SearchConditions extends Component {
   constructor(props) {
@@ -141,9 +141,15 @@ class SearchConditions extends Component {
     let labels = [];
 
     for (let k of searchParams.keys()) {
-      // text displays in label
+      // text in label
 
       switch (k) {
+        case 'address':
+          labels.push({ key: k, value: searchParams.get(k) });
+          break;
+        case 'type':
+          labels.push({ key: k, value: searchParams.get(k) });
+          break;
         case 'price':
           labels.push({ key: k, value: 'Price $' + searchParams.get(k) });
           break;
@@ -163,9 +169,8 @@ class SearchConditions extends Component {
           labels.push({ key: k, value: 'Built age < ' + searchParams.get(k) });
           break;
         default:
-          labels.push({ key: k, value: searchParams.get(k) });
+          break;
       }
-      // labels.push({ key: k, value: searchParams.get(k) });
     }
 
     return (

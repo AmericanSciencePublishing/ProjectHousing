@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Footer from './Footer';
 import SearchBarWithConditions from './SearchBarWithConditions';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 import MapContainer from './MapContainer';
 import ThumbnailList from './ThumbnailList';
 
@@ -16,6 +16,7 @@ class HouseList extends React.Component {
     super(props);
     this.state = { houseList: [] };
     this.updateHouseList = this.updateHouseList.bind(this);
+    this.loadMoreHouse = this.loadMoreHouse.bind(this);
   }
 
   componentDidMount() {
@@ -29,11 +30,34 @@ class HouseList extends React.Component {
   }
 
   updateHouseList(queryString) {
+    const searchString = `/search${queryString}`;
     axios
-      .get(`/search${queryString}`)
+      .get(searchString)
       .then(res => res.data)
       .then(houseList => parseHouseDocument(houseList))
       .then(houseList => this.setState({ houseList }));
+  }
+
+  loadMoreHouse() {
+    const { location } = this.props;
+    const { search } = location;
+
+    const searchParams = new URLSearchParams(search);
+    const page = searchParams.get('page');
+
+    if (!page) {
+      const nextLocation = { ...location, ...{ search: search + '&page=2' } };
+      this.props.history.push(nextLocation);
+    } else {
+      searchParams.set('page', parseInt(page, 10) + 1);
+      const nextSearch = searchParams.toString();
+
+      const nextLocation = {
+        ...location,
+        ...{ search: nextSearch }
+      };
+      this.props.history.push(nextLocation);
+    }
   }
 
   render() {
@@ -53,7 +77,7 @@ class HouseList extends React.Component {
               <ThumbnailList houseList={houseList} />
             </div>
 
-            {houseList.length > 0 ? <Pagination /> : null}
+            <button onClick={this.loadMoreHouse}>Show More</button>
             <Footer />
           </div>
         </div>

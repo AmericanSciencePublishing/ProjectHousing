@@ -6,7 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import history from './history';
 import HouseList from './HouseList';
 import NewListing from './NewListing';
-import Commercial from './Commercial';
+// import Commercial from './Commercial';
 import Faq from './Faq';
 import Info from './Info';
 import LoginRegisForm from './LoginRegisForm';
