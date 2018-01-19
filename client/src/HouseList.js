@@ -17,6 +17,7 @@ class HouseList extends React.Component {
     this.state = { houseList: [] };
     this.updateHouseList = this.updateHouseList.bind(this);
     this.loadMoreHouse = this.loadMoreHouse.bind(this);
+    this.sortHouses = this.sortHouses.bind(this);
   }
 
   componentDidMount() {
@@ -60,12 +61,43 @@ class HouseList extends React.Component {
     }
   }
 
+  sortHouses(order) {
+    console.log('house list before sorting: ', this.state.houseList);
+    console.log('order: ', order);
+
+    let compareFunction;
+    switch (order) {
+      case 'Lowest_Price':
+        compareFunction = (a, b) => {
+          return a.price > b.price;
+        };
+        break;
+      case 'Highest_Price':
+        compareFunction = (a, b) => {
+          return a.price < b.price;
+        };
+        break;
+
+      default:
+        // ascending price order by default
+        compareFunction = (a, b) => {
+          return a.price > b.price;
+        };
+    }
+
+    this.setState(prevState => {
+      const { houseList } = prevState;
+      houseList.sort(compareFunction);
+      return { houseList: houseList };
+    });
+  }
+
   render() {
     const houseList = this.state.houseList || [];
 
     return (
       <div className="house_list_all">
-        <SearchBarWithConditions />
+        <SearchBarWithConditions sortHouses={this.sortHouses} />
 
         <div className="map_and_list">
           <div className="map_on_the_left">

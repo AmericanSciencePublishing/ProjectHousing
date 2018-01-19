@@ -84,10 +84,11 @@ const ages = [5, 10, 15, 20, 50];
 class SearchConditions extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { orderTitle: 'Relevant' };
     this.searchWithAttribute = this.searchWithAttribute.bind(this);
     this.clickLabel = this.clickLabel.bind(this);
     this.updateStateFromURL = this.updateStateFromURL.bind(this);
+    this.changeOrder = this.changeOrder.bind(this);
   }
 
   componentDidMount() {
@@ -134,6 +135,13 @@ class SearchConditions extends Component {
 
       delete this.state[attribute];
     };
+  }
+
+  changeOrder(eventKey, event) {
+    const { sortHouses } = this.props;
+
+    this.setState({ orderTitle: eventKey });
+    sortHouses(eventKey);
   }
 
   render() {
@@ -301,7 +309,11 @@ class SearchConditions extends Component {
           <div style={{ float: 'right' }}>
             <div>
               Sort By &nbsp;
-              <DropdownButton title="Relevant" id="sort_by_button">
+              <DropdownButton
+                title={this.state.orderTitle}
+                id="sort_by_button"
+                onSelect={this.changeOrder}
+              >
                 <MenuItem eventKey="Relevant">Relevant</MenuItem>
                 <MenuItem eventKey="Newest">Newest</MenuItem>
                 <MenuItem eventKey="Lowest_Price">Lowest Price</MenuItem>
