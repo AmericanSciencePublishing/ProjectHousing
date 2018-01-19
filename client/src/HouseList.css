@@ -11,8 +11,11 @@
   min-height: 70vh;
 }
 
+.houseListFooter{
+    margin-left:-1em;
+}
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 600px){
     .map_and_list{
 //	display:flex;
 	height:calc(100vh - 140px);
@@ -37,7 +40,7 @@
     }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 600px){
     .map_and_list{
 	display:flex;
     }

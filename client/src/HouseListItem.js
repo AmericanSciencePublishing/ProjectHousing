@@ -64,7 +64,7 @@ class HouseListItem extends Component {
         </div>
 
         <div className="info">
-          <span className="price">$ {price.toLocaleString()}</span>
+          <span className="price">{price.toLocaleString()}</span>
 
           <div className="type">{`${beds} beds | ${baths} baths | ${size} sqft`}</div>
 

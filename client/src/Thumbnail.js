@@ -67,7 +67,7 @@ class Thumbnail extends Component {
           <a href={`/details/${_id}`} target="_blank">
             <img src={`${imageDirectory}/1.jpg`} alt="" />
           </a>
-          <div className="overlay">{price.toLocaleString()}</div>
+          <div className="overlay">{price}</div>
           <button className={buttonClass} onClick={this.handleClick} />
         </div>
 
