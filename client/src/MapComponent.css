@@ -1,7 +1,7 @@
 .MapContainerOriginal{
     width: inherit;
     position: relative;
-    height:calc(100vh - 140px);
+    height:calc(100vh - 165px);
 }
 
 .MapItself{

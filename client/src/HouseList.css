@@ -17,25 +17,22 @@
 
 @media screen and (min-width: 600px){
     .map_and_list{
-//	display:flex;
-	height:calc(100vh - 140px);
-//	flex-grow:1;
-//	overflow: hidden;
-//	background-color:red;
+	height:calc(100vh - 160px);
+	background-color:###;
     }
 
     .map_on_the_left{
 	width: 50vw;
 	float: left;
-	height:calc(100vh - 140px);
-//	background-color:blue;
+	height:calc(100vh - 165px);
+	background-color:###;
     }
 
     .list_on_the_right{
 	float: right;
 	width: 50vw;
-//	background-color:red;
-	height:calc(100vh - 140px);
+	background-color:###;
+	height:calc(100vh - 165px);
 	overflow: auto;
     }
 }
@@ -46,12 +43,13 @@
     }
 
     .map_on_the_left{
+	display:none;
 	flex:0;
-	width:50%;
     }
 
     .list_on_the_right{
 	flex:1;
+	background-color:###;
 //	width:50%;
     }
 }

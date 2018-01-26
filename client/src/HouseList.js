@@ -6,7 +6,7 @@ import SearchBarWithConditions from './SearchBarWithConditions';
 // import Pagination from './Pagination';
 import MapContainer from './MapContainer';
 import ThumbnailList from './ThumbnailList';
-
+import PropTypes from 'prop-types';
 import parseHouseDocument from './parseHouseDocument';
 
 import './HouseList.css';
@@ -33,10 +33,10 @@ class HouseList extends React.Component {
   updateHouseList(queryString) {
     const searchString = `/search${queryString}`;
     axios
-      .get(searchString)
-      .then(res => res.data)
-      .then(houseList => parseHouseDocument(houseList))
-      .then(houseList => this.setState({ houseList }));
+	  .get(searchString)
+	  .then(res => res.data)
+	  .then(houseList => parseHouseDocument(houseList))
+	  .then(houseList => this.setState({ houseList }));
   }
 
   loadMoreHouse() {
@@ -93,7 +93,8 @@ class HouseList extends React.Component {
   }
 
   render() {
-    const houseList = this.state.houseList || [];
+      const houseList = this.state.houseList ;
+
 
     return (
       <div className="house_list_all">
@@ -101,7 +102,7 @@ class HouseList extends React.Component {
 
         <div className="map_and_list">
           <div className="map_on_the_left">
-            <MapContainer />
+            <MapContainer houseList={houseList}/>
           </div>
 
           <div className="list_on_the_right">
@@ -118,5 +119,13 @@ class HouseList extends React.Component {
     );
   }
 }
+
+HouseList.propTypes = {
+    houseList: PropTypes.array,
+};
+
+HouseList.defaultProps = {
+    houseList: [],
+};
 
 export default withRouter(HouseList);
