@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import * as HouseAPI from './utils/HouseAPI';
 
 import HouseListItem from './RecommendedHouseListItem';
 import parseHouseDocument from './parseHouseDocument';
@@ -11,9 +11,8 @@ export default class RecommendedHouseList extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get('/houses')
-      .then(res => res.data)
+    HouseAPI
+      .get()
       .then(houseList=>parseHouseDocument(houseList))
       .then(houses => this.setState({ houses: houses.slice(0, 5) }));
   }

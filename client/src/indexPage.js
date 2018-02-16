@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
+import * as HouseAPI from './utils/HouseAPI';
 import Footer from './Footer';
 import CityList from './CityList';
 import ThumbnailList from './ThumbnailList';
@@ -22,9 +22,8 @@ class IndexPage extends Component {
 
   componentDidMount() {
     // load houses for two categories
-    axios
-      .get('/houses/new-construction')
-      .then(res => res.data)
+    HouseAPI
+      .get('new-construction')
       .then(houseList => parseHouseDocument(houseList))
       .then(houseList =>
         this.setState({
@@ -33,9 +32,8 @@ class IndexPage extends Component {
       )
       .catch(err => console.log(err));
 
-    axios
-      .get('/houses/great-school')
-      .then(res => res.data)
+    HouseAPI
+      .get('great-school')
       .then(houseList => parseHouseDocument(houseList))
       .then(houseList =>
         this.setState({

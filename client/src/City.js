@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import axios from 'axios';
+import * as CityAPI from './utils/CityAPI';
 
 import './City.css';
 
@@ -16,9 +16,7 @@ export default class City extends Component {
 
   componentDidMount() {
     const city = this.props.cityName;
-    axios
-      .get(`/cities/${city}`)
-      .then(res => res.data)
+    CityAPI.get(`${city}`)
       .then(cityData =>
         this.setState({
           cityImage: cityData.image,

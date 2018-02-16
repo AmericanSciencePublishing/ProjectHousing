@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Col } from 'react-bootstrap';
-import axios from 'axios';
 import Footer from './Footer';
 import SearchBarWithBreadcrumbs from './SearchBarWithBreadcrumbs';
 import City from './City';
@@ -11,8 +10,9 @@ import ThumbnailList from './ThumbnailList';
 import Carousel from './Carousel';
 
 import parseHouseDocument from './parseHouseDocument';
-
 import { withRouter } from 'react-router-dom';
+
+import * as HouseAPI from './utils/HouseAPI'
 
 // import facebook from './images/facebook.png';
 // import google from './images/google.png';
@@ -30,10 +30,8 @@ class Details extends Component {
   }
 
   componentDidMount() {
-    const path = `/houses/${this.props.match.params.id}`;
-    axios
-      .get(path)
-      .then(res => res.data)
+    const path = `${this.props.match.params.id}`;
+    HouseAPI.get(path)
       .then(house => parseHouseDocument(house))
       .then(house =>
         this.setState({
@@ -41,9 +39,7 @@ class Details extends Component {
         })
       );
 
-    axios
-      .get(`/houses/recommended`)
-      .then(res => res.data)
+    HouseAPI.get('recommended')
       .then(houseList => parseHouseDocument(houseList))
       .then(houses => this.setState({ recommendedHouseList: houses }));
   }

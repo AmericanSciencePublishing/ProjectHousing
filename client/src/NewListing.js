@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import * as HouseAPI from './utils/HouseAPI';
 
 import HouseList from './HouseList';
 import parseHouseDocument from './parseHouseDocument';
@@ -11,9 +11,8 @@ class NewListing extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get('/houses/new-listing')
-      .then(res => res.data)
+    HouseAPI
+      .get('new-listing')
       .then(houseList => parseHouseDocument(houseList))
       .then(houseList => this.setState({ houseList: houseList }));
   }

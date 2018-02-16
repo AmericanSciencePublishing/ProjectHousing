@@ -6,7 +6,7 @@ import { Nav, NavItem  } from 'react-bootstrap';
 import {Route, Switch} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import Footer from './Footer';
-var axios = require("axios");
+import axios from 'axios';
 
 class MyProfile extends React.Component{
 

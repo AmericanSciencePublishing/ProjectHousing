@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
+import * as HouseAPI from './utils/HouseAPI';
 import Footer from './Footer';
 import SearchBarWithConditions from './SearchBarWithConditions';
 // import Pagination from './Pagination';
@@ -31,10 +31,9 @@ class HouseList extends React.Component {
   }
 
   updateHouseList(queryString) {
-    const searchString = `/search${queryString}`;
-    axios
-	  .get(searchString)
-	  .then(res => res.data)
+    const searchString = `${queryString}`;
+    HouseAPI
+	  .search(searchString)
 	  .then(houseList => parseHouseDocument(houseList))
 	  .then(houseList => this.setState({ houseList }));
   }
