@@ -63,27 +63,27 @@ class HouseList extends React.Component {
   sortHouses(order) {
     console.log('house list before sorting: ', this.state.houseList);
     console.log('order: ', order);
-
+    
     let compareFunction;
     switch (order) {
-      case 'Lowest_Price':
-        compareFunction = (a, b) => {
-          return a.price > b.price;
-        };
-        break;
-      case 'Highest_Price':
-        compareFunction = (a, b) => {
-          return a.price < b.price;
-        };
-        break;
-
-      default:
-        // ascending price order by default
-        compareFunction = (a, b) => {
-          return a.price > b.price;
-        };
+    case 'Lowest_Price':
+      compareFunction = (a, b) => {
+        return a.price > b.price;
+      };
+      break;
+    case 'Highest_Price':
+      compareFunction = (a, b) => {
+        return a.price < b.price;
+      };
+      break;
+      
+    default:
+      // ascending price order by default
+      compareFunction = (a, b) => {
+        return a.price > b.price;
+      };
     }
-
+    
     this.setState(prevState => {
       const { houseList } = prevState;
       houseList.sort(compareFunction);
@@ -92,29 +92,29 @@ class HouseList extends React.Component {
   }
 
   render() {
-      const houseList = this.state.houseList ;
+    const houseList = this.state.houseList ;
 
 
     return (
       <div className="house_list_all">
         <SearchBarWithConditions sortHouses={this.sortHouses} />
-
+        
         <div className="map_and_list">
+          
           <div className="map_on_the_left">
             <MapContainer houseList={houseList}/>
           </div>
-
+          
           <div className="list_on_the_right">
-            <div id="thumbnail_list">
+            <div className="list-on-the-right-content">
               <ThumbnailList houseList={houseList} />
             </div>
-
             <button onClick={this.loadMoreHouse}>Show More</button>
-
             <Footer />
-	    </div>
-          </div>
+	  </div>
+          
         </div>
+      </div>
     );
   }
 }
