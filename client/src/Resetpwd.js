@@ -4,7 +4,7 @@ import './findpwd.css';
 import Footer from './Footer'
 //import history from './history';
 
-var axios = require("axios");
+import * as UserAPI from './utils/UserAPI'
 
 class Resetpwd extends React.Component{
     constructor(props){
@@ -95,15 +95,14 @@ class Resetpwd extends React.Component{
 	    var newUserInfo={
 		newPassword:this.state.password1
 	    };
-//	    console.log(newUserInfo);
-	    axios.put(`/resetpwdemail/${this.props.match.params.linktoken}`, newUserInfo).then(res=>{
+
+	    UserAPI.resetEmail(this.props.match.params.linktoken, newUserInfo).then(res=>{
 		console.log("reset req's res:", res);
 		if(res.data.message==='Successfully set your password'){
 		    this.setState({
 			submitMSG:"Successfully set your password, please login again",
 			isLoading: false
 		    });
-//		    history.push('/');
 		}
 		else{
 		    this.setState({

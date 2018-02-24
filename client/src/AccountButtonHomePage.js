@@ -3,7 +3,7 @@ import { NavDropdown, MenuItem } from 'react-bootstrap';
 //import { LinkContainer } from 'react-router-bootstrap';
 import history from './history';
 import './App.css';
-var axios = require("axios");
+import * as UserAPI from "./utils/UserAPI";
 
 class AccountButtonHomePage extends React.Component{
 
@@ -26,14 +26,14 @@ class AccountButtonHomePage extends React.Component{
     }
 
     handleSignOut(event,eventKey){
-	axios.put('/offline/'+this.props.user._id).then(res =>{
-	    var gone = {};
-	    this.props.sendUserToHome(gone);
-	    history.push({
-		    pathname: '/'
-//		    state: {showModal :false}
+		UserAPI.offline(this.props.user._id).then(res =>{
+		    var gone = {};
+		    this.props.sendUserToHome(gone);
+		    history.push({
+			    pathname: '/'
+			    //state: {showModal :false}
+			});
 		});
-	});
     }
     
     render (){

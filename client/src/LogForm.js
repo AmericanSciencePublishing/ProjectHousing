@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonGroup, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
 import history from './history';
 import './LogForm.css';
-var axios = require("axios");
+import * as UserAPI from './utils/UserAPI'
 
 class LogForm extends React.Component{
     constructor(props){
@@ -68,7 +68,7 @@ class LogForm extends React.Component{
 	this.setState({
 	    isLoading:true
 	});
-	axios.post('/log_in', loginInfo).then(res=>{
+	UserAPI.logIn(loginInfo).then(res=>{
 //	    console.log(res);
 	    if(res.data.status === 401){
 		console.log('401');
@@ -93,7 +93,7 @@ class LogForm extends React.Component{
 		    loginMSG:"sign in successfully"
 		});
 		this.props.sendUserToHome(res.data);
-		axios.put('/online/'+res.data._id);
+		UserAPI.put(res.data._id);
 		history.push({
 		    pathname: '/'
 //		    state: {showModal :false}

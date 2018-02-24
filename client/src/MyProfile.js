@@ -6,7 +6,7 @@ import { Nav, NavItem  } from 'react-bootstrap';
 import {Route, Switch} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import Footer from './Footer';
-import axios from 'axios';
+import * as UserAPI from './utils/UserAPI';
 
 class MyProfile extends React.Component{
 
@@ -19,7 +19,7 @@ class MyProfile extends React.Component{
     componentWillMount(){
 //	console.log('MyProfile test:',this.props.match.params.username);
 	console.log('MyProfile props',this.props);
-	axios.get('/checkUser/').then (res=>{
+	UserAPI.checkUser().then( res => {
             if(res.data === ""){
                 console.log('no such session logged in');
             }

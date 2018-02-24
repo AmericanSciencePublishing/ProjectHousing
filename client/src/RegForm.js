@@ -12,7 +12,7 @@ import './LogForm.css';
 import history from './history';
 import { connect } from 'react-redux';
 import { set_username } from './actions';
-import axios from 'axios';
+import * as UserAPI from './utils/UserAPI';
 
 class RegForm extends React.Component {
   constructor(props) {
@@ -165,8 +165,8 @@ class RegForm extends React.Component {
         password2: this.state.password2
       };
       //	    console.log(newUserInfo);
-      axios
-        .post('/sign_up', newUserInfo)
+      UserAPI
+        .sign(newUserInfo)
         .then(res => {
           console.log('registration res', res);
           if (!res.data.code) {
@@ -177,7 +177,7 @@ class RegForm extends React.Component {
 
             this.props.dispatch(set_username(res.data.username));
             this.props.sendUserToHome(res.data);
-            axios.put('/online/' + res.data._id);
+            UserAPI.put(res.data._id);
             history.push('/');
             //	    this.context.router.history.push("/faq")
             //		    console.log("sign up seccessfully!",res);
