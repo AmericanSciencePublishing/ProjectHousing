@@ -74,13 +74,8 @@ class Thumbnail extends Component {
         <div className="caption-area">
           <p className="title">{`${beds} bds | ${baths} ba | ${size} sqft`}</p>
           <p className="subtitle">{`${address}`}</p>
-
           <hr />
-
-          <p>
-            {city}
-            <span style={{ float: 'right' }}>{year_built}</span>
-          </p>
+          <p className="ending">{city}</p>
         </div>
       </div>
     );
