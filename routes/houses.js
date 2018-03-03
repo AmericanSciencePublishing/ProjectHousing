@@ -47,6 +47,13 @@ router
     House.findOne({ _id: id })
       .then(doc => res.send(doc))
       .catch(err => res.send(err));
-  });
+  })
+  .post('/idList',function(req,res){
+    const idList = req.body.idList;
+    House.find({ _id:{$in : idList }})
+      .then(doc => res.send(doc))
+      .catch(err => res.send(err));
+
+  })
 
 module.exports = router;

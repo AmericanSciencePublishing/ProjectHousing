@@ -17,7 +17,8 @@ import * as UserAPI from './utils/UserAPI';
 
 import rootReducer from './reducers';
 import { save_house_to_store, set_username } from './actions';
-let store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
+
+const store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
 
   UserAPI
   .getUser()

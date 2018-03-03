@@ -2,67 +2,87 @@ import React from 'react';
 import './MyProfile.css';
 //import history from './history';
 import MyProfileDetail from './MyProfileDetail';
+import ThumbnailList from './ThumbnailList';
 import { Nav, NavItem  } from 'react-bootstrap';
 import {Route, Switch} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
+import parseHouseDocument from './parseHouseDocument';
 import Footer from './Footer';
 import * as UserAPI from './utils/UserAPI';
+import * as HouseAPI from './utils/HouseAPI';
+
 
 class MyProfile extends React.Component{
 
     constructor(props){
-	super(props);
-	this.state = { user:{}
-		     };
+			super(props);
+			this.state = { 
+				user:{},
+				savedHouse:[]
+				     };
     }
 
     componentWillMount(){
-//	console.log('MyProfile test:',this.props.match.params.username);
-	console.log('MyProfile props',this.props);
-	UserAPI.checkUser().then( res => {
-            if(res.data === ""){
-                console.log('no such session logged in');
-            }
-            else{
-                this.setState({
-                    user: res.data
-                });
-		console.log('profile user check:',this.state.user);
-            }
-        });
+			UserAPI.checkUser().then( res => {
+        if(res.data === ""){
+            console.log('no such session logged in');
+        }
+        else{
+            this.setState({
+                user: res.data
+            });
+            HouseAPI.getList(res.data.saved_houses).then(res =>{
+            	if(res.data === ""){
+			          console.log('no saved houses');
+			        }else{
+			        	this.setState({
+				    			savedHouse: parseHouseDocument(res.data)
+				    		});
+				    		console.log(this.state.savedHouse);
+			        }
+			    	})
+						console.log('profile user check:',this.state.user);
+        }
+      });
+      			console.log('MyProfile props',this.props);
 	
     }
     
 
     render(){
-	return(
-	    <div>
-		<div className="profileTabs container">
-		  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">    
-		    <Nav bsStyle="tabs" >
-		      <LinkContainer exact to={`/user/${this.state.user.username}`}>
-			<NavItem > My Profile</NavItem>
-		      </LinkContainer>
-		      <LinkContainer exact to={`/user/${this.state.user.username}/save`}>
-			<NavItem > Saved </NavItem>
-                      </LinkContainer>
-		      <LinkContainer exact to={`/user/${this.state.user.username}/setting`}>
-			<NavItem > Settings</NavItem>
-                      </LinkContainer>
-		
-		    </Nav>
-		    </div>
-	      <Switch>
-                <Route exact path="/user/:username" component={MyProfileDetail} />
-                <Route exact path="/user/:username/save" component={NoMatch}/>
-                <Route exact path="/user/:username/setting" component={NoMatch}/>
-                <Route component={NoMatch}/>
-                    </Switch>
-		</div>
-		<Footer />
-		</div>
+    	const saved_house = this.state.savedHouse
+			return(
+			    <div>
+				<div className="profileTabs container">
+				  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">    
+				    <Nav bsStyle="tabs" >
+				      <LinkContainer exact to={`/user/${this.state.user.username}`}>
+					<NavItem > My Profile</NavItem>
+				      </LinkContainer>
+				      <LinkContainer exact to={`/user/${this.state.user.username}/save`}>
+					<NavItem > Saved </NavItem>
+		                      </LinkContainer>
+				      <LinkContainer exact to={`/user/${this.state.user.username}/setting`}>
+					<NavItem > Settings</NavItem>
+		                      </LinkContainer>
+				
+				    </Nav>
+				    </div>
+			      <Switch>
+		                <Route exact path="/user/:username" component={MyProfileDetail} />
+		                <Route exact path="/user/:username/save"  render={(routeProps) => (
+		                	<div id="savedPanel" className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">
+												<ThumbnailList houseList={saved_house} />
+											</div>
+											)}/>
+		                <Route exact path="/user/:username/setting" component={NoMatch}/>
+		                <Route component={NoMatch}/>
+		                    </Switch>
+				</div>
+				<Footer />
+				</div>
 
-	);
+			);
     }
 }
 
@@ -72,5 +92,5 @@ const NoMatch = ({ location }) => (
         </div>
 );
 
-
 export default MyProfile;
+
