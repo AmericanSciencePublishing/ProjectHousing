@@ -1,7 +1,10 @@
 .profileTabs{
     margin-top:-1rem;
-//    padding-left:10rem;
-//    padding-right:10rem;
 }
 
-
+.profile-tab{
+	padding-top: 2rem;
+}
+.profile-tab .loading{
+	margin: auto;
+}

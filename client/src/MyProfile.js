@@ -6,6 +6,7 @@ import ThumbnailList from './ThumbnailList';
 import { Nav, NavItem  } from 'react-bootstrap';
 import {Route, Switch} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
+import Loading from 'react-loading'
 import parseHouseDocument from './parseHouseDocument';
 import Footer from './Footer';
 import * as UserAPI from './utils/UserAPI';
@@ -18,25 +19,28 @@ class MyProfile extends React.Component{
 			super(props);
 			this.state = { 
 				user:{},
-				savedHouse:[]
-				     };
+				savedHouse:null,
+				loading:false,
+			};
     }
 
     componentWillMount(){
+    	this.setState({loading:true})
 			UserAPI.checkUser().then( res => {
         if(res.data === ""){
             console.log('no such session logged in');
         }
         else{
             this.setState({
-                user: res.data
+                user: res.data,
             });
             HouseAPI.getList(res.data.saved_houses).then(res =>{
             	if(res.data === ""){
 			          console.log('no saved houses');
 			        }else{
 			        	this.setState({
-				    			savedHouse: parseHouseDocument(res.data)
+				    			savedHouse: parseHouseDocument(res.data),
+				    			loading:false,
 				    		});
 				    		console.log(this.state.savedHouse);
 			        }
@@ -50,7 +54,7 @@ class MyProfile extends React.Component{
     
 
     render(){
-    	const saved_house = this.state.savedHouse
+    	const {savedHouse,loading} = this.state
 			return(
 			    <div>
 				<div className="profileTabs container">
@@ -71,8 +75,11 @@ class MyProfile extends React.Component{
 			      <Switch>
 		                <Route exact path="/user/:username" component={MyProfileDetail} />
 		                <Route exact path="/user/:username/save"  render={(routeProps) => (
-		                	<div id="savedPanel" className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">
-												<ThumbnailList houseList={saved_house} />
+		                	<div id="savedPanel" className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer profile-tab">
+		                	{loading === true ? 
+		                		<Loading delay={200} type='spin' color='#222' className='loading'/>:
+		                		<ThumbnailList houseList={savedHouse} />
+		                	}
 											</div>
 											)}/>
 		                <Route exact path="/user/:username/setting" component={NoMatch}/>
