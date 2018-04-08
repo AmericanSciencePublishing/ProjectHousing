@@ -10,6 +10,7 @@ class Thumbnail extends Component {
     super(props);
     this.state = {
       saved: false
+
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -44,6 +45,9 @@ class Thumbnail extends Component {
     if (!this.props.house) {
       return <div />;
     }
+    const thumbnailWidth = {
+      width:this.props.width + '%'
+    };
 
     const {
       _id,
@@ -62,7 +66,7 @@ class Thumbnail extends Component {
       : 'like-button';
 
     return (
-      <div className="thumbnail">
+        <div className="thumbnail" style={thumbnailWidth}>
         <div className="image-container">
           <a href={`/details/${_id}`} target="_blank">
             <img src={`${imageDirectory}/1.jpg`} alt="" />

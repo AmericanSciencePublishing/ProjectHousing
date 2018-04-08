@@ -9,7 +9,7 @@ class ThumbnailList extends Component {
 
     return (
       <div className="thumbnail-list">
-        {houseList.map(house => <Thumbnail house={house} key={house._id} />)}
+        {houseList.map(house => <Thumbnail house={house} key={house._id} width={this.props.width}/>)}
       </div>
     );
   }
