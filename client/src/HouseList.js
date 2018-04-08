@@ -107,7 +107,7 @@ class HouseList extends React.Component {
           
           <div className="list_on_the_right">
             <div className="list-on-the-right-content">
-              <ThumbnailList houseList={houseList} />
+              <ThumbnailList houseList={houseList} width="48"/>
             </div>
             <button onClick={this.loadMoreHouse}>Show More</button>
             <Footer />
