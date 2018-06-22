@@ -12,15 +12,15 @@ const convertPrice = (price) => {
 	}else if (price.length === 3){
 		price = price[0] + "m"
 	}else{
-		price = price[0] + "b"
+	  price = price[0] + "b"
 	}
-	return price
+  return price
 }
 
 class MapContainer extends React.Component {
 	// constructor(props) {
 	//   super(props);
-	
+
 	//   this.state = {
 	//   	isOpen:false,
 	//   	currentHouse: {}
@@ -45,11 +45,11 @@ class MapContainer extends React.Component {
 			defaultCenter={{ lat: 41.8863, lng: -87.7173 }}
 			>
 				<MapMarker houseList={this.props.houseList} />
-			
+
 			</GoogleMap>
 		)
 
-		const houseList = this.props.houseList || [];
+    const houseList = this.props.houseList || [];
 
 		// console.log('HOUSE_LIST',houseList);
 
