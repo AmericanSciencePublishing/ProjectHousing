@@ -21,7 +21,7 @@ import Resetpwd from './Resetpwd';
 import MapContainer from './MapContainer';
 import { connect } from 'react-redux';
 //import Footer from './Footer';
-import './App.css';
+import './css/App.css';
 import * as UserAPI from './utils/UserAPI';
 
 class App extends Component {

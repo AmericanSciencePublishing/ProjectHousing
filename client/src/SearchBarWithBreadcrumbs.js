@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import SearchBar from './SearchBar';
 
-import './SearchBarWithBreadcrumbs.css';
+import './css/SearchBarWithBreadcrumbs.css';
 
 export default class SearchBarWithBreadcrumbs extends Component {
   render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Well, ButtonGroup,Col, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
-import './findpwd.css';
+
+import './css/findpwd.css';
 import Footer from './Footer'
 //import history from './history';
 
@@ -190,5 +191,3 @@ class Resetpwd extends React.Component{
 
 
 export default Resetpwd;
-		
-	

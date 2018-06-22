@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css';
+import './css/Footer.css';
 import Mailto from './Mailto';
 
 const Footer = () => {
@@ -14,7 +14,7 @@ const Footer = () => {
           </Mailto>
 	  <a href="/terms" target='_blank'>TERMS</a>
 	  <a href="/terms" target='_blank'>PRIVACY</a>
-	  
+
 	</div>
 	<hr />
 	<div className="lower">
@@ -28,7 +28,7 @@ const Footer = () => {
 	    </div>
 	</div>
       </div>
-      
+
   );
 };
 

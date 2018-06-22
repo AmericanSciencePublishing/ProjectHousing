@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import Label from './Label';
 
-import './SearchBarWithConditions.css';
+import './css/SearchBarWithConditions.css';
 
 const cities = [
   'Arlington',

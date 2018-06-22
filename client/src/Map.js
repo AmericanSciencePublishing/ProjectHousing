@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './MapComponent.css';
+
+import './css/MapComponent.css';
 
 
 export default class Map extends React.Component {
     constructor(props) {
     super(props);
 
-   
+
     }
     componentDidMount() {
 			console.log('map.js didmount check:',this.props);
@@ -19,7 +20,7 @@ export default class Map extends React.Component {
 			  this.loadMap();
 			}
     }
-    
+
     loadMap() {
 			if (this.props && this.props.google) {
 				// google is available
@@ -44,7 +45,7 @@ export default class Map extends React.Component {
 
     renderChildren() {
 			const {children} = this.props;
-		
+
 			if (!children) return;
 
 			return React.Children.map(children, c => {
@@ -55,7 +56,7 @@ export default class Map extends React.Component {
 				});
 		});
     }
-    
+
     render() {
 			return (
 			    <div>

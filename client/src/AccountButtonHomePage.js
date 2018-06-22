@@ -2,7 +2,7 @@ import React from 'react';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 //import { LinkContainer } from 'react-router-bootstrap';
 import history from './history';
-import './App.css';
+import './css/App.css';
 import * as UserAPI from "./utils/UserAPI";
 
 class AccountButtonHomePage extends React.Component{

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
 import * as CityAPI from './utils/CityAPI';
 
-import './City.css';
+import './css/City.css';
 
 export default class City extends Component {
   constructor(props) {

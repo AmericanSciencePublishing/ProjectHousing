@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { save_house, remove_house } from './actions';
 
-import './Thumbnail.css';
+import './css/Thumbnail.css';
 
 class Thumbnail extends Component {
   constructor(props) {

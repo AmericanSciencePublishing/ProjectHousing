@@ -1,7 +1,8 @@
 import React from 'react';
-import './Info.css';
 import Footer from './Footer';
 import {Col,Row, Image} from 'react-bootstrap';
+
+import './css/Info.css';
 import infoImg from "./images/moreinfo.png";
 
 class Info extends React.Component{
@@ -78,8 +79,8 @@ ngeles or second-hand house</a></li>
 	<Footer />
       </div>
 
-      
-		
+
+
 	)
     }
 }

@@ -3,7 +3,8 @@ import {} from 'react-bootstrap';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import Thumbnail from './Thumbnail';
 import MapMarker from './MapMarker';
-import './MapComponent.css';
+
+import './css/MapComponent.css';
 
 const convertPrice = (price) => {
 	price = price.split(',')

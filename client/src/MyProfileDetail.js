@@ -2,7 +2,9 @@ import React from 'react';
 import {ListGroup, ListGroupItem, Panel, Modal, Form, Button, ControlLabel, Glyphicon, FormControl, FormGroup, HelpBlock } from 'react-bootstrap';
 //import { LinkContainer } from 'react-router-bootstrap';
 import history from './history';
-import './MyProfileDetail.css';
+
+import './css/MyProfileDetail.css';
+
 var axios = require("axios");
 
 class MyProfileDetail extends React.Component{
@@ -74,7 +76,7 @@ class MyProfileDetail extends React.Component{
 	const length = 300 - this.state.bioInput.length;
 	this.setState({ bioRemain: length });
     }
-    
+
     getBioValidationState() {
 	const length = this.state.bioInput.length;
 	if (length > 0&& length <280){
@@ -92,7 +94,7 @@ class MyProfileDetail extends React.Component{
     closeBio() {
 	this.setState({ showBioModal: false });
     }
-    
+
     openBio() {
 	this.setState({ showBioModal: true });
     }
@@ -145,11 +147,11 @@ class MyProfileDetail extends React.Component{
              };
             axios.put('/updateinfo/'+this.state.user._id,newName);
         }
-  
+
         return null;
     }
 
-    
+
     render(){
 
 	const startDate = this.state.user.signupdate;
@@ -260,7 +262,7 @@ class MyProfileDetail extends React.Component{
                           />
                       </FormGroup>
 		    </div>
-		    
+
 		    <div className="newUserInfoSubForm">
 		      <ControlLabel bsClass="newUserInfoSubLabel">Name</ControlLabel>
 		      <div className="newUserInfoSubInputName">
@@ -280,7 +282,7 @@ class MyProfileDetail extends React.Component{
 		      </FormGroup>
 		      </div>
 		    </div>
-		    
+
 		    <div className="newUserInfoSubForm">
 		      <ControlLabel bsClass="newUserInfoSubLabel">Phone</ControlLabel>
 		      <FormGroup bsClass="newUserInfoSubInput">
@@ -309,7 +311,7 @@ class MyProfileDetail extends React.Component{
               </Modal>
 	    </div>
 	    </div>
-		
+
 	);
     }
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import Thumbnail from './Thumbnail';
-import './ThumbnailList.css';
+
+import './css/ThumbnailList.css';
 
 class ThumbnailList extends Component {
   render() {

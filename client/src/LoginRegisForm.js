@@ -1,8 +1,9 @@
 import React from 'react';
 import {Modal, Tabs, Tab} from 'react-bootstrap';
-import './Login.css';
 import LogForm from './LogForm';
 import RegForm from './RegForm';
+
+import './css/Login.css';
 
 class LoginRegisForm extends React.Component{
 //one issue: the content in tabs will overlap with tabs without those <br/>
@@ -12,7 +13,7 @@ class LoginRegisForm extends React.Component{
 			    test1:""
 			}
     }
-    
+
     render (){
         return(
 	    <div>

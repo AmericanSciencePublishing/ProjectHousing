@@ -8,7 +8,7 @@ import {
   FormGroup,
   FormControl
 } from 'react-bootstrap';
-import './LogForm.css';
+import './css/LogForm.css';
 import history from './history';
 import { connect } from 'react-redux';
 import { set_username } from './actions';
@@ -261,7 +261,7 @@ class RegForm extends React.Component {
 		<FormGroup>
 		<Checkbox> I am a landlord or industry professional</Checkbox>
 		</FormGroup>
-		
+
 		{/*submit button*/}
 		<FormGroup>
 		<ButtonToolbar justified='true'>

@@ -9,7 +9,7 @@ import ThumbnailList from './ThumbnailList';
 import PropTypes from 'prop-types';
 import parseHouseDocument from './parseHouseDocument';
 
-import './HouseList.css';
+import './css/HouseList.css';
 
 class HouseList extends React.Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class HouseList extends React.Component {
   sortHouses(order) {
     console.log('house list before sorting: ', this.state.houseList);
     console.log('order: ', order);
-    
+
     let compareFunction;
     switch (order) {
     case 'Lowest_Price':
@@ -76,14 +76,14 @@ class HouseList extends React.Component {
         return a.price < b.price;
       };
       break;
-      
+
     default:
       // ascending price order by default
       compareFunction = (a, b) => {
         return a.price > b.price;
       };
     }
-    
+
     this.setState(prevState => {
       const { houseList } = prevState;
       houseList.sort(compareFunction);
@@ -98,13 +98,13 @@ class HouseList extends React.Component {
     return (
       <div className="house_list_all">
         <SearchBarWithConditions sortHouses={this.sortHouses} />
-        
+
         <div className="map_and_list">
-          
+
           <div className="map_on_the_left">
             <MapContainer houseList={houseList}/>
           </div>
-          
+
           <div className="list_on_the_right">
             <div className="list-on-the-right-content">
               <ThumbnailList houseList={houseList} width="48"/>
@@ -112,7 +112,7 @@ class HouseList extends React.Component {
             <button onClick={this.loadMoreHouse}>Show More</button>
             <Footer />
 	  </div>
-          
+
         </div>
       </div>
     );

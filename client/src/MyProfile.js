@@ -1,5 +1,5 @@
 import React from 'react';
-import './MyProfile.css';
+import './css/MyProfile.css';
 //import history from './history';
 import MyProfileDetail from './MyProfileDetail';
 import ThumbnailList from './ThumbnailList';
@@ -17,7 +17,7 @@ class MyProfile extends React.Component{
 
     constructor(props){
 			super(props);
-			this.state = { 
+			this.state = {
 				user:{},
 				savedHouse:null,
 				loading:false,
@@ -49,16 +49,16 @@ class MyProfile extends React.Component{
         }
       });
       			console.log('MyProfile props',this.props);
-	
+
     }
-    
+
 
     render(){
     	const {savedHouse,loading} = this.state
 			return(
 			    <div>
 				<div className="profileTabs container">
-				  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">    
+				  <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer">
 				    <Nav bsStyle="tabs" >
 				      <LinkContainer exact to={`/user/${this.state.user.username}`}>
 					<NavItem > My Profile</NavItem>
@@ -69,14 +69,14 @@ class MyProfile extends React.Component{
 				      <LinkContainer exact to={`/user/${this.state.user.username}/setting`}>
 					<NavItem > Settings</NavItem>
 		                      </LinkContainer>
-				
+
 				    </Nav>
 				    </div>
 			      <Switch>
 		                <Route exact path="/user/:username" component={MyProfileDetail} />
 		                <Route exact path="/user/:username/save"  render={(routeProps) => (
 		                	<div id="savedPanel" className="col-lg-8 col-md-12 col-sm-12 col-xs-12 resContainer profile-tab">
-		                	{loading === true ? 
+		                	{loading === true ?
 		                		<Loading delay={200} type='spin' color='#222' className='loading'/>:
 		                		<ThumbnailList houseList={savedHouse} />
 		                	}
@@ -100,4 +100,3 @@ const NoMatch = ({ location }) => (
 );
 
 export default MyProfile;
-
