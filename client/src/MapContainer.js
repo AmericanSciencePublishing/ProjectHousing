@@ -1,7 +1,8 @@
 import React from 'react';
 import {} from 'react-bootstrap';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 import Thumbnail from './Thumbnail';
+import MapMarker from './MapMarker';
 import './MapComponent.css';
 
 const convertPrice = (price) => {
@@ -17,21 +18,41 @@ const convertPrice = (price) => {
 }
 
 class MapContainer extends React.Component {
+	// constructor(props) {
+	//   super(props);
+	
+	//   this.state = {
+	//   	isOpen:false,
+	//   	currentHouse: {}
+	//   };
+	// }
+
+	// handleToggleOpen(isOpen,house){
+	// 	this.setState({
+	// 		isOpen: true,
+	// 		currentHouse : house
+	// 	})
+	// }
 
   render() {
+
+  		// const isOpen = this.state.isOpen
+  		// const currentHouse = this.state.currentHouse
+
 		const MyMapComponent = withGoogleMap((props) =>
 			<GoogleMap
 			defaultZoom={8}
 			defaultCenter={{ lat: 41.8863, lng: -87.7173 }}
 			>
-			{this.props.houseList.map(house => {console.log(house.pos);
-				return <Marker label={convertPrice(house.price)} position={house.pos} key={house._id} />})}
+				<MapMarker houseList={this.props.houseList} />
+			
 			</GoogleMap>
 		)
 
 		const houseList = this.props.houseList || [];
 
-		console.log('HOUSE_LIST',houseList);
+		// console.log('HOUSE_LIST',houseList);
+
 		return (
 			<div className="MapContainerOriginal">
 				<MyMapComponent

@@ -35,7 +35,7 @@ class AccountButtonHomePage extends React.Component{
 			});
 		});
     }
-    
+
     render (){
 
         return(
