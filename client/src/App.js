@@ -29,7 +29,7 @@ class App extends Component {
     super(props);
     this.state = {
       showModal: false,
-      user: {},
+      user: {}, //userInfo
       test: '',
       action: ''
     };

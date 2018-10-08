@@ -16,12 +16,12 @@ const convertPrice = (price) => {
 
 export default class MapMarker extends React.Component {
 	constructor(props) {
-	  super(props);
-	
-	  this.state = {
-	  	isOpen:false,
-	  	currentHouse: {}
-	  };
+		super(props);
+
+		this.state = {
+			isOpen:false,
+			currentHouse: {}
+		};
 	}
 
 	handleToggleOpen(isOpen,house){
@@ -41,7 +41,7 @@ export default class MapMarker extends React.Component {
 		const houseList = this.props.houseList
 
 		const isOpen = this.state.isOpen
-  		const currentHouse = this.state.currentHouse
+		const currentHouse = this.state.currentHouse
 
 		return (
 			<div>
@@ -49,11 +49,9 @@ export default class MapMarker extends React.Component {
 					return <Marker onClick={() => this.handleToggleOpen(true,house)} label={convertPrice(house.price)} position={house.pos} key={house._id}/>
 				})}
 				{isOpen && <InfoWindow onCloseClick={() => this.handleToggleClose(false)} position={currentHouse.pos}>
-					<Thumbnail house={currentHouse} key={currentHouse._id} />
-				</InfoWindow>
-				}
-			</div>
+				<Thumbnail house={currentHouse} key={currentHouse._id} />
+			</InfoWindow>}
+		</div>
 		)
 	}
 }
-

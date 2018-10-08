@@ -75,7 +75,7 @@ class HouseListItem extends Component {
           <button
             className={buttonClass}
             onClick={() => this.handleClick(_id)}
-          />
+            />
         </div>
       </div>
     );

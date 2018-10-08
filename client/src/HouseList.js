@@ -33,9 +33,9 @@ class HouseList extends React.Component {
   updateHouseList(queryString) {
     const searchString = `${queryString}`;
     HouseAPI
-	  .search(searchString)
-	  .then(houseList => parseHouseDocument(houseList))
-	  .then(houseList => this.setState({ houseList }));
+    .search(searchString)
+    .then(houseList => parseHouseDocument(houseList))
+    .then(houseList => this.setState({ houseList }));
   }
 
   loadMoreHouse() {
@@ -66,18 +66,18 @@ class HouseList extends React.Component {
 
     let compareFunction;
     switch (order) {
-    case 'Lowest_Price':
+      case 'Lowest_Price':
       compareFunction = (a, b) => {
         return a.price > b.price;
       };
       break;
-    case 'Highest_Price':
+      case 'Highest_Price':
       compareFunction = (a, b) => {
         return a.price < b.price;
       };
       break;
 
-    default:
+      default:
       // ascending price order by default
       compareFunction = (a, b) => {
         return a.price > b.price;
@@ -111,7 +111,7 @@ class HouseList extends React.Component {
             </div>
             <button onClick={this.loadMoreHouse}>Show More</button>
             <Footer />
-	  </div>
+          </div>
 
         </div>
       </div>
@@ -120,11 +120,11 @@ class HouseList extends React.Component {
 }
 
 HouseList.propTypes = {
-    houseList: PropTypes.array,
+  houseList: PropTypes.array,
 };
 
 HouseList.defaultProps = {
-    houseList: [],
+  houseList: [],
 };
 
 export default withRouter(HouseList);
