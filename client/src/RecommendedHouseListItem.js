@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import './RecommendedHouseListItem.css';
+import './css/RecommendedHouseListItem.css';
 
 export default class RecommendedHouseListItem extends Component {
   render() {

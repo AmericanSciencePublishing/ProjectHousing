@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
+import {Grid, Row, Col} from 'react-bootstrap';
 import Thumbnail from './Thumbnail';
-import './ThumbnailList.css';
+
+import './css/ThumbnailList.css';
 
 class ThumbnailList extends Component {
   render() {
@@ -9,7 +10,13 @@ class ThumbnailList extends Component {
 
     return (
       <div className="thumbnail-list">
-        {houseList.map(house => <Thumbnail house={house} key={house._id} />)}
+        <Grid>
+          {houseList.map(house =>
+            <Col xs={12} md={6} key={house._id}>
+              <Thumbnail house={house} key={house._id} />
+            </Col>
+          )}
+        </Grid>
       </div>
     );
   }

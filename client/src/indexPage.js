@@ -9,7 +9,7 @@ import SearchBar from './SearchBar';
 
 import parseHouseDocument from './parseHouseDocument';
 
-import './indexPage.css';
+import './css/indexPage.css';
 
 class IndexPage extends Component {
   constructor(props) {

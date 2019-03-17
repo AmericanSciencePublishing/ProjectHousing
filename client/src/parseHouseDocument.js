@@ -26,7 +26,7 @@ const parseSingleHouseDocument = houseDocument => {
   // the default value for minimumFractionDigits depends on the currency
   // and is usually already 2
   });
-    const pos = {lat:lat , lng:lon};
+    const pos = {lat:Number.parseFloat(lat) , lng:Number.parseFloat(lon)};
 
     return {
 	_id,

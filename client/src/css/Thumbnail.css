@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .thumbnail {
-  width: 31rem;
-  margin-right: 2rem;
+  width: 100%;
+  margin-right: 10px;
 }
 
 .thumbnail:hover {
@@ -10,8 +10,6 @@
 }
 
 .thumbnail > .image-container {
-  height: 20rem;
-  width: 30rem;
   overflow: hidden;
   position: relative;
   color: white;
@@ -19,18 +17,16 @@
 
 .thumbnail > .image-container img {
   height: 20rem;
-  width: 30rem;
+  width: 100%;
 }
 
 .thumbnail .overlay {
   position: absolute;
   bottom: 0;
   left: 1rem;
-
   font-family: 'Gotham', sans-serif;
   font-size: 24px;
   line-height: 36px;
-
   background-color: rgba(0,0,0,.5)
 }
 
@@ -39,7 +35,7 @@
   top: 1rem;
   right: 1rem;
   background-color: inherit;
-  background-image: url('./images/likeBefore.png');
+  background-image: url('../images/likeBefore.png');
   background-repeat: no-repeat;
   background-size: contain;
   border: none;
@@ -52,7 +48,7 @@
   top: 1rem;
   right: 1rem;
   background-color: inherit;
-  background-image: url('./images/logo.png');
+  background-image: url('../images/logo.png');
   background-repeat: no-repeat;
   background-size: contain;
   border: none;
@@ -61,23 +57,35 @@
 }
 
 .thumbnail .like-button.confirmed {
-  background-image: url('./images/likeAfter.png');
+  background-image: url('../images/likeAfter.png');
 }
 
 .thumbnail .caption-area {
-  padding: 1rem;
+  padding: 0.5em;
 }
 
 .thumbnail .caption-area .title {
+  margin-top:10px;
   font-family: 'roboto', sans-serif;
-  font-size: 24px;
-  line-height: 36px;
-
+  font-size: 20px;
+  line-height: 16px;
   color: #53bad1;
 }
 
 .thumbnail .caption-area .subtitle {
   font-family: 'roboto', sans-serif;
   font-size: 14px;
-  line-height: 24px;
+  line-height: 20px;
+  margin-bottom: -10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.thumbnail .caption-area .ending {
+  margin-top: -15px;
+  margin-bottom: -5px;
+  font-family: 'roboto', sans-serif;
+  font-size: 14px;
+  line-height: 16px;
 }

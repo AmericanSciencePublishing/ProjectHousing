@@ -1,7 +1,7 @@
 import React from 'react';
 import {} from 'react-bootstrap';
 
-import './ConstructionThumbnail.css';
+import './css/ConstructionThumbnail.css';
 
 const ConstructionThumbnail = (props) => {
   let { image, title, description } = props.construction;

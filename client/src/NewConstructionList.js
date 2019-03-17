@@ -3,7 +3,7 @@ import Footer from './Footer';
 import CityList from './CityList';
 import HouseList from './RecommendedHouseList';
 
-import './NewConstructionList.css';
+import './css/NewConstructionList.css';
 
 export default class NewConstructionList extends Component {
   render() {

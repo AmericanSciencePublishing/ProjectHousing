@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Label.css';
+import './css/Label.css';
 
 const Label = ({ attribute, title, withHandle, color = 'default', onClick }) => {
   return (

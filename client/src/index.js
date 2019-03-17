@@ -13,15 +13,15 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
-import axios from 'axios';
+import * as UserAPI from './utils/UserAPI';
 
 import rootReducer from './reducers';
 import { save_house_to_store, set_username } from './actions';
-let store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
 
-axios
-  .get('/api/current_user')
-  .then(res => res.data)
+const store = createStore(rootReducer, applyMiddleware(logger, thunkMiddleware));
+
+  UserAPI
+  .getUser()
   .then(user => {
     if (user) { // no cookie in browser, therefore no previous state
       // put saved houses in redux store

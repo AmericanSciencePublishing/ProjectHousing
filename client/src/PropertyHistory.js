@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 
-import './PropertyHistory.css';
+import './css/PropertyHistory.css';
 
 export default class PropertyHistory extends Component {
   render() {

@@ -9,7 +9,7 @@ import los_angeles from './images/index_page/los_angeles.png';
 import new_jersey from './images/index_page/new_jersey.png';
 import seattle from './images/index_page/seattle.png';
 
-import './CityList.css';
+import './css/CityList.css';
 
 const CityList = props => {
   return (

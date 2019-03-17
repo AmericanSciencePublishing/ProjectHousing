@@ -9,7 +9,7 @@ import ThumbnailList from './ThumbnailList';
 import PropTypes from 'prop-types';
 import parseHouseDocument from './parseHouseDocument';
 
-import './HouseList.css';
+import './css/HouseList.css';
 
 class HouseList extends React.Component {
   constructor(props) {
@@ -33,9 +33,9 @@ class HouseList extends React.Component {
   updateHouseList(queryString) {
     const searchString = `${queryString}`;
     HouseAPI
-	  .search(searchString)
-	  .then(houseList => parseHouseDocument(houseList))
-	  .then(houseList => this.setState({ houseList }));
+    .search(searchString)
+    .then(houseList => parseHouseDocument(houseList))
+    .then(houseList => this.setState({ houseList }));
   }
 
   loadMoreHouse() {
@@ -67,21 +67,21 @@ class HouseList extends React.Component {
     let compareFunction;
     switch (order) {
       case 'Lowest_Price':
-        compareFunction = (a, b) => {
-          return a.price > b.price;
-        };
-        break;
+      compareFunction = (a, b) => {
+        return a.price > b.price;
+      };
+      break;
       case 'Highest_Price':
-        compareFunction = (a, b) => {
-          return a.price < b.price;
-        };
-        break;
+      compareFunction = (a, b) => {
+        return a.price < b.price;
+      };
+      break;
 
       default:
-        // ascending price order by default
-        compareFunction = (a, b) => {
-          return a.price > b.price;
-        };
+      // ascending price order by default
+      compareFunction = (a, b) => {
+        return a.price > b.price;
+      };
     }
 
     this.setState(prevState => {
@@ -92,7 +92,7 @@ class HouseList extends React.Component {
   }
 
   render() {
-      const houseList = this.state.houseList ;
+    const houseList = this.state.houseList ;
 
 
     return (
@@ -100,31 +100,31 @@ class HouseList extends React.Component {
         <SearchBarWithConditions sortHouses={this.sortHouses} />
 
         <div className="map_and_list">
+
           <div className="map_on_the_left">
             <MapContainer houseList={houseList}/>
           </div>
 
           <div className="list_on_the_right">
-            <div id="thumbnail_list">
-              <ThumbnailList houseList={houseList} />
+            <div className="list-on-the-right-content">
+              <ThumbnailList houseList={houseList} width="48"/>
             </div>
-
             <button onClick={this.loadMoreHouse}>Show More</button>
-
             <Footer />
-	    </div>
           </div>
+
         </div>
+      </div>
     );
   }
 }
 
 HouseList.propTypes = {
-    houseList: PropTypes.array,
+  houseList: PropTypes.array,
 };
 
 HouseList.defaultProps = {
-    houseList: [],
+  houseList: [],
 };
 
 export default withRouter(HouseList);

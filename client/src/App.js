@@ -21,15 +21,15 @@ import Resetpwd from './Resetpwd';
 import MapContainer from './MapContainer';
 import { connect } from 'react-redux';
 //import Footer from './Footer';
-import './App.css';
-import axios from 'axios';
+import './css/App.css';
+import * as UserAPI from './utils/UserAPI';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      user: {},
+      user: {}, //userInfo
       test: '',
       action: ''
     };
@@ -52,7 +52,7 @@ class App extends Component {
 
     //Right now, only sign out could set userState to 'offline', so user could
     //aotumatically login if he never sign out.
-    axios.get('/checkUser/').then(res => {
+    UserAPI.checkUser().then(res => {
       console.log('checking for automatically sign in:', res);
       if (res.data === '') {
         console.log('no such session logged in');

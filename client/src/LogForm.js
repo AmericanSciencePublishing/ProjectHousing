@@ -1,8 +1,9 @@
 import React from 'react';
 import { ButtonGroup, ButtonToolbar, Button, Form, FormGroup, FormControl} from 'react-bootstrap';
 import history from './history';
-import './LogForm.css';
-var axios = require("axios");
+import * as UserAPI from './utils/UserAPI'
+
+import './css/LogForm.css';
 
 class LogForm extends React.Component{
     constructor(props){
@@ -53,13 +54,13 @@ class LogForm extends React.Component{
             inputValPass: this.state.password===""? null:"success"
         });
     }
-    
+
 
     handleSubmit(event){
 	event.preventDefault();
 	var e = this.state.email;
 	var p = this.state.password;
-	
+
 	let loginInfo ={
 	    email:e,
 	    password:p
@@ -68,7 +69,7 @@ class LogForm extends React.Component{
 	this.setState({
 	    isLoading:true
 	});
-	axios.post('/log_in', loginInfo).then(res=>{
+	UserAPI.logIn(loginInfo).then(res=>{
 //	    console.log(res);
 	    if(res.data.status === 401){
 		console.log('401');
@@ -93,7 +94,7 @@ class LogForm extends React.Component{
 		    loginMSG:"sign in successfully"
 		});
 		this.props.sendUserToHome(res.data);
-		axios.put('/online/'+res.data._id);
+		UserAPI.put(res.data._id);
 		history.push({
 		    pathname: '/'
 //		    state: {showModal :false}
@@ -101,17 +102,17 @@ class LogForm extends React.Component{
 //		this.context.router.history.push("/faq")
 //		res.redirect('/');
 	    }
-	    
+
 	}).catch(err=>{
 	    console.log(err);
 	    this.setState({
             isLoading:false
         });
 	});
-	
+
     }
 
-    
+
     render(){
 	return(
 	    <div>
@@ -128,7 +129,7 @@ class LogForm extends React.Component{
 		    placeholder="Enter Email"/>
 		  <FormControl.Feedback />
 		</FormGroup>
-		
+
 	    {/*input password */}
 		<FormGroup validationState={this.state.inputValPass} controlId="password" bsSize="large">
 		  <FormControl
@@ -140,7 +141,7 @@ class LogForm extends React.Component{
 		  <FormControl.Feedback />
 		</FormGroup>
 
-		
+
 		{/*submit button*/}
 		<FormGroup >
 		  <ButtonToolbar justified='true'>
@@ -166,7 +167,7 @@ class LogForm extends React.Component{
 	    <p style={{color: this.state.loginMSG === "sign in successfully" ? "#4caf50": "#f44336"}} id="submitTip">{this.state.loginMSG}</p>
 	      </Form>
 	    </div>
-	    
+
 	);
     }
 }

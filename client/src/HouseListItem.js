@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Label from './Label';
 
-import './HouseListItem.css';
+import './css/HouseListItem.css';
 
 import { connect } from 'react-redux';
 import { save_house, remove_house } from './actions';
@@ -75,7 +75,7 @@ class HouseListItem extends Component {
           <button
             className={buttonClass}
             onClick={() => this.handleClick(_id)}
-          />
+            />
         </div>
       </div>
     );

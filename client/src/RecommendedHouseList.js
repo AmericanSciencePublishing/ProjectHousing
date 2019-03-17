@@ -12,7 +12,7 @@ export default class RecommendedHouseList extends Component {
 
   componentDidMount() {
     HouseAPI
-      .get()
+      .get('')
       .then(houseList=>parseHouseDocument(houseList))
       .then(houses => this.setState({ houses: houses.slice(0, 5) }));
   }

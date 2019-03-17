@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './AutoSuggest.css';
+import './css/AutoSuggest.css';
 
 export default class AutoSuggest extends Component {
   constructor(props) {

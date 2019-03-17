@@ -11,6 +11,10 @@
   min-height: 70vh;
 }
 
+.list-on-the-right-content{
+        min-height:50vh;        
+}
+
 .houseListFooter{
     margin-left:-1em;
 }

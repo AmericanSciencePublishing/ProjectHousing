@@ -18,7 +18,7 @@ import * as HouseAPI from './utils/HouseAPI'
 // import google from './images/google.png';
 // import linkedin from './images/linkedin.png';
 
-import './Details.css';
+import './css/Details.css';
 
 class Details extends Component {
   constructor(props) {

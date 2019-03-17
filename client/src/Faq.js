@@ -1,12 +1,14 @@
 import React from 'react';
 import Footer from './Footer';
 import {Image} from 'react-bootstrap';
-import './Faq.css';
+
+import './css/Faq.css';
 import faqImg from "./images/FAQ.png";
+
 export default class Faq extends React.Component {
   render() {
     return (
-	   
+
 	    <div >
 	    <Image responsive className="faqImg col-xs-12 col-sm-12 c\
 ol-md-12 col-lg-12 col-xl-12" src={faqImg} alt="faq"/>

@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { save_house, remove_house } from './actions';
 
-import './Thumbnail.css';
+import './css/Thumbnail.css';
 
 class Thumbnail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       saved: false
+
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -44,6 +45,9 @@ class Thumbnail extends Component {
     if (!this.props.house) {
       return <div />;
     }
+    const thumbnailWidth = {
+      width:this.props.width + '%'
+    };
 
     const {
       _id,
@@ -62,7 +66,7 @@ class Thumbnail extends Component {
       : 'like-button';
 
     return (
-      <div className="thumbnail">
+        <div className="thumbnail" style={thumbnailWidth}>
         <div className="image-container">
           <a href={`/details/${_id}`} target="_blank">
             <img src={`${imageDirectory}/1.jpg`} alt="" />
@@ -74,13 +78,8 @@ class Thumbnail extends Component {
         <div className="caption-area">
           <p className="title">{`${beds} bds | ${baths} ba | ${size} sqft`}</p>
           <p className="subtitle">{`${address}`}</p>
-
           <hr />
-
-          <p>
-            {city}
-            <span style={{ float: 'right' }}>{year_built}</span>
-          </p>
+          <p className="ending">{city}</p>
         </div>
       </div>
     );

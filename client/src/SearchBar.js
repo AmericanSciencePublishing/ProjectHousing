@@ -4,7 +4,7 @@ import { InputGroup, Button } from 'react-bootstrap';
 
 import AutoSuggest from './AutoSuggest';
 
-import './SearchBar.css';
+import './css/SearchBar.css';
 
 class Search extends Component {
   render() {

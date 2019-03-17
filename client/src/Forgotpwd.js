@@ -1,8 +1,9 @@
 import React from 'react';
 import {Well, ButtonGroup, Button, Form, FormGroup, Col, FormControl} from 'react-bootstrap';
 import Footer from './Footer';
-import './findpwd.css';
-//import history from './history';
+
+import './css/findpwd.css';
+
 var axios = require("axios");
 
 
@@ -50,7 +51,7 @@ class Forgotpwd extends React.Component{
 	});
 
     }
-    
+
 
     render (){
 	let isLoading = this.state.isLoading;
@@ -63,7 +64,7 @@ class Forgotpwd extends React.Component{
 		<h4> We will send you a link to reset your password.</h4>
 		</Well>
 	      <Form id="forgotpwdform" onSubmit={event=>{this.handleSubmit(event);}} horizontal style={{marginTop:"2rem"}}>
-		
+
 		<FormGroup controlId="emailForgot" bsSize="large">
 		  <FormControl
 		    required
@@ -99,7 +100,7 @@ class Forgotpwd extends React.Component{
 		</div>
 	);
     }
-    
+
 }
 
 export default Forgotpwd;

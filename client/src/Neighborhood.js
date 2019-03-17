@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Neighborhood.css';
+import './css/Neighborhood.css';
 
 export default class Neighborhood extends Component {
   render() {

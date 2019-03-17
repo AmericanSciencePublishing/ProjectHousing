@@ -70,7 +70,7 @@
 
 .house-item .like {
   background-color: white;
-  background-image: url('./images/likeBefore.png');
+  background-image: url('../images/likeBefore.png');
   background-repeat: no-repeat;
   background-size: contain;
 
@@ -81,5 +81,5 @@
 }
 
 .house-item .like.confirmed {
-  background-image: url('./images/likeAfter.png');
+  background-image: url('../images/likeAfter.png');
 }

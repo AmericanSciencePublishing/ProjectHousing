@@ -1,7 +1,7 @@
 .new-construction-list #banner-area {
   margin-top: -20px;
 
-  background-image: url('./images/new_construction.jpg');
+  background-image: url('../images/new_construction.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

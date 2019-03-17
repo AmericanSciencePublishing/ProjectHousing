@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 
-import './SchoolList.css';
+import './css/SchoolList.css';
 
 export default class SchoolList extends Component {
   constructor(props) {
